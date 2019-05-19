@@ -1,17 +1,18 @@
 {
-    "name": "laravel/laravel",
-    "type": "project",
-    "description": "The Laravel Framework.",
+    "name": "workoo",
+    "type": "CV based website",
+    "description": "Making job accessible to everyone",
     "keywords": [
-        "framework",
-        "laravel"
+        "job",
+        "cv"
     ],
     "license": "MIT",
     "require": {
         "php": "^7.1.3",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "plank/laravel-mediable": "^2.9"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
