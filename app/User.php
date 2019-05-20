@@ -2,38 +2,42 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Cartalyst\Sentinel\Users\EloquentUser;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Cviebrock\EloquentTaggable\Taggable;
 
-class User extends Authenticatable
+class User extends EloquentUser
 {
-    use Notifiable;
-
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
+	 * The database table used by the model.
+	 *
+	 * @var string
+	 */
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+	protected $table = 'users';
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+	/**
+	 * The attributes to be fillable from the model.
+	 *
+	 * A dirty hack to allow fields to be fillable by calling empty fillable array
+	 *
+	 * @var array
+	 */
+    use Taggable;
+
+	protected $fillable = [];
+	protected $guarded = ['id'];
+	/**
+	 * The attributes excluded from the model's JSON form.
+	 *
+	 * @var array
+	 */
+	protected $hidden = ['password'];
+
+	/**
+	* To allow soft deletes
+	*/
+	use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
 }
