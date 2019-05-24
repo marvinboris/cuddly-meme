@@ -9,4 +9,8 @@ class Country extends Model
     protected $table = 'countries';
 
     protected $guarded  = ['id'];
+
+    public function cities() {
+        return $this->hasMany(City::class, 'country_id');
+    }
 }

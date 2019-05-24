@@ -9,4 +9,5 @@ class File extends Model
     protected $table = 'files';
 
     protected $guarded  = ['id'];
+
 }
