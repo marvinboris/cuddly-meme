@@ -24,10 +24,11 @@ class PaymentMethodSeeder extends Seeder {
 
         $cinetPay = new PaymentMethod([
             'vendor' => 'cinetpay',
-            'base_url' => '',
+            'base_url' => 'https://api.cinetpay.com/v1/',
             'logoSrc' => 'img/vendors/cinetpay.png',
             'apikey' => '5352348315ce3c869ed52b9.20266957',
             'cancel_url' => '',
+            'token' => '', // Represents the site id for cinetpay
             'return_url' => '',
             'notify_url' => 'https://workoo.net/payment/cinetpay/notify',
         ]);
