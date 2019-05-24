@@ -17,8 +17,8 @@ class Transactions extends Migration {
             $table->integer('user_id');
             $table->decimal('amount',18,6);
             $table->string('currency')->nullable();
-            $table->string('tx_id',100);
-            $table->string('tx_hash',100);
+            $table->string('tx_id');
+            $table->string('tx_hash');
             $table->string('vendor',100);
             $table->string('method',100);
             $table->string('type',100);
