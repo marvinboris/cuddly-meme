@@ -1,7 +1,7 @@
 @extends('admin.layout.default')
 
 @section('title')
-    Utilisateurs bloqués
+    Blocked users
 @endsection
 
 @section('content')
@@ -12,15 +12,15 @@
             <div class="content-wrapper-before"></div>
             <div class="content-header row">
                 <div class="content-header-left col-md-4 col-12 mb-2">
-                    <h3 class="content-header-title">Utilisateurs bloqués</h3>
+                    <h3 class="content-header-title">Blocked users</h3>
                 </div>
                 <div class="content-header-right col-md-8 col-12">
                     <div class="breadcrumbs-top float-md-right">
                         <div class="breadcrumb-wrapper mr-1">
                             <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ url('admin') }}">Accueil</a>
+                            <li class="breadcrumb-item"><a href="{{ url('admin') }}">Home</a>
                             </li>
-                            <li class="breadcrumb-item active"><a href="#">Utilisateurs bloqués</a>
+                            <li class="breadcrumb-item active"><a href="#">Blocked users</a>
                             </li>
                             </ol>
                         </div>
@@ -35,7 +35,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Liste des utilisateurs bloqués</h4>
+                                    <h4 class="card-title">Blocked users list</h4>
                                     <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
                                         <ul class="list-inline mb-0">
@@ -52,11 +52,11 @@
                                             <table class="table display nowrap table-striped table-bordered zero-configuration">
                                                 <thead>
                                                     <tr>
-                                                        <th>Nom</th>
-                                                        <th>Prénom</th>
+                                                        <th>First Name</th>
+                                                        <th>Last Name</th>
                                                         <th>Email</th>
-                                                        <th>Sexe</th>
-                                                        <th>Bloqué le</th>
+                                                        <th>Sex</th>
+                                                        <th>Blocked at</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
@@ -73,7 +73,7 @@
                                                                 {{-- <a class="btn btn-success" href="{{ route('admin.users.show', [$user->id]) }}" title="Détail"><i class="fa fa-eye"></i></a> --}}
                                                                 <a class="btn btn-danger"
                                                                     href="#"
-                                                                    title="Supprimer"
+                                                                    title="Delete"
                                                                     data-username="{{ $user->first_name .' '. $user->last_name}}"
                                                                     data-id="{{ $user->id }}"
                                                                     data-toggle="modal"
@@ -82,7 +82,7 @@
                                                                 </a>
                                                                 <a class="btn btn-warning"
                                                                     href="#"
-                                                                    title="Restaurer"
+                                                                    title="Restore"
                                                                     data-username="{{ $user->first_name .' '. $user->last_name}}"
                                                                     data-id="{{ $user->id }}"
                                                                     data-toggle="modal"
@@ -113,20 +113,20 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Suppression</h5>
+                    <h5 class="modal-title">Delete</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h4>Etes vous sure de vouloir supprimer <b id="username"></b> ?</h4>
+                    <h4>Are you sure you want to delete <b id="username"></b> ?</h4>
                     <p>
-                        Cette action est irreversible.
+                        This action is irreversible.
                     </p>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-danger">Supprimer</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-danger">Yes, delete</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
         </div>
@@ -140,20 +140,20 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Restaurer</h5>
+                    <h5 class="modal-title">Restore</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h4>Etes vous sure de vouloir restaurer <b id="username2"></b> ?</h4>
+                    <h4>Are you sure you want to restore <b id="username2"></b> ?</h4>
                     <p>
-                        Il sera à nouveau visible sur la plateforme et pourrat désormais se connecter, bref reprendre le cours de ses activités sur la plateforme.
+                        User will be able to reconnect again, and continue his account activity where she did leave it.
                     </p>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-warning">Restaurer</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-warning">Yes, Restore</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
         </div>
