@@ -14,7 +14,7 @@ class Transactions extends Migration {
         Schema::create('transactions',function(Blueprint $table) {
             $table->increments('id');
             $table->string('address',200)->nullable();
-            $table->integer('user_id');
+            $table->integer('user_id')->nullable();
             $table->decimal('amount',18,6);
             $table->string('currency')->nullable();
             $table->string('tx_id');
@@ -24,7 +24,9 @@ class Transactions extends Migration {
             $table->string('type',100);
             $table->string('status',10);
 
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
+
             $table->engine = 'innoDB';
         });
     }
@@ -35,5 +37,6 @@ class Transactions extends Migration {
      * @return void
      */
     public function down() {
+        Schema::dropIfExists('transactions');
     }
 }

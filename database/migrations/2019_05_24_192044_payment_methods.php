@@ -25,7 +25,8 @@ class PaymentMethods extends Migration {
             $table->string('return_url')->nullable();
             $table->string('notify_url')->nullable();
 
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 
@@ -34,6 +35,8 @@ class PaymentMethods extends Migration {
      *
      * @return void
      */
-    public function down() {
+    public function down()
+    {
+        Schema::dropIfExists('payment_methods');
     }
 }
