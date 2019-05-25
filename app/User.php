@@ -15,13 +15,14 @@ class User extends EloquentUser
 	 */
 
 	protected $table = 'users';
-
-	protected $fillable = [
+    protected $guarded = [];
+	/*protected $fillable = [
         'email',
         'password',
         'last_name',
         'first_name',
         'permissions',
+        'link',
         'birthdate',
         'sex',
         'activity_area_id',
@@ -34,7 +35,7 @@ class User extends EloquentUser
         'social_link1',
         'social_link2',
         'social_link3'
-    ];
+    ];*/
 
 	/**
 	 * The attributes excluded from the model's JSON form.

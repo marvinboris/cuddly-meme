@@ -17,9 +17,10 @@ class CreateActivityAreasTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->text('description')->nullable();
-            
+
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
+            $table->softDeletes();
         });
     }
 
