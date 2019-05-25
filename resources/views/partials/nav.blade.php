@@ -9,7 +9,7 @@
 					<span class="lni-menu"></span>
 					<span class="lni-menu"></span>
 					</button>
-					
+
 					<a href="/" class="navbar-brand"><img src="{{ asset('img/logo.png') }}" alt="logo"></a>
 				</div>
 				<div class="collapse navbar-collapse" id="main-navbar">
@@ -93,45 +93,20 @@
 		<div class="row space-100">
 			<div class="col-lg-7 col-md-12 col-xs-12">
 				<div class="contents">
-					<h2 class="head-title">Find the <br> job that fits your life</h2>
+					<h2 class="head-title">WORKOO <br> THE HIRING PLATFORM OF NEW WORLD</h2>
 					<p>Aliquam vestibulum cursus felis. In iaculis iaculis sapien ac condimentum. Vestibulum congue posuere lacus, id tincidunt nisi porta sit amet. Suspendisse et sapien varius, pellentesque dui non.</p>
-					<div class="job-search-form">
-						<form>
-							<div class="row">
-								<div class="col-lg-5 col-md-5 col-xs-12">
-									<div class="form-group">
-										<input class="form-control" type="text" placeholder="Job Title or Company Name">
-									</div>
-								</div>
-								<div class="col-lg-5 col-md-5 col-xs-12">
-									<div class="form-group">
-										<div class="search-category-container">
-											<label class="styled-select">
-												<select>
-													<option value="none">Locations</option>
-													<option value="none">New York</option>
-													<option value="none">California</option>
-													<option value="none">Washington</option>
-													<option value="none">Birmingham</option>
-													<option value="none">Chicago</option>
-													<option value="none">Phoenix</option>
-												</select>
-											</label>
-										</div>
-										<i class="lni-map-marker"></i>
-									</div>
-								</div>
-								<div class="col-lg-2 col-md-2 col-xs-12">
-									<button type="submit" class="button"><i class="lni-search"></i></button>
-								</div>
-							</div>
-						</form>
-					</div>
+
+
+                    <div class="app-button">
+                        <a href="#pricing" class="btn btn-common"><i class="lni-MizTechs"></i><b>I Want </b><br> <span>a new job opportunity</span></a>
+                        <a href="#browse-workers" class="btn btn-common btn-effect"><i class="lni-androids"></i><b> I Want </b><br> <span>to Find competences</span></a>
+                    </div>
+
 				</div>
 			</div>
 			<div class="col-lg-5 col-md-12 col-xs-12">
 				<div class="intro-img">
-					<img src="assets/img/intro.png" alt="">
+					<img src="{{ asset('img/intro.png') }}" alt="">
 				</div>
 			</div>
 		</div>

@@ -9,7 +9,7 @@
 					<span class="lni-menu"></span>
 					<span class="lni-menu"></span>
 					</button>
-					<a href="/" class="navbar-brand"><img src="{{ asset('img/workoo.png}}" alt="logo"></a>
+					<a href="/" class="navbar-brand"><img src="{{ asset('img/workoo.png') }}" alt="logo"></a>
 				</div>
 				<div class="collapse navbar-collapse" id="main-navbar">
 					<ul class="navbar-nav mr-auto w-100 justify-content-end">

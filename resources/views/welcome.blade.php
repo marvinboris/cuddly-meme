@@ -2,19 +2,36 @@
 
 @section("content")
 
+@php
+    function name2lni($activity_area_name) {
+        $tabs = ['home','world','book','display','brush','heart','funnel','cup'];
+        $lni = 'ln-';
+        $fa = 'fa fa-';
+        switch ($activity_area_name) {
+            case 'value':
+                # code...
+                break;
+
+            default:
+                # code...
+                break;
+        }
+    }
+@endphp
+
 @include("partials.nav")
 
     <section class="category section bg-gray">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Browse Categories</h2>
-                <p>Most popular categories of portal, sorted by popularity</p>
+                <h2 class="section-title">Browse Activity Areas</h2>
+                <p>Most popular activity areas, sorted by popularity</p>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-md-6 col-xs-12 f-category">
+{{--                 <div class="col-lg-3 col-md-6 col-xs-12 f-category">
                     <a href="browse-jobs.html">
                         <div class="icon bg-color-1">
-                            <i class="lni-home"></i>
+                            <i class="fa fa-home 3x"></i>
                         </div>
                         <h3>Finance</h3>
                         <p>(4286 jobs)</p>
@@ -28,65 +45,25 @@
                         <h3>Sale/Markting</h3>
                         <p>(2000 jobs)</p>
                     </a>
-                </div>
+                </div> --}}
+                @foreach ($activityAreas as $item)
+                @if($loop->index == 12) @break @endif
                 <div class="col-lg-3 col-md-6 col-xs-12 f-category">
                     <a href="browse-jobs.html">
-                        <div class="icon bg-color-3">
+                        <div class="icon bg-color-{{ ($loop->index % 8) + 1 }}">
                             <i class="lni-book"></i>
                         </div>
-                        <h3>Education/Training</h3>
-                        <p>(1450 jobs)</p>
+                        <h3>{{ $item->name }}</h3>
+                        <p>({{ $item->users->count() }} users)</p>
                     </a>
                 </div>
-                <div class="col-lg-3 col-md-6 col-xs-12 f-category">
-                    <a href="browse-jobs.html">
-                        <div class="icon bg-color-4">
-                            <i class="lni-display"></i>
-                        </div>
-                        <h3>Technologies</h3>
-                        <p>(5100 jobs)</p>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-6 col-xs-12 f-category">
-                    <a href="browse-jobs.html">
-                        <div class="icon bg-color-5">
-                            <i class="lni-brush"></i>
-                        </div>
-                        <h3>Art/Design</h3>
-                        <p>(5079 jobs)</p>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-6 col-xs-12 f-category">
-                    <a href="browse-jobs.html">
-                        <div class="icon bg-color-6">
-                            <i class="lni-heart"></i>
-                        </div>
-                        <h3>Healthcare</h3>
-                        <p>(3235 jobs)</p>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-6 col-xs-12 f-category">
-                    <a href="browse-jobs.html">
-                        <div class="icon bg-color-7">
-                            <i class="lni-funnel"></i>
-                        </div>
-                        <h3>Science</h3>
-                        <p>(1800 jobs)</p>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-6 col-xs-12 f-category">
-                    <a href="browse-jobs.html">
-                        <div class="icon bg-color-8">
-                            <i class="lni-cup"></i>
-                        </div>
-                        <h3>Food Services</h3>
-                        <p>(4286 jobs)</p>
-                    </a>
-                </div>
+
+                @endforeach
+
             </div>
         </div>
     </section>
-    <div id="browse-jobs" class="section bg-gray">
+    <div id="browse-workers" class="section bg-gray">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-12 col-sm-12">
@@ -94,13 +71,54 @@
                         <div>
                             <h3>500+ talents</h3>
                             <p>Search all the open positions on the web. Get your own personalized salary estimate. Read reviews on over 600,000 companies worldwide. The right job is out there.</p>
-                            <a class="btn btn-common" href="#">Search jobs</a>
+                            {{-- <a class="btn btn-common" href="#">Search worker</a> --}}
+
+                            <div class="job-search-form">
+                                <form action="{{ route('search-worker') }}" method="POST">
+                                    @csrf
+                                    <div class="row">
+
+                                        <div class="col-lg-5 col-md-5 col-xs-12">
+                                            <div class="form-group">
+                                                <div class="search-category-container">
+                                                    <label class="styled-select">
+                                                        <select name="a" required>
+                                                            <option value="">Choose activity area</option>
+                                                            @foreach ($activityAreas as $item)
+                                                            <option value="{{ $item->id }}" title="{{ $item->description }}">{{ $item->name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-lg-5 col-md-5 col-xs-12">
+                                            <div class="form-group">
+                                                <div class="search-category-container">
+                                                    <input class="form-control" required name="l" id="city" type="text" placeholder="Location" list="cities">
+                                                    <datalist id="cities">
+                                                    </datalist>
+                                                </div>
+                                                <i class="lni-map-marker"></i>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-lg-2 col-md-2 col-xs-12">
+                                            <button type="submit" class="button"><i class="lni-search"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12 col-sm-12">
                     <div class="img-thumb">
-                        <img class="img-fluid" src="assets/img/search.png" alt="">
+                        <img class="img-fluid" src="{{ asset('img/search.png') }}" alt="">
                     </div>
                 </div>
             </div>
@@ -127,7 +145,7 @@
                         <span class="process-icon">
                             <i class="lni-search"></i>
                         </span>
-                        <h4>Search Jobs</h4>
+                        <h4>Complete your Account</h4>
                         <p>Post a job to tell us about your project. We'll quickly match you with the right freelancers find place best.</p>
                     </div>
                 </div>
@@ -212,7 +230,8 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ellentesque dignissim quam et <br> metus effici turac fringilla lorem facilisis.</p>
             </div>
             <div class="row pricing-tables">
-                <div class="col-lg-4 col-md-4 col-xs-12">
+                <div class="col-md-3 col-lg-3"></div>
+                <div class="col-lg-6 col-md-6 col-xs-12">
                     <div class="pricing-table border-color-defult">
                         <div class="pricing-details">
                             <div class="icon">
@@ -226,14 +245,24 @@
                                 <li>Manage Application</li>
                                 <li>30-day Expired</li>
                             </ul>
-                            <div class="price"><span>$</span>0<span>/Month</span></div>
+                            <div class="price">
+                                <span>$</span>
+                                {{ $setting->account_price }}
+                                <span>/
+                                    @if($setting->account_time%12 == 0)
+                                        {{ $setting->account_time/12 > 1 ? $setting->account_time : '' }} Year
+                                    @else
+                                        {{ $setting->account_time }} Month
+                                    @endif
+                                </span>
+                            </div>
                         </div>
                         <div class="plan-button">
-                            <a href="#" class="btn btn-border">Get Started</a>
+                            <a href="{{ route('register') }}" class="btn btn-border">Get Started</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-4 col-xs-12">
+                {{-- <div class="col-lg-4 col-md-4 col-xs-12">
                     <div class="pricing-table pricing-active border-color-red">
                         <div class="pricing-details">
                             <div class="icon">
@@ -274,9 +303,37 @@
                             <a href="#" class="btn btn-border">Get Started</a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
 
+@endsection
+
+
+@section('scripts')
+    <script>
+        // Ajax to perform autocomplet on city form input
+        $(document).ready(function(){
+            $('#city').keyup(function(){
+                var entry = $(this).val();
+                if(!entry)
+                    return;
+                $.ajax({
+                   url: "{{ route('ajax-search-cities') }}",
+                   data: 'q='+ entry + '&_token={{ csrf_token() }}',
+                   method: 'POST',
+                   success: function(data){
+                       var html = '';
+                       data.forEach(city => {
+                           html += "<option value='"+city+"'>";
+                       });
+                       $('#cities').html(html);
+                   },
+                   error: (a,b,c) => console.log(a,b,c)
+                });
+            });
+        });
+
+    </script>
 @endsection

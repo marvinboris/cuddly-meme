@@ -11,11 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', 'FrontEndController@home')->name('home');
 
 Route::post('ajax-get-cities-by-country', 'FrontEndController@ajaxGetCitiesByCountry')->name('ajax-get-cities-by-country');
+Route::post('ajax-search-cities', 'FrontEndController@ajaxSearchCities')->name('ajax-search-cities');
+
+Route::match(['get','post'],'search-worker', 'FrontEndController@searchWorker')->name('search-worker');
+Route::get('register', 'FrontEndController@register')->name('register');
 
 
 Route::group(['prefix' => 'admin', 'namespace'=>'Admin'], function () {

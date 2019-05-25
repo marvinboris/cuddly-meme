@@ -21,7 +21,8 @@
             <link rel="stylesheet" href="{{ asset('css/animate.css') }}" >
             <link rel="stylesheet" href="{{ asset('css/main.css') }}" >
             <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" >
-        @show 
+            <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}" >
+        @show
 
     </head>
     <body>
@@ -29,23 +30,39 @@
 
             @section("content")
 
-            @show 
+            @show
 
             @include("partials.footer")
 
-            @section("scripts")
-                <script src="{{ asset('js/jquery-min.js') }}" ></script>
-                <script src="{{ asset('js/popper.min.js') }}" ></script>
-                <script src="{{ asset('js/bootstrap.min.js') }}" ></script>
-                <!-- <script src="{{ asset('js/color-switcher.js') }}" ></script> -->
-                <script src="{{ asset('js/owl.carousel.min.js') }}" ></script>
-                <script src="{{ asset('js/jquery.slicknav.js') }}" ></script>
-                <script src="{{ asset('js/jquery.counterup.min.js') }}" ></script>
-                <script src="{{ asset('js/waypoints.min.js') }}" ></script>
-                <script src="{{ asset('js/form-validator.min.js') }}" ></script>
-                <script src="{{ asset('js/contact-form-script.js') }}" ></script>
-                <script src="{{ asset('js/main.js') }}" ></script>
-            @show
+
+            <script src="{{ asset('js/jquery-min.js') }}" ></script>
+            <script src="{{ asset('js/popper.min.js') }}" ></script>
+            <script src="{{ asset('js/bootstrap.min.js') }}" ></script>
+            <!-- <script src="{{ asset('js/color-switcher.js') }}" ></script> -->
+            <script src="{{ asset('js/owl.carousel.min.js') }}" ></script>
+            <script src="{{ asset('js/jquery.slicknav.js') }}" ></script>
+            <script src="{{ asset('js/jquery.counterup.min.js') }}" ></script>
+            <script src="{{ asset('js/waypoints.min.js') }}" ></script>
+            <script src="{{ asset('js/form-validator.min.js') }}" ></script>
+            <script src="{{ asset('js/contact-form-script.js') }}" ></script>
+            <script src="{{ asset('js/main.js') }}" ></script>
+            <script>
+                $(document).ready(function(){
+                    // au clic sur un lien
+                    $('a').on('click', function(evt){
+                        var target = $(this).attr('href');
+                        if(target[0] == '#' && target.length > 1){
+                            evt.preventDefault();
+                            $('html, body')
+                                .stop()
+                                .animate({scrollTop: $(target).offset().top}, 1000 );
+                        }
+                    });
+                });
+            </script>
+
+            @yield("scripts")
+
         </main>
     </body>
 </html>
