@@ -50,7 +50,6 @@ Route::group(['prefix' => 'admin', 'namespace'=>'Admin'], function () {
 
 
 Route::group(['prefix' => 'admin', 'namespace'=>'Admin' , 'as' => 'admin.', 'middleware' => 'admin'], function () {
-
     Route::get('/', 'AuthController@dashboard')->name('dashboard');
     Route::get('home', 'AuthController@dashboard');
     Route::get('dashboard', 'AuthController@dashboard');
@@ -65,4 +64,18 @@ Route::group(['prefix' => 'admin', 'namespace'=>'Admin' , 'as' => 'admin.', 'mid
     Route::resource('users', 'UsersController');
 
     Route::resource('files', 'FilesController');
+
+    Route::resource('questions', 'QuestionsController');
+
+    Route::group(['prefix' => 'activity_areas', 'as' => 'activity_areas.'], function () {
+        Route::put('restore/{activity_area}', 'AtivityAreasController@restore')->name('restore');
+    });
+    Route::resource('activity_areas', 'AtivityAreasController');
+
+    Route::group(['prefix' => 'payment_options', 'as' => 'payment_options.'], function () {
+        Route::put('restore/{payment_options}', 'PaymentOptionsController@restore')->name('restore');
+    });
+    Route::resource('payment_options', 'PaymentOptionsController');
+
+    Route::get('transactions', 'PaymentsController@transactions')->name('transactions');
 });

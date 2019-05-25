@@ -73,10 +73,8 @@
                                                         @else
                                                             <td></td>
                                                         @endif
-                                                        <td>
-                                                            <a title="{{ $user->activityArea->description }}">
-                                                                {{ $user->activityArea->name }}
-                                                            </a>
+                                                        <td title="{{ $user->activityArea->description }}">
+                                                            {{ $user->activityArea->name }}
                                                         </td>
                                                         <td>
                                                             <div class="btn-group">

@@ -14,10 +14,11 @@ class AddFieldsToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
+            $table->string('link')->unique();
             $table->date('birthdate');
             $table->enum('sex', ['M','F']);
             $table->bigInteger('activity_area_id')->unsigned();
-            $table->string('specialization', 255);
+            $table->text('specialization');
             $table->string('phone');
             $table->bigInteger('city_id')->unsigned();
             $table->bigInteger('cv_file_id')->unsigned(); //(files table)
@@ -50,7 +51,8 @@ class AddFieldsToUsersTable extends Migration
             $table->dropForeign(['cv_file_id']);
             $table->dropForeign(['pic_file_id']);
             $table->dropForeign(['video_file_id']);
-            
+
+            $table->dropColumn('link');
             $table->dropColumn('birthdate');
             $table->dropColumn('sex');
             $table->dropColumn('activity_area_id');

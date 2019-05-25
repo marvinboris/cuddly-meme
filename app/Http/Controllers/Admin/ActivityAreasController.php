@@ -4,15 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\File;
+use App\ActivityArea;
 
-class FilesController extends Controller
+class AtivityAreasController extends Controller
 {
     /**
      * Base path to the view of this controller
      */
-    static $view_folder = 'admin.files.';
-
+    public static $view_folder = 'admin.activity_areas.';
 
     /**
      * Display a listing of the resource.
@@ -21,8 +20,8 @@ class FilesController extends Controller
      */
     public function index()
     {
-        $files = File::get();
-        return view(self::$view_folder . 'index', compact('files'));
+        $activities = ActivityArea::withTrashed()->get();
+        return view(self::$view_folder . 'index', compact('activities'));
     }
 
     /**
@@ -32,7 +31,7 @@ class FilesController extends Controller
      */
     public function create()
     {
-        //
+        return back();
     }
 
     /**
@@ -43,7 +42,14 @@ class FilesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'description' => 'present'
+        ]);
+
+        ActivityArea::create($request->except('_token', '_method'));
+
+        return redirect()->route('admin.activity_areas.index')->withSuccess('Activity area added successfully !');
     }
 
     /**
@@ -52,9 +58,9 @@ class FilesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(File $file)
+    public function show($id)
     {
-        return view(self::$view_folder . 'show', compact('file'));
+        return back();
     }
 
     /**
@@ -65,7 +71,7 @@ class FilesController extends Controller
      */
     public function edit($id)
     {
-        //
+        return back();
     }
 
     /**
@@ -77,7 +83,7 @@ class FilesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return back();
     }
 
     /**
@@ -88,6 +94,13 @@ class FilesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        ActivityArea::whereId($id)->delete();
+        return back()->withSuccess("Activity area disabled successfully !");
+    }
+
+    public function restore($id)
+    {
+        ActivityArea::onlyTrashed()->whereId($id)->restore();
+        return back()->withSuccess("Activity area enabled successfully !");
     }
 }

@@ -69,9 +69,9 @@ class UsersController extends Controller
             'pic_file' => 'file|image',
             'video_file' => 'mimes:mp4,mov,ogg,qt'
         ]);
-        
+
         $user_data = $request->except('_token', 'activate', 'country_id', 'pic_file', 'cv_file', 'pic_file', 'video_file');
-    
+
         //upload cv
         if ($file = $request->file('cv_file')) {
             $extension = $file->extension()?: 'pdf';
@@ -110,7 +110,15 @@ class UsersController extends Controller
             $file->move($destinationPath, $safeName);
             $user_data['video_file_id'] = File::insertGetId(['filename' => $safeName, 'mime' => $mime]);
         }
-        
+
+        //generate user link by sluging his name
+        $link = self::slugify($request->first_name .' '. $request->last_name);
+        while(User::where('link',$link)->first())
+        {
+            $link = self::slugify($request->first_name .' '. $request->last_name . '-' . str_random(4));
+        }
+
+        $user_data['link'] = $link;
         $user_data['password'] = str_random(8); //generate random password for user
 
         $activate = $request->get('activate') ? true : false;
@@ -136,14 +144,14 @@ class UsersController extends Controller
                     ->send(new Restore($data));
             }
 
-            
+
 
         }  catch (UserExistsException $e) {
             return back()->withError("Cette utilisateur existe déjà !");
         }
 
         // Redirect to the home page with success menu
-        return Redirect::route('admin.users.index')->with('success', "Utilisateur créer avec succès !");
+        return redirect()->route('admin.users.index')->with('success', "Utilisateur créer avec succès !");
     }
 
     /**
@@ -194,17 +202,18 @@ class UsersController extends Controller
             'pic_file' => 'file|image',
             'video_file' => 'mimes:mp4,mov,ogg,qt'
         ]);
-        
+
         if($user->email != $request->email){
             $emailAlreadyTaken = User::whereEmail($request->email)->first();
             if($emailAlreadyTaken){
                 return back()->withError("L'adresse mail $request->email est déjà prise !");
             }
         }
-        
+
 
         $user_data = $request->except('_token', '_method', 'country_id', 'pic_file', 'cv_file', 'pic_file', 'video_file');
         $file_to_delete = [];
+        $file_to_delete_ids = [];
 
         //upload cv
         if ($file = $request->file('cv_file')) {
@@ -217,7 +226,10 @@ class UsersController extends Controller
             }
             $file->move($destinationPath, $safeName);
             $user_data['cv_file_id'] = File::insertGetId(['filename' => $safeName, 'mime' => $mime]);
-            array_push($file_to_delete, $destinationPath . $user->cv->filename);
+            if($user->cv){
+                array_push($file_to_delete, $destinationPath . $user->cv->filename);
+                array_push($file_to_delete_ids, $user->cv->id);
+            }
         }
 
         //upload image
@@ -234,6 +246,7 @@ class UsersController extends Controller
 
             if($user->pic){
                 array_push($file_to_delete, $destinationPath . $user->pic->filename);
+                array_push($file_to_delete_ids, $user->pic->id);
             }
         }
 
@@ -251,11 +264,14 @@ class UsersController extends Controller
 
             if($user->video){
                 array_push($file_to_delete, $destinationPath . $user->video->filename);
+                array_push($file_to_delete_ids, $user->video->id);
             }
         }
 
         User::whereId($user->id)->update($user_data);
 
+        //delete user files
+        File::whereIn('id',$file_to_delete_ids)->delete();
         foreach($file_to_delete as $item){
             if(file_exists($item)){
                 unlink($item);
@@ -284,7 +300,7 @@ class UsersController extends Controller
     }
 
 
-    public function ajaxCheckEmail(Request $req) 
+    public function ajaxCheckEmail(Request $req)
     {
         $req->validate(['email' => 'required']);
 
@@ -304,11 +320,11 @@ class UsersController extends Controller
     }
 
     public function hardDelete($id)
-    {   
+    {
         if($id === Sentinel::getUser()->id) {
             return back()->withError("Vous ne pouvez vous supprimer vous-même !");
         }
-        
+
         $user = User::onlyTrashed()->whereId($id)->first();
         if(!$user){
             return back()->withError("Vous ne pouvez supprimer un utilisateur qui ne figure pas dans la corbeille !");
@@ -340,7 +356,7 @@ class UsersController extends Controller
                 unlink($item);
             }
         }
-        
+
         return back()->withSuccess("Utilisateur supprimé avec succès !");
     }
 
@@ -348,6 +364,34 @@ class UsersController extends Controller
     {
         User::onlyTrashed()->whereId($id)->restore();
         return back()->withSuccess("Utilisateur restauré avec succès !");
+    }
+
+
+    private static function slugify($text)
+    {
+        // replace non letter or digits by -
+        $text = preg_replace('~[^\pL\d]+~u', '-', $text);
+
+        // transliterate
+        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+        // remove unwanted characters
+        $text = preg_replace('~[^-\w]+~', '', $text);
+
+        // trim
+        $text = trim($text, '-');
+
+        // remove duplicate -
+        $text = preg_replace('~-+~', '-', $text);
+
+        // lowercase
+        $text = strtolower($text);
+
+        if (empty($text)) {
+            return 'n-a';
+        }
+
+        return $text;
     }
 
 }

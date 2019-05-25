@@ -4,15 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\File;
+use App\Question;
+use App\Response;
 
-class FilesController extends Controller
+class QuestionsController extends Controller
 {
+
     /**
      * Base path to the view of this controller
      */
-    static $view_folder = 'admin.files.';
-
+    public static $view_folder = 'admin.questions.';
 
     /**
      * Display a listing of the resource.
@@ -21,8 +22,8 @@ class FilesController extends Controller
      */
     public function index()
     {
-        $files = File::get();
-        return view(self::$view_folder . 'index', compact('files'));
+        $questions = Question::all();
+        return view(self::$view_folder . 'index', compact('questions'));
     }
 
     /**
@@ -32,7 +33,7 @@ class FilesController extends Controller
      */
     public function create()
     {
-        //
+        return view(self::$view_folder . 'create');
     }
 
     /**
@@ -43,7 +44,23 @@ class FilesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'label' => 'required',
+            'type' => 'required',
+            'options' => 'required_if:type,select|json',
+            'placeholder' => 'present',
+            'pre_value' => 'present'
+        ]);
+
+        $question_exist = Question::whereLabel($request->label)->first();
+
+        if ($question_exist) {
+            return back()->withError("This question already exist !");
+        }
+
+        Question::create($request->except('_token', '_method'));
+
+        return redirect()->route('admin.questions.index')->withSuccess('Question added successfully !');
     }
 
     /**
@@ -52,9 +69,9 @@ class FilesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(File $file)
+    public function show(Question $question)
     {
-        return view(self::$view_folder . 'show', compact('file'));
+        return back();
     }
 
     /**
@@ -63,9 +80,10 @@ class FilesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Question $question)
     {
-        //
+        // Can't edit question because the users's response will directly become no sense
+        return back();
     }
 
     /**
@@ -78,6 +96,7 @@ class FilesController extends Controller
     public function update(Request $request, $id)
     {
         //
+        return back();
     }
 
     /**
@@ -88,6 +107,12 @@ class FilesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //first we delete all response of this questions
+        Response::where('question_id', $id)->delete();
+
+        //second we delete question
+        Question::whereId($id)->delete();
+
+        return back()->withSuccess("Question deleted successfully !");
     }
 }
