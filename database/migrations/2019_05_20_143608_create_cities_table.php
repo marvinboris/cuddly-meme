@@ -17,12 +17,12 @@ class CreateCitiesTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('country_id')->unsigned();
             $table->string('name');
-            
+
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
 
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
-            $table->unique(['name','country_id']);
+            //$table->unique(['name','country_id']); because file contains double
         });
     }
 
