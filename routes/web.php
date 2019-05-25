@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('admin.login');
+    return view('welcome');
 });
 
 Route::post('ajax-get-cities-by-country', 'FrontEndController@ajaxGetCitiesByCountry')->name('ajax-get-cities-by-country');
@@ -72,10 +72,10 @@ Route::group(['prefix' => 'admin', 'namespace'=>'Admin' , 'as' => 'admin.', 'mid
     });
     Route::resource('activity_areas', 'AtivityAreasController');
 
-    Route::group(['prefix' => 'payment_options', 'as' => 'payment_options.'], function () {
-        Route::put('restore/{payment_options}', 'PaymentOptionsController@restore')->name('restore');
+    Route::group(['prefix' => 'payment_methods', 'as' => 'payment_methods.'], function () {
+        Route::put('restore/{payment_method}', 'PaymentMethodsController@restore')->name('restore');
     });
-    Route::resource('payment_options', 'PaymentOptionsController');
+    Route::resource('payment_methods', 'PaymentMethodsController');
 
-    Route::get('transactions', 'PaymentsController@transactions')->name('transactions');
+    Route::get('transactions', 'TransactionsController@transactions')->name('transactions');
 });
