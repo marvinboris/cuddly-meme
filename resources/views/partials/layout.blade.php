@@ -3,14 +3,14 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<meta name="keywords" content="Workoo, Job,CV, Africa,embauche">
+		<meta name="keywords" content="Workoo, Job,CV, Africa,hiring">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <meta name="author" content="Workoo">
         <meta property="og:url" content="https://workoo.net/">
         <meta property="og:type" content="website">
         <meta property="og:title" content="Workoo">
-        <meta property="og:description" content="La plateforme d'embauche du nouveau monde">
-        <title> Workoo - @yield("title","La plateforme d'embauche du nouveau monde") </title>
+        <meta property="og:description" content="The hiring platform of the new world">
+        <title> Workoo - @yield("title","The hiring platform of the new world") </title>
 
         @section("stylesheet")
             <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" >

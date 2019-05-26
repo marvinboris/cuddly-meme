@@ -19,7 +19,7 @@
     }
 @endphp
 
-@include("partials.nav")
+@include("partials.header")
 
     <section class="category section bg-gray">
         <div class="container">
