@@ -14,7 +14,7 @@ class AddFieldsToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('link')->unique();
+            $table->string('link')->unique()->nullable();
             $table->date('birthdate');
             $table->enum('sex', ['M','F']);
             $table->bigInteger('activity_area_id')->unsigned();

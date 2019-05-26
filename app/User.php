@@ -16,27 +16,7 @@ class User extends EloquentUser
 
 	protected $table = 'users';
     protected $guarded = [];
-	/*protected $fillable = [
-        'email',
-        'password',
-        'last_name',
-        'first_name',
-        'permissions',
-        'link',
-        'birthdate',
-        'sex',
-        'activity_area_id',
-        'specialization',
-        'phone',
-        'city_id',
-        'cv_file_id',
-        'pic_file_id',
-        'video_file_id',
-        'social_link1',
-        'social_link2',
-        'social_link3'
-    ];*/
-
+    
 	/**
 	 * The attributes excluded from the model's JSON form.
 	 *

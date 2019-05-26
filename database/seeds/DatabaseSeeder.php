@@ -17,8 +17,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ActivityAreaSeeder::class);
         $this->call(CityAndCountrySeeder::class);
         $this->call(SettingSeeder::class);
-        $this->call(PaymentOptionSeeder::class);
-        $this->call(QuestionSeeder::class);
+        $this->call(PaymentMethodSeeder::class);
+         $this->call(QuestionSeeder::class);
         $this->call(AdminSeeder::class);
 
         Model::reguard();
