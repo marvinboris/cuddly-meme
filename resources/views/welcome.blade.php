@@ -360,4 +360,20 @@
         });
 
     </script>
+
+
+    <script>
+        $(document).ready(function(){
+            // au clic sur un lien
+            $('a').on('click', function(evt){
+                var target = $(this).attr('href');
+                if(target[0] == '#' && target.length > 1){
+                    evt.preventDefault();
+                    $('html, body')
+                        .stop()
+                        .animate({scrollTop: $(target).offset().top}, 1000 );
+                }
+            });
+        });
+    </script>
 @endsection

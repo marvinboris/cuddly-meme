@@ -98,7 +98,7 @@
             <div class="col-lg-12 col-md-6 col-xs-12">
                 <div class="manager-resumes-item">
                     <div class="manager-content">
-                        <a href="resume.html">
+                        <a href="{{ $user->pic ? url('files/' . $user->pic->filename) : '#' }}" {{ $user->pic ? "target='_blank'":"" }}>
                             @if($user->pic)
                                 <img src="{{ url('files/' . $user->pic->filename) }}" class="resume-thumb" alt="User picture">
                             @else
@@ -107,7 +107,7 @@
                         </a>
                         <div class="manager-info">
                             <div class="manager-name">
-                                <h4><a href="#">{{ $user->first_name . ' ' . $user->last_name }}</a></h4>
+                                <h4><a href="{{ url($user->link) }}">{{ $user->first_name . ' ' . $user->last_name }}</a></h4>
                                 <h5>{{ $user->activityArea->name }}</h5>
                             </div>
                             <div class="manager-meta">

@@ -1,4 +1,4 @@
-<iframe id="iframepdf" src="{{ $url }}" class="{{ isset($class) ? $class: '' }}">
+<iframe id="iframepdf" src="{{ $url }}" class="{{ isset($class) ? $class: '' }}" allowfullscreen="true">
     <html>
         <body>
             <object data="{{ $url }}" type="application/pdf">

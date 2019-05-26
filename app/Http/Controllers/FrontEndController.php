@@ -70,4 +70,13 @@ class FrontEndController extends Controller
 
         return view('search-workers', compact('activityAreas','location','activity_id','users','total'));
     }
+
+
+    public function userLink($link) {
+        $user = User::whereLink($link)->first();
+        if(!$user){
+            abort(404);
+        }
+        return view('user-details', compact('user'));
+    }
 }

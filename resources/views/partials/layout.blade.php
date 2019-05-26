@@ -46,20 +46,6 @@
             <script src="{{ asset('js/form-validator.min.js') }}" ></script>
             <script src="{{ asset('js/contact-form-script.js') }}" ></script>
             <script src="{{ asset('js/main.js') }}" ></script>
-            <script>
-                $(document).ready(function(){
-                    // au clic sur un lien
-                    $('a').on('click', function(evt){
-                        var target = $(this).attr('href');
-                        if(target[0] == '#' && target.length > 1){
-                            evt.preventDefault();
-                            $('html, body')
-                                .stop()
-                                .animate({scrollTop: $(target).offset().top}, 1000 );
-                        }
-                    });
-                });
-            </script>
 
             @yield("scripts")
 
