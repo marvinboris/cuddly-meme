@@ -70,7 +70,10 @@
                     <div class="text-wrapper">
                         <div>
                             <h3>500+ talents</h3>
-                            <p>Search all the open positions on the web. Get your own personalized salary estimate. Read reviews on over 600,000 companies worldwide. The right job is out there.</p>
+                            <p>
+                                Search all the jobs seeker on the platform.Find the best talents that suit well your needs. 
+                                The right talent is out there.
+                            </p>
                             {{-- <a class="btn btn-common" href="#">Search worker</a> --}}
 
                             <div class="job-search-form">
@@ -127,8 +130,10 @@
     <section class="how-it-works section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">How It Works?</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ellentesque dignissim quam et <br> metus effici turac fringilla lorem facilisis.</p>
+                <h2 class="section-title">How It Works - For Job seekers</h2>
+                <p>
+                    
+                </p>
             </div>
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
@@ -137,16 +142,21 @@
                             <i class="lni-user"></i>
                         </span>
                         <h4>Create an Account</h4>
-                        <p>Post a job to tell us about your project. We'll quickly match you with the right freelancers find place best.</p>
+                        <p>
+                           Create and account in the platform, with basic information
+                        </p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="work-process step-2">
                         <span class="process-icon">
-                            <i class="lni-search"></i>
+                            <i class="lni-world"></i>
                         </span>
-                        <h4>Complete your Account</h4>
-                        <p>Post a job to tell us about your project. We'll quickly match you with the right freelancers find place best.</p>
+                        <h4>Make a subscription payment</h4>
+                        <p> 
+                            Pay only $ {{ $setting->account_price }} for a year 
+                            in order to get your profile professionnally exposed in the world.
+                        </p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
@@ -154,8 +164,57 @@
                         <span class="process-icon">
                             <i class="lni-cup"></i>
                         </span>
-                        <h4>Apply</h4>
-                        <p>Post a job to tell us about your project. We'll quickly match you with the right freelancers find place best.</p>
+                        <h4>Complete your profile </h4>
+                        <p>
+                            Complete your profile and get your next job offer right into your box  
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="how-it-works section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">How It Works - For Employers </h2>
+                <p>
+                    
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="work-process step-2">
+                        <span class="process-icon">
+                            <i class="lni-search"></i>
+                        </span>
+                        <h4>Research the talent</h4>
+                        <p>
+                            Use our powerful search engine and get right profile for your job offer
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="work-process step-2">
+                        <span class="process-icon">
+                            <i class="lni-comments"></i>
+                        </span>
+                        <h4>Get in touch </h4>
+                        <p>
+                            Get in touch with the matched person, for you to discuss about 
+                            modalities
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="work-process step-2">
+                        <span class="process-icon">
+                            <i class="lni-bar-chart"></i>
+                        </span>
+                        <h4>Grow your business</h4>
+                        <p>
+                            Make your business grow with the talent,
+                            after hiring.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -165,7 +224,9 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Clients Review</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ellentesque dignissim quam et <br> metus effici turac fringilla lorem facilisis.</p>
+                <p>
+                    What they are saying about us.
+                </p>
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
@@ -186,38 +247,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="item">
-                            <div class="testimonial-item">
-                                <div class="author">
-                                    <div class="img-thumb">
-                                        <img src="assets/img/testimonial/img2.png" alt="">
-                                    </div>
-                                </div>
-                                <div class="content-inner">
-                                    <p class="description">Morbi quam enim, cursus non erat pretium veh icula finibus ex stibulum venenatis viverra dui Morbi quam enim, cursus non erat pretium veh icula finibus ex stibulum venenatis viverra dui Morbi quam enim, cursus non erat pretium veh icula finibus ex stibulum venenatis viverra dui.</p>
-                                    <div class="author-info">
-                                        <h2><a href="#">John Doe</a></h2>
-                                        <span>Project Menager</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="testimonial-item">
-                                <div class="author">
-                                    <div class="img-thumb">
-                                        <img src="assets/img/testimonial/img3.png" alt="">
-                                    </div>
-                                </div>
-                                <div class="content-inner">
-                                    <p class="description">Morbi quam enim, cursus non erat pretium veh icula finibus ex stibulum venenatis viverra dui Morbi quam enim, cursus non erat pretium veh icula finibus ex stibulum venenatis viverra dui Morbi quam enim, cursus non erat pretium veh icula finibus ex stibulum venenatis viverra dui.</p>
-                                    <div class="author-info">
-                                        <h2><a href="#">Helen</a></h2>
-                                        <span>Engineer</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -227,7 +256,7 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Pricing Plan</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ellentesque dignissim quam et <br> metus effici turac fringilla lorem facilisis.</p>
+                <p>Single pricing plan to rule them all</p>
             </div>
             <div class="row pricing-tables">
                 <div class="col-md-3 col-lg-3"></div>
@@ -239,11 +268,11 @@
                             </div>
                             <h2>Professional</h2>
                             <ul>
-                                <li>Post 1 Job</li>
-                                <li>No Featured Job</li>
+                                <li>Get your profile featured</li>
+                                <li>Profile view counts</li>
+                                <li>Get notified on new jobs</li>
                                 <li>Edit Your Job Listing</li>
-                                <li>Manage Application</li>
-                                <li>30-day Expired</li>
+                                <li>1 year Expired</li>
                             </ul>
                             <div class="price">
                                 <span>$</span>
