@@ -220,6 +220,44 @@
             </div>
         </div>
     </section>
+    <section class="how-it-works section bg-gray">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Accepted payment methods </h2>
+                <p>
+                    
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="work-process step-2">
+                        <span class="process-icon">
+                            <i class="lni-mastercard"></i>
+                            <i class="lni-visa"></i>
+                        </span>
+                        <h4>Visa - mastercard</h4>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="work-process step-2">
+                        <span class="process-icon">
+                            <i class="lni-bitcoin"></i>
+                        </span>
+                        <h4>Cryptocurrencies</h4>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="work-process step-2">
+                        <span class="process-icon">
+                            <i class="lni-wallet"></i>
+                        </span>
+                        <h4>Mobile Money</h4> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <section id="testimonial" class="section">
         <div class="container">
             <div class="section-header">
@@ -285,6 +323,11 @@
                                     @endif
                                 </span>
                             </div>
+                            <div class="">
+                                  <i class="lni-visa"></i>
+                                  <i class="lni-bitcoin"></i>
+                                  <i class="lni-dollar"></i>
+                            </div> 
                         </div>
                         <div class="plan-button">
                             <a href="{{ route('register') }}" class="btn btn-border">Get Started</a>
