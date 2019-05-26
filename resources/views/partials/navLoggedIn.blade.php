@@ -88,7 +88,7 @@
 		</div>
 		<div class="mobile-menu" data-logo="assets/img/logo-mobile.png"></div>
 	</nav>
-	<div class="container">
+	{{-- <div class="container">
 		<div class="row space-100">
 			<div class="col-lg-7 col-md-12 col-xs-12">
 				<div class="contents">
@@ -136,3 +136,4 @@
 		</div>
 	</div>
 </header>
+ --}}

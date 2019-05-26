@@ -12,17 +12,17 @@
         <meta property="og:description" content="La plateforme d'embauche du nouveau monde">
         <title> Workoo - @yield("title","La plateforme d'embauche du nouveau monde") </title>
 
-        @section("stylesheet")
-            <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" >
-            <link rel="stylesheet" href="{{ asset('css/line-icons.css') }}" >
-            <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}" >
-            <link rel="stylesheet" href="{{ asset('css/owl.theme.default.css') }}" >
-            <link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}" >
-            <link rel="stylesheet" href="{{ asset('css/animate.css') }}" >
-            <link rel="stylesheet" href="{{ asset('css/main.css') }}" >
-            <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" >
-            <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}" >
-        @show
+
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" >
+        <link rel="stylesheet" href="{{ asset('css/line-icons.css') }}" >
+        <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}" >
+        <link rel="stylesheet" href="{{ asset('css/owl.theme.default.css') }}" >
+        <link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}" >
+        <link rel="stylesheet" href="{{ asset('css/animate.css') }}" >
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}" >
+        <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" >
+        <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}" >
+        @yield("stylesheet")
 
     </head>
     <body>

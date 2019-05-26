@@ -78,4 +78,9 @@ class User extends EloquentUser
     public function responses() {
         return $this->hasMany(Response::class, 'user_id');
     }
+
+    public function attestations() {
+        return $this->hasMany(Attestation::class, 'user_id');
+    }
+
 }
