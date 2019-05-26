@@ -21,6 +21,31 @@
 
 @include("partials.header")
 
+	<div class="container">
+		<div class="row space-100">
+			<div class="col-lg-7 col-md-12 col-xs-12">
+				<div class="contents">
+					<h2 class="head-title">WORKOO <br> THE HIRING PLATFORM OF NEW WORLD</h2>
+					<p>Aliquam vestibulum cursus felis. In iaculis iaculis sapien ac condimentum. Vestibulum congue posuere lacus, id tincidunt nisi porta sit amet. Suspendisse et sapien varius, pellentesque dui non.</p>
+
+
+                    <div class="app-button">
+                        <a href="#pricing" class="btn btn-common"><i class="lni-MizTechs"></i><b>I Want </b><br> <span>a new job opportunity</span></a>
+                        <a href="#browse-workers" class="btn btn-common btn-effect"><i class="lni-androids"></i><b> I Want </b><br> <span>to Find competences</span></a>
+                    </div>
+
+				</div>
+			</div>
+			<div class="col-lg-5 col-md-12 col-xs-12">
+				<div class="intro-img">
+					<img src="{{ asset('img/intro.png') }}" alt="">
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+
+
     <section class="category section bg-gray">
         <div class="container">
             <div class="section-header">
@@ -329,11 +354,26 @@
                            html += "<option value='"+city+"'>";
                        });
                        $('#cities').html(html);
-                   },
-                   error: (a,b,c) => console.log(a,b,c)
+                   }
                 });
             });
         });
 
+    </script>
+
+
+    <script>
+        $(document).ready(function(){
+            // au clic sur un lien
+            $('a').on('click', function(evt){
+                var target = $(this).attr('href');
+                if(target[0] == '#' && target.length > 1){
+                    evt.preventDefault();
+                    $('html, body')
+                        .stop()
+                        .animate({scrollTop: $(target).offset().top}, 1000 );
+                }
+            });
+        });
     </script>
 @endsection

@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\City;
+use App\Country;
 use App\ActivityArea;
 use App\Setting;
+use App\User;
 
 class FrontEndController extends Controller
 {
@@ -18,7 +20,9 @@ class FrontEndController extends Controller
 
     public function ajaxSearchCities(Request $req){
         $req->validate(['q' => 'required']);
-        $data = City::distinct()->where('name','like',"$req->q%")->limit(10)->pluck('name');
+        $data1 = City::distinct()->where('name','like',"$req->q%")->limit(8)->pluck('name')->toArray();
+        $data2 = Country::distinct()->where('name','like',"$req->q%")->limit(7)->pluck('name')->toArray();
+        $data = array_merge($data1, $data2);
         return response()->json($data);
     }
 
@@ -29,8 +33,7 @@ class FrontEndController extends Controller
                             return -1*$item->users->count();
                         });
         $setting = Setting::first();
-        $cities = City::all();
-        return view('welcome', compact('activityAreas','setting','cities'));
+        return view('welcome', compact('activityAreas','setting'));
     }
 
 
@@ -39,14 +42,41 @@ class FrontEndController extends Controller
     }
 
     public function searchWorker(Request $req) {
-        if($req->isMethod('POST')) {
-            $req->validate([
-                'a' => 'required|exists:activity_areas,id',
-                'l' => 'required'
-            ]);
+
+        $location = $req['l'] ?: '';
+        $activity_id = $req['a'] ?: '';
+
+
+        $activityAreas = ActivityArea::all();
+        $query = User::select('users.*');
+
+        if($activity_id) {
+            $query = $query->where('users.activity_area_id',$activity_id);
         }
 
+        if($location) {
+            $query = $query->join('cities','cities.id','=','users.city_id')
+                        ->join('countries','countries.id','=','cities.country_id')
+                        ->where(function ($query) use ($location) {
+                            $query->Where('cities.name','like',"%$location%")
+                            ->orWhere('countries.name','like',"%$location%");
+                        });
+        }
 
-        return 'searchWorker';
+        //$users = $query->simplePaginate(1);
+        $users = $query->paginate(10);
+        $total = json_decode($users->toJson());
+        $total = $total->total;
+
+        return view('search-workers', compact('activityAreas','location','activity_id','users','total'));
+    }
+
+
+    public function userLink($link) {
+        $user = User::whereLink($link)->first();
+        if(!$user){
+            abort(404);
+        }
+        return view('user-details', compact('user'));
     }
 }
