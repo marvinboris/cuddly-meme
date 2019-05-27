@@ -879,7 +879,7 @@
     <!-- BEGIN: Page JS-->
     <script src="{{ asset('assets/admin/app-assets/js/scripts/tables/datatables/datatable-basic.min.js') }}" type="text/javascript"></script>
     <!-- END: Page JS-->
-    @include('notify')
+    @include('partials.notify')
     @yield('footer_scripts')
   </body>
   <!-- END: Body-->

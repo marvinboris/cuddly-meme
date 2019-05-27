@@ -1,10 +1,9 @@
 <header id="home" class="hero-area">
-    @auth
-        @include("partials.navLoggedIn")
-    @endauth 
 
-    @noauth 
+    @if(Sentinel::check())
+        @include("partials.navLoggedIn")
+    @else
         @include("partials.nav")
-    @endnotauth
+    @endif
 
 </header>

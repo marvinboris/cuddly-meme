@@ -45,6 +45,44 @@
         padding-top: 0.5em;
         padding-bottom: 0.5em;
     }
+
+    .tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 140px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -75px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
  </style>
 @endsection
 
@@ -115,7 +153,7 @@
                         <div id="faq" class="section pb-45">
                             <div class="container">
                                 <div class="row">
-                                    
+
                                     @foreach($user->responses as $response)
                                     <div class="col-lg-12 col-md-12 col-xs-12">
                                         <div class="panel-group" id="accordion">
@@ -136,7 +174,7 @@
                                         </div>
                                     </div>
                                     @endforeach
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -158,7 +196,7 @@
                         <div class="share-job">
                             <form method="post" class="subscribe-form">
                                 <div class="form-group">
-                                    <input type="url" name="url" readonly class="form-control" placeholder="{{ url($user->link) }}">
+                                    <input type="url" id="url" readonly class="form-control" placeholder="{{ url($user->link) }}">
                                     <button type="button" id="copy" class="btn btn-common sub-btn"><i class="lni-files"></i></button>
                                     <div class="clearfix"></div>
                                 </div>
@@ -275,12 +313,14 @@
 
 @section('scripts')
 <script>
-    $(document).ready(function(){
-        $('#copy').click(function(e){
-            var val = "{{ url($user->link) }}";
-            //copy val to clibord 
-            alert('Link copied !')
-        });
-    });
+    document.getElementById('copy').onclick = function(e){
+        //copy val to clibord
+        var copyText = document.getElementById("url");
+        copyText.value = "{{ url($user->link) }}";
+        copyText.select();
+        document.execCommand("copy");
+        alert("Copied: " + copyText.value);
+        copyText.value = "";
+    };
 </script>
 @endsection

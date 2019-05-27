@@ -31,11 +31,7 @@
 
 @section("content")
 
-@include("partials.nav")
-
-
-
-</header>
+@include("partials.header")
 
 
 <div class="page-header">
@@ -43,7 +39,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="inner-header">
-                    <h3>Search Worker @if(($total) > 0) ({{ $total }} found ) @endif</h3>
+                    <h3>Search Worker {{-- @if(($total) > 0) ({{ $total }} found ) @endif --}}</h3>
                 </div>
                 <div class="job-search-form bg-cyan job-featured-search">
                     <form action="{{ route('search-worker') }}" method="GET">

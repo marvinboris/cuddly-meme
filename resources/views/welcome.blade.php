@@ -2,23 +2,6 @@
 
 @section("content")
 
-@php
-    function name2lni($activity_area_name) {
-        $tabs = ['home','world','book','display','brush','heart','funnel','cup'];
-        $lni = 'ln-';
-        $fa = 'fa fa-';
-        switch ($activity_area_name) {
-            case 'value':
-                # code...
-                break;
-
-            default:
-                # code...
-                break;
-        }
-    }
-@endphp
-
 @include("partials.header")
 
     <section class="category section bg-gray">
@@ -71,7 +54,7 @@
                         <div>
                             <h3>500+ talents</h3>
                             <p>
-                                Search all the jobs seeker on the platform.Find the best talents that suit well your needs. 
+                                Search all the jobs seeker on the platform.Find the best talents that suit well your needs.
                                 The right talent is out there.
                             </p>
                             {{-- <a class="btn btn-common" href="#">Search worker</a> --}}
@@ -132,7 +115,7 @@
             <div class="section-header">
                 <h2 class="section-title">How It Works - For Job seekers</h2>
                 <p>
-                    
+
                 </p>
             </div>
             <div class="row">
@@ -153,8 +136,8 @@
                             <i class="lni-world"></i>
                         </span>
                         <h4>Make a subscription payment</h4>
-                        <p> 
-                            Pay only $ {{ $setting->account_price }} for a year 
+                        <p>
+                            Pay only $ {{ $setting->account_price }} for a year
                             in order to get your profile professionnally exposed in the world.
                         </p>
                     </div>
@@ -166,7 +149,7 @@
                         </span>
                         <h4>Complete your profile </h4>
                         <p>
-                            Complete your profile and get your next job offer right into your box  
+                            Complete your profile and get your next job offer right into your box
                         </p>
                     </div>
                 </div>
@@ -178,7 +161,7 @@
             <div class="section-header">
                 <h2 class="section-title">How It Works - For Employers </h2>
                 <p>
-                    
+
                 </p>
             </div>
             <div class="row">
@@ -200,7 +183,7 @@
                         </span>
                         <h4>Get in touch </h4>
                         <p>
-                            Get in touch with the matched person, for you to discuss about 
+                            Get in touch with the matched person, for you to discuss about
                             modalities
                         </p>
                     </div>
@@ -225,7 +208,7 @@
             <div class="section-header">
                 <h2 class="section-title">Accepted payment methods </h2>
                 <p>
-                    
+
                 </p>
             </div>
             <div class="row">
@@ -251,13 +234,13 @@
                         <span class="process-icon">
                             <i class="lni-wallet"></i>
                         </span>
-                        <h4>Mobile Money</h4> 
+                        <h4>Mobile Money</h4>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
+
     <section id="testimonial" class="section">
         <div class="container">
             <div class="section-header">
@@ -327,7 +310,7 @@
                                   <i class="lni-visa"></i>
                                   <i class="lni-bitcoin"></i>
                                   <i class="lni-dollar"></i>
-                            </div> 
+                            </div>
                         </div>
                         <div class="plan-button">
                             <a href="{{ route('register') }}" class="btn btn-border">Get Started</a>

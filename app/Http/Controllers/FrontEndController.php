@@ -8,6 +8,13 @@ use App\Country;
 use App\ActivityArea;
 use App\Setting;
 use App\User;
+use App\File;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Restore;
+use Sentinel;
+use URL;
+use Cartalyst\Sentinel\Laravel\Facades\Activation;
+
 
 class FrontEndController extends Controller
 {
@@ -38,8 +45,91 @@ class FrontEndController extends Controller
 
 
     public function register() {
-        return 'register';
+        $activities = ActivityArea::all();
+        $countries = Country::all();
+        return view('register', compact('activities','countries'));
     }
+
+    public function postRegister(Request $request) {
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'present',
+            'email' => 'required|email|unique:users,email',
+            'birthdate' => 'required|date|before:today',
+            'sex' => 'required|in:M,F',
+            'activity_area_id' => 'required|exists:activity_areas,id',
+            'specialization' => 'required',
+            'phone' => 'required',
+            'city_id' => 'required|exists:cities,id',
+            'cv_file' => 'required|file|mimes:pdf',
+            'password' => 'required|between:4,32',
+            'password_confirm' => 'required|same:password'
+        ]);
+
+        $user_data = $request->except('_token', 'country_id', 'cv_file', 'password_confirm');
+
+        //upload cv
+        if ($file = $request->file('cv_file')) {
+            $extension = $file->extension()?: 'pdf';
+            $mime = $file->getMimeType();
+            $destinationPath = public_path() . '/files/';
+            $safeName = 'cv_' . str_random(20) . '.' . $extension;
+            while (file_exists($destinationPath . $safeName)) {
+                $safeName = 'cv_' . str_random(20) . '.' . $extension;
+            }
+            $file->move($destinationPath, $safeName);
+            $user_data['cv_file_id'] = File::insertGetId(['filename' => $safeName, 'mime' => $mime]);
+        }else{
+            return back()->withInput()->withError("CV file is required");
+        }
+
+        //generate user link by sluging his name
+        $link = self::slugify($request->first_name .' '. $request->last_name);
+        while (User::where('link', $link)->first()) {
+            $link = self::slugify($request->first_name .' '. $request->last_name . '-' . str_random(4));
+        }
+
+        $user_data['link'] = $link;
+
+        $activate = false;
+        $data = new \stdClass();
+
+        try {
+            // Register the user
+            $user = Sentinel::register($user_data, false);
+
+            //add user to 'User' group
+            $role = Sentinel::findRoleBySlug('user');
+            if ($role) {
+                $role->users()->attach($user);
+            }
+
+            $request->session()->put('user', $user);
+
+            // Data to be used on the email view
+            $data->user_name = $user->first_name .' '. $user->last_name;
+            $data->activationUrl = URL::route('activate', [$user->id, Activation::create($user)->code]);
+
+            // Send the activation code through email
+            Mail::to($user->email)
+                ->send(new Restore($data));
+
+        } catch (UserExistsException $e) {
+            return back()->withError("This user already exist !");
+        }
+
+        return redirect()->route('registration-sucess');
+    }
+
+
+    public function registrationSucess(Request $request) {
+        $user = $request->session()->pull('user', null);
+        if($user){
+            return view('registration-success', compact('user'));
+        }
+        return redirect()->route('login');
+    }
+
 
     public function searchWorker(Request $req) {
 
@@ -78,5 +168,38 @@ class FrontEndController extends Controller
             abort(404);
         }
         return view('user-details', compact('user'));
+    }
+
+
+    private static function slugify($text)
+    {
+        // replace non letter or digits by -
+        $text = preg_replace('~[^\pL\d]+~u', '-', $text);
+
+        // transliterate
+        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+        // remove unwanted characters
+        $text = preg_replace('~[^-\w]+~', '', $text);
+
+        // trim
+        $text = trim($text, '-');
+
+        // remove duplicate -
+        $text = preg_replace('~-+~', '-', $text);
+
+        // lowercase
+        $text = strtolower($text);
+
+        if (empty($text)) {
+            return 'n-a';
+        }
+
+        return $text;
+    }
+
+
+    public function payment() {
+        return 'payment !';
     }
 }
