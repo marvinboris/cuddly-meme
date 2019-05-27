@@ -28,7 +28,7 @@ class PaymentMethodSeeder extends Seeder {
             'logoSrc' => 'img/vendors/cinetpay.png',
             'apikey' => '5352348315ce3c869ed52b9.20266957',
             'cancel_url' => '',
-            'token' => '', // Represents the site id for cinetpay
+            'token' => '175739', // Represents the site id for cinetpay
             'return_url' => '',
             'notify_url' => 'https://workoo.net/payment/cinetpay/notify',
         ]);
