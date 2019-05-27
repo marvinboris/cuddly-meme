@@ -18,10 +18,7 @@ class AdminSeeder extends Seeder
 
 		$now = \Carbon\Carbon::now();
 
-        $file_id = DB::table('files')->insertGetId([
-            'filename' => 'admin_logo.jpg',
-            'mime' => 'image/jpeg'
-        ]);
+        $city_id = DB::table('cities')->limit(1)->value('id');
 
         $cv_file_id = DB::table('files')->insertGetId([
             'filename' => 'admin_cv.jpg',
@@ -33,13 +30,14 @@ class AdminSeeder extends Seeder
 			'password'    => 'admin',
 			'first_name'  => 'John',
             'last_name'   => 'Doe',
+            'link'        => 'john-doe',
             'birthdate'   => $now->toDateString(),
             'sex'         => 'M',
             'activity_area_id' => DB::table('activity_areas')->first()->id,
             'specialization' => 'Administrator',
             'phone'       => 672345678,
             'social_link1' => 'facebook.com',
-            'city_id'      => $file_id,
+            'city_id'      => $city_id,
             'cv_file_id'   => $cv_file_id
 		));
 

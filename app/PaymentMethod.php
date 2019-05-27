@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class PaymentMethod extends Model {
     protected $guarded = [];
@@ -13,7 +15,7 @@ class PaymentMethod extends Model {
     use SoftDeletes;
 
     public function transactions() {
-        return $this->hasMany(Transaction::class, 'payment_option_id');
+        return $this->hasMany(Transaction::class, 'method', 'vendor');
     }
 
 }

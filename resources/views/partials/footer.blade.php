@@ -4,9 +4,12 @@
 			<div class="row">
 				<div class="col-lg-3 col-md-3 col-xs-12">
 					<div class="widget">
-						<div class="footer-logo"><img src="assets/img/logo-footer.png" alt=""></div>
+						<div class="footer-logo"><img src="{{asset('img/logo1.png')}}" alt=""></div>
 						<div class="textwidget">
-							<p>Sed consequat sapien faus quam bibendum convallis quis in nulla. Pellentesque volutpat odio eget diam cursus semper.</p>
+							<p>
+								WORKOO.NET is a Global Investment Trading Product <br/>
+								By KOUMBOU .F Jeffe
+							</p>
 						</div>
 					</div>
 				</div>
@@ -15,22 +18,18 @@
 						<h3 class="block-title">Quick Links</h3>
 						<ul class="menu">
 							<li><a href="#">About Us</a></li>
-							<li><a href="#">Support</a></li>
-							<li><a href="#">License</a></li>
 							<li><a href="#">Contact</a></li>
 						</ul>
 						<ul class="menu">
 							<li><a href="#">Terms & Conditions</a></li>
-							<li><a href="#">Privacy</a></li>
-							<li><a href="#">Refferal Terms</a></li>
-							<li><a href="#">Product License</a></li>
+							<li><a href="#">Privacy</a></li> 
 						</ul>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-4 col-xs-12">
 					<div class="widget">
 						<h3 class="block-title">Subscribe Now</h3>
-						<p>Sed consequat sapien faus quam bibendum convallis.</p>
+						<p>Subscribe and get jobs offer and company related information</p>
 						<form method="post" id="subscribe-form" name="subscribe-form" class="validate">
 							<div class="form-group is-empty">
 								<input type="email" value="" name="Email" class="form-control" id="EMAIL" placeholder="Enter Email..." required="">

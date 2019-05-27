@@ -2725,7 +2725,6 @@ class CityAndCountrySeeder extends Seeder
    ],
    "Bénin" => [
       "Abomey",
-      "Abomey",
       "Allada",
       "Aplahoué",
       "Athiémé",
@@ -2938,7 +2937,6 @@ class CityAndCountrySeeder extends Seeder
       "Bridgefield",
       "Bridgetown (110;000) -- Capital",
       "Briggs",
-      "Brighton",
       "Brighton",
       "Brittons Hill",
       "Brome Field",

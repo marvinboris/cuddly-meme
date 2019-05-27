@@ -147,11 +147,11 @@ class UsersController extends Controller
 
 
         }  catch (UserExistsException $e) {
-            return back()->withError("Cette utilisateur existe déjà !");
+            return back()->withError("This user already exist !");
         }
 
         // Redirect to the home page with success menu
-        return redirect()->route('admin.users.index')->with('success', "Utilisateur créer avec succès !");
+        return redirect()->route('admin.users.index')->with('success', "User created successfully !");
     }
 
     /**
@@ -206,7 +206,7 @@ class UsersController extends Controller
         if($user->email != $request->email){
             $emailAlreadyTaken = User::whereEmail($request->email)->first();
             if($emailAlreadyTaken){
-                return back()->withError("L'adresse mail $request->email est déjà prise !");
+                return back()->withError("The mail address you enter ($request->email) has already been taken !");
             }
         }
 
@@ -279,7 +279,7 @@ class UsersController extends Controller
         }
 
         // Redirect to the home page with success menu
-        return redirect()->route('admin.users.index')->with('success', "Utilisateur modifié avec succès !");
+        return redirect()->route('admin.users.index')->with('success', "User updated successfully !");
     }
 
     /**
@@ -291,12 +291,12 @@ class UsersController extends Controller
     public function destroy(User $user)
     {
         if($user->id === Sentinel::getUser()->id) {
-            return back()->withError("Vous ne pouvez vous supprimer vous-même !");
+            return back()->withError("You can't block your self!");
         }
         // Delete the user
         //to allow soft deleted, we are performing query on users model instead of Sentinel model
         User::destroy($user->id);
-        return back()->withSuccess("Utilisateur bloqué avec succès !");
+        return back()->withSuccess("User blocked successfully !");
     }
 
 
@@ -322,12 +322,12 @@ class UsersController extends Controller
     public function hardDelete($id)
     {
         if($id === Sentinel::getUser()->id) {
-            return back()->withError("Vous ne pouvez vous supprimer vous-même !");
+            return back()->withError("You can't delete your self !");
         }
 
         $user = User::onlyTrashed()->whereId($id)->first();
         if(!$user){
-            return back()->withError("Vous ne pouvez supprimer un utilisateur qui ne figure pas dans la corbeille !");
+            return back()->withError("You can not delete non blocqued user !");
         }
 
         //before delete user we remend his files
@@ -357,13 +357,13 @@ class UsersController extends Controller
             }
         }
 
-        return back()->withSuccess("Utilisateur supprimé avec succès !");
+        return back()->withSuccess("User deleted successfully !");
     }
 
     public function restore($id)
     {
         User::onlyTrashed()->whereId($id)->restore();
-        return back()->withSuccess("Utilisateur restauré avec succès !");
+        return back()->withSuccess("User deblocked successfully !");
     }
 
 

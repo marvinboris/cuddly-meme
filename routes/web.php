@@ -11,14 +11,37 @@
 |
 */
 
-Route::get('/', function () {
-    return view('admin.login');
-});
+
+Route::get('/', 'FrontEndController@home')->name('home');
 
 Route::post('ajax-get-cities-by-country', 'FrontEndController@ajaxGetCitiesByCountry')->name('ajax-get-cities-by-country');
+Route::post('ajax-search-cities', 'FrontEndController@ajaxSearchCities')->name('ajax-search-cities');
+
+Route::match(['get','post'],'search', 'FrontEndController@searchWorker')->name('search-worker');
 
 
-Route::group(['prefix' => 'admin', 'namespace'=>'Admin'], function () {
+Route::get('register', 'FrontEndController@register')->name('register');
+Route::post('register', 'FrontEndController@postRegister');
+Route::get('registration-sucess', 'FrontEndController@registrationSucess')->name('registration-sucess');
+
+Route::get('login', 'AuthController@login')->name('login');
+Route::post('login', 'AuthController@postSignin');
+Route::get('logout', 'AuthController@getLogout')->name('logout');
+
+
+# Account Activation
+Route::get('activate/{userId}/{activationCode}', 'AuthController@getActivate')->name('activate');
+
+
+Route::get('payment', 'FrontEndController@payment')->name('payment')->middleware('user');
+
+
+Route::group(['middleware' => 'has-paid'], function () {
+    Route::get('dashboard', 'AuthController@dashboard')->name('dashboard');
+});
+
+
+Route::group(['prefix' => 'admin', 'namespace'=>'Admin', 'as' => 'admin.'], function () {
 
     # Error pages should be shown without requiring login
     Route::get('404', function () {
@@ -38,9 +61,6 @@ Route::group(['prefix' => 'admin', 'namespace'=>'Admin'], function () {
     # Forgot Password Confirmation
     Route::get('forgot-password/{userId}/{passwordResetCode}', 'AuthController@getForgotPasswordConfirm')->name('forgot-password-confirm');
     Route::post('forgot-password/{userId}/{passwordResetCode}', 'AuthController@getForgotPasswordConfirm');
-
-    # Account Activation
-    Route::get('activate/{userId}/{activationCode}', 'AuthController@getActivate')->name('activate');
 
     # Logout
     Route::get('logout', 'AuthController@getLogout')->name('logout');
@@ -72,10 +92,14 @@ Route::group(['prefix' => 'admin', 'namespace'=>'Admin' , 'as' => 'admin.', 'mid
     });
     Route::resource('activity_areas', 'AtivityAreasController');
 
-    Route::group(['prefix' => 'payment_options', 'as' => 'payment_options.'], function () {
-        Route::put('restore/{payment_options}', 'PaymentOptionsController@restore')->name('restore');
+    Route::group(['prefix' => 'payment_methods', 'as' => 'payment_methods.'], function () {
+        Route::put('restore/{payment_method}', 'PaymentMethodsController@restore')->name('restore');
     });
-    Route::resource('payment_options', 'PaymentOptionsController');
+    Route::resource('payment_methods', 'PaymentMethodsController');
 
-    Route::get('transactions', 'PaymentsController@transactions')->name('transactions');
+    Route::get('transactions', 'TransactionsController@transactions')->name('transactions');
 });
+
+
+
+Route::get('{link}', 'FrontEndController@userLink')->name('user-link');

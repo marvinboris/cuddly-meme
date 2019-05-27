@@ -15,4 +15,8 @@ class ActivityArea extends Model
     * To allow soft deletes
     */
     use SoftDeletes;
+
+    public function users() {
+        return $this->hasMany(User::class, 'activity_area_id');
+    }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -15,6 +15,7 @@ use Reminder;
 use Sentinel;
 use URL;
 use Validator;
+use App\Transaction;
 use View;
 use stdClass;
 use App\Mail\ForgotPassword;
@@ -28,24 +29,58 @@ class AuthController extends Controller
      */
     public function dashboard()
     {
+        $user = Sentinel::getUser();
         // Show the page
-        return view('admin.dashboard');
+        return view('dashboard', compact('user'));
     }
+
+
+    /**
+     * User account activation page.
+     *
+     * @param number $userId
+     * @param string $activationCode
+     * @return
+     */
+    public function getActivate($userId,$activationCode = null)
+    {
+        // Is user logged in?
+        if (Sentinel::check()) {
+            return Redirect::route('dashboard');
+        }
+
+        $user = Sentinel::findById($userId);
+        $activation = Activation::create($user);
+
+        if (Activation::complete($user, $activation->code)) {
+            // Activation was successful
+            //Delete stored user in session to avoid showing registration success message again
+            $request->session()->forget('user');
+
+            // Redirect to the login page
+            return Redirect::route('login')->with('success', "Account activated !");
+        } else {
+            // Activation not found or not completed.
+            return Redirect::route('login')->with('error', "Activation not completed !");
+        }
+
+    }
+
 
     /**
      * Account sign in.
      *
      * @return View
      */
-    public function getSignin()
+    public function login()
     {
         // Is the user logged in?
         if (Sentinel::check()) {
-            return Redirect::route('admin.dashboard');
+            return Redirect::route('dashboard');
         }
 
         // Show the page
-        return view('admin.login');
+        return view('login');
     }
 
     /**
@@ -63,17 +98,17 @@ class AuthController extends Controller
 
         try {
             // Try to log the user in
-            if (Sentinel::authenticate($request->only(['email', 'password']), $request->get('remember-me', false))) {
+            if (Sentinel::authenticate($request->only(['email', 'password']), $request->get('remember-me', $request->has('remember-me')))) {
                 // Redirect to the dashboard page
                 $user = Sentinel::getUser();
-                return Redirect::route("admin.dashboard")->with('success', "Welcome $user->first_name");
+                return Redirect::route("dashboard")->with('success', "Bienvenue $user->first_name");
             }
 
         } catch (NotActivatedException $e) {
-            return back()->withError('Compte non activé !');
+            return back()->withError('Account not activated !');
         } catch (ThrottlingException $e) {
             $delay = $e->getDelay();
-           return back()->withError("Too many tries, account suspended, retru in $delay secondes !");
+           return back()->withError("Too many tries, Account suspended, retry in $delay secondes !");
         }
 
         // Ooops.. something went wrong
@@ -98,7 +133,7 @@ class AuthController extends Controller
             $user = Sentinel::findByCredentials(['email' => $request->get('email')]);
 
             if (!$user) {
-                return back()->with('error', 'User not found !');
+                return back()->with('error', 'User not founf !');
             }
             $activation = Activation::completed($user);
             if(!$activation){
@@ -172,11 +207,11 @@ class AuthController extends Controller
         $user = Sentinel::findById($userId);
         if (!$reminder = Reminder::complete($user, $passwordResetCode, $request->get('password'))) {
             // Ooops.. something went wrong
-            return Redirect::route('signin')->with('error',"OOPS something went wrong !");
+            return Redirect::route('signin')->with('error',"OOPS Something went wrong !");
         }
 
         // Password successfully reseted
-        return Redirect::route('signin')->with('success', "Your password has been successfully reset !");
+        return Redirect::route('signin')->with('success', "Password successfully reset !");
     }
 
     /**
@@ -186,11 +221,12 @@ class AuthController extends Controller
      */
     public function getLogout()
     {
+        $logged = Sentinel::check();
         // Log the user out
         Sentinel::logout();
 
         // Redirect to the users page
-        return redirect('admin/signin')->with('info', 'Logout successfully !');
+        return redirect()->route('login')->with($logged ? 'info':'do not show anything', 'Success logout !');
     }
 
 

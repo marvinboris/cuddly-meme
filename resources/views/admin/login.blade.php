@@ -71,7 +71,7 @@
                 <div class="card-content">
 
                     <div class="card-body">
-                        <form class="form-horizontal" method="POST" action="{{ route('postSignin') }}" novalidate>
+                        <form class="form-horizontal" method="POST" action="{{ route('admin.postSignin') }}" novalidate>
                             @csrf
                             <fieldset class="form-group position-relative has-icon-left">
                                 <input type="text" class="form-control round" id="user-name" name="email" placeholder="Votre E-mail" required>
@@ -129,7 +129,7 @@
     <!-- BEGIN: Page JS-->
     <script src="{{ asset('assets/admin/app-assets/js/scripts/forms/form-login-register.min.js') }}" type="text/javascript"></script>
     <!-- END: Page JS-->
-    @include('notify')
+    @include('partials.notify')
   </body>
   <!-- END: Body-->
 
