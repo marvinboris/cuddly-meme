@@ -200,6 +200,17 @@ class FrontEndController extends Controller
     }
 
 
+    public function browseActivityAreas() {
+        $activityAreas = ActivityArea::all();
+        //sort by users number
+        $activityAreas = array_sort($activityAreas, function ($item, $i) {
+            return -1*$item->users->count();
+        });
+
+        return view('activity_areas', compact('activityAreas'));
+    }
+
+
     public function payment() {
         return 'payment !';
     }

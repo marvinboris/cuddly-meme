@@ -32,6 +32,8 @@ Route::get('logout', 'AuthController@getLogout')->name('logout');
 # Account Activation
 Route::get('activate/{userId}/{activationCode}', 'AuthController@getActivate')->name('activate');
 
+Route::get('activity-areas', 'FrontEndController@browseActivityAreas')->name('activity-areas');
+
 
 Route::get('payment', 'FrontEndController@payment')->name('payment')->middleware('user');
 
