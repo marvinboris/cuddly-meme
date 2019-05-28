@@ -163,6 +163,7 @@ class FrontEndController extends Controller
 
 
     public function userLink($link) {
+        User::whereLink($link)->increment('views');
         $user = User::whereLink($link)->first();
         if(!$user){
             abort(404);

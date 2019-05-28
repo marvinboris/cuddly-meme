@@ -73,7 +73,7 @@ class AuthController extends Controller
             return back()->withError('Compte non activé !');
         } catch (ThrottlingException $e) {
             $delay = $e->getDelay();
-           return back()->withError("Too many tries, account suspended, retru in $delay secondes !");
+           return back()->withError("Too many tries, account suspended, retry in $delay secondes !");
         }
 
         // Ooops.. something went wrong

@@ -16,6 +16,9 @@ use Sentinel;
 use URL;
 use Validator;
 use App\Transaction;
+use App\Question;
+use App\ActivityArea;
+use App\Country;
 use View;
 use stdClass;
 use App\Mail\ForgotPassword;
@@ -30,8 +33,11 @@ class AuthController extends Controller
     public function dashboard()
     {
         $user = Sentinel::getUser();
+        $questions = Question::all();
+        $activities = ActivityArea::all();
+        $countries = Country::all();
         // Show the page
-        return view('dashboard', compact('user'));
+        return view('dashboard', compact('user','questions','activities','countries'));
     }
 
 
@@ -101,7 +107,7 @@ class AuthController extends Controller
             if (Sentinel::authenticate($request->only(['email', 'password']), $request->get('remember-me', $request->has('remember-me')))) {
                 // Redirect to the dashboard page
                 $user = Sentinel::getUser();
-                return Redirect::route("dashboard")->with('success', "Bienvenue $user->first_name");
+                return Redirect::route("dashboard")->with('success', "Welcome $user->first_name");
             }
 
         } catch (NotActivatedException $e) {

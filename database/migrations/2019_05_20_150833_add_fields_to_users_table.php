@@ -27,6 +27,7 @@ class AddFieldsToUsersTable extends Migration
             $table->string('social_link1')->nullable();
             $table->string('social_link2')->nullable();
             $table->string('social_link3')->nullable();
+            $table->integer('views')->unsigned()->default(0);
             $table->softDeletes();
 
             $table->foreign('activity_area_id')->references('id')->on('activity_areas');
@@ -65,6 +66,7 @@ class AddFieldsToUsersTable extends Migration
             $table->dropColumn('social_link1');
             $table->dropColumn('social_link2');
             $table->dropColumn('social_link3');
+            $table->dropColumn('views');
             $table->dropSoftDeletes();
         });
     }
