@@ -230,8 +230,8 @@ class EditUserController extends Controller
 
         $user = Sentinel::getUser();
 
-        if (Hash::check($req->current, $user->password)) {
-            $user->update(['password' => bcrypt($req->new_password)]);
+        if (Sentinel::authenticate(['email' => $user->email, 'password' => $req->current])) {
+            Sentinel::update($user, ['password' => $req->password]);
             return back()->withSuccess('Your password has een changed successfully !');
         } else {
             return back()->withError('Current password is incorrect !');

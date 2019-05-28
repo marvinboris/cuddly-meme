@@ -11,6 +11,7 @@ use App\User;
 use App\File;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Restore;
+use App\Mail\Contact;
 use Sentinel;
 use URL;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
@@ -210,6 +211,35 @@ class FrontEndController extends Controller
         return view('activity_areas', compact('activityAreas'));
     }
 
+
+    public function contact() {
+        return view('contact');
+    }
+
+    public function postContact(Request $request) {
+        $request->validate([
+            'contact-name' => 'required',
+            'contact-email' => 'required|email',
+            'contact-subject' => 'required',
+            'contact-msg' => 'required'
+        ]);
+
+        $data = new \stdClass();
+
+        // Data to be used on the email view
+        $data->contact_name = $request->get('contact-name');
+        $data->contact_email = $request->get('contact-email');
+        $data->contact_subject = $request->get('contact-subject');
+        $data->contact_msg = $request->get('contact-msg');
+
+        // Send the mail
+        Mail::to(
+            env('MAIL_FROM_ADDRESS')
+            )->send(new Contact($data));
+
+
+        return back()->with('success', "Your message has been sent !");
+    }
 
     public function payment() {
         return 'payment !';

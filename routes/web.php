@@ -34,6 +34,9 @@ Route::get('activate/{userId}/{activationCode}', 'AuthController@getActivate')->
 
 Route::get('activity-areas', 'FrontEndController@browseActivityAreas')->name('activity-areas');
 
+Route::get('contact', 'FrontEndController@contact')->name('contact');
+Route::post('contact', 'FrontEndController@postContact')->name('contact');
+
 
 Route::get('payment', 'FrontEndController@payment')->name('payment')->middleware('user');
 
