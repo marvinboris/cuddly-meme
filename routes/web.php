@@ -56,6 +56,8 @@ Route::group(['prefix' => 'edit-user', 'middleware' => 'has-paid', 'as' => 'edit
 
     Route::put('update-cv', 'EditUserController@updateCV')->name('update-cv');
 
+    Route::put('update-pic', 'EditUserController@updatePic')->name('update-pic');
+
     Route::post('add-attestation', 'EditUserController@addAttestation')->name('add-attestation');
     Route::delete('del-attestation/{attestation}', 'EditUserController@delAttestation')->name('del-attestation');
 
