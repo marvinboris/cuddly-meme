@@ -30,7 +30,7 @@
                     </a>
                 </div> --}}
                 @foreach ($activityAreas as $item)
-                @if($loop->index == 12) @break @endif
+                @if($loop->index == 8) @break @endif
                 <div class="col-lg-3 col-md-6 col-xs-12 f-category">
                     <a href="browse-jobs.html">
                         <div class="icon bg-color-{{ ($loop->index % 8) + 1 }}">
@@ -40,9 +40,10 @@
                         <p>({{ $item->users->count() }} users)</p>
                     </a>
                 </div>
-
                 @endforeach
-
+                <div class="col-12 text-center mt-4">
+                    <a href="{{ route('activity-areas') }}" class="btn btn-common">Browse All</a>
+                </div>
             </div>
         </div>
     </section>

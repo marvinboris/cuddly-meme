@@ -9,8 +9,11 @@ use App\ActivityArea;
 use App\Setting;
 use App\User;
 use App\File;
+use App\Transaction;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Restore;
+use App\Mail\Contact;
 use Sentinel;
 use URL;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
@@ -167,7 +170,21 @@ class FrontEndController extends Controller
         if(!$user){
             abort(404);
         }
-        return view('user-details', compact('user'));
+
+        $lastTransaction = Transaction::where('user_id', $user->id)->latest()->first();
+
+        if ($lastTransaction) {
+            $nbMonth = Setting::limit(1)->value('account_time') ?: 12;
+            $lastTime = $lastTransaction->created_at;
+            $since = Carbon::now()->subMonths($nbMonth);
+            if ($lastTime->gte($since)) {
+                User::whereLink($link)->increment('views');
+                return view('user-details', compact('user'));
+            }
+        }
+
+        abort(404);
+
     }
 
 
@@ -198,6 +215,46 @@ class FrontEndController extends Controller
         return $text;
     }
 
+
+    public function browseActivityAreas() {
+        $activityAreas = ActivityArea::all();
+        //sort by users number
+        $activityAreas = array_sort($activityAreas, function ($item, $i) {
+            return -1*$item->users->count();
+        });
+
+        return view('activity_areas', compact('activityAreas'));
+    }
+
+
+    public function contact() {
+        return view('contact');
+    }
+
+    public function postContact(Request $request) {
+        $request->validate([
+            'contact-name' => 'required',
+            'contact-email' => 'required|email',
+            'contact-subject' => 'required',
+            'contact-msg' => 'required'
+        ]);
+
+        $data = new \stdClass();
+
+        // Data to be used on the email view
+        $data->contact_name = $request->get('contact-name');
+        $data->contact_email = $request->get('contact-email');
+        $data->contact_subject = $request->get('contact-subject');
+        $data->contact_msg = $request->get('contact-msg');
+
+        // Send the mail
+        Mail::to(
+            env('MAIL_FROM_ADDRESS')
+            )->send(new Contact($data));
+
+
+        return back()->with('success', "Your message has been sent !");
+    }
 
     public function payment() {
         return 'payment !';

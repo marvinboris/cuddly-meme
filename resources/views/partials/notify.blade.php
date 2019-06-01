@@ -10,8 +10,8 @@
     // Form error message
     @if ($errors->any())
         $.notify({
-            title: '<strong>Erreur:</strong>',
-            message: 'Verifié les données de votre formulaire'
+            title: '<strong>Error:</strong>',
+            message: 'Please check your form inputs there are errors'
         },{
             type: 'danger',
             newest_on_top: true,
@@ -40,7 +40,7 @@
     // Success message
     @if ($message = Session::get('success'))
         $.notify({
-            title: '<strong>Succès:</strong>',
+            title: '<strong>Success:</strong>',
             message: '{{ $message }}'
         },{
             type: 'success',
@@ -55,7 +55,7 @@
     // Waning message
     @if ($message = Session::get('warning'))
         $.notify({
-            title: '<strong>Attention:</strong>',
+            title: '<strong>Warning:</strong>',
             message: '{{ $message }}'
         },{
             type: 'warning',
@@ -70,7 +70,7 @@
     // Error message
     @if ($message = Session::get('error'))
         $.notify({
-            title: '<strong>Erreur:</strong>',
+            title: '<strong>Error:</strong>',
             message: '{{ $message }}'
         },{
             type: 'danger',

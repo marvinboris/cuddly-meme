@@ -18,6 +18,10 @@ use Validator;
 use View;
 use stdClass;
 use App\Mail\ForgotPassword;
+use App\User;
+use App\Setting;
+use App\Transaction;
+use Carbon\Carbon;
 
 class AuthController extends Controller
 {
@@ -28,8 +32,39 @@ class AuthController extends Controller
      */
     public function dashboard()
     {
-        // Show the page
-        return view('admin.dashboard');
+        $account_time = Setting::limit(1)->value('account_time') ?: 12;
+        $new_users = User::whereDate('created_at', Carbon::today())->count();
+        $registered = User::withTrashed()->count();
+        $blocked = User::onlyTrashed()->count();
+        $dt = Carbon::now()->subMonths($account_time);
+        $has_paid = Transaction::whereDate('transactions.created_at','>=', $dt)->count();
+        $latest = User::latest()->limit(5)->get();
+        foreach($latest as $user) {
+            $user->status = 'Pending';
+            $lastTransaction = Transaction::where('user_id', $user->id)->latest()->first();
+            if ($lastTransaction) {
+                $lastTime = $lastTransaction->created_at;
+                $since = Carbon::now()->subMonths($account_time);
+                if ($lastTime->gte($since)) {
+                    $user->status = 'Completed';
+                }
+            }
+
+        }
+
+        //New user data for chart
+        $query = User::select('created_at');
+        $charts = [
+            1,//$query->whereDate('created_at', Carbon::now()->subDays(6))->count(),
+            2,//$query->whereDate('created_at', Carbon::now()->subDays(5))->count(),
+            3,//$query->whereDate('created_at', Carbon::now()->subDays(4))->count(),
+            0,//$query->whereDate('created_at', Carbon::now()->subDays(3))->count(),
+            3,//$query->whereDate('created_at', Carbon::now()->subDays(2))->count(),
+            5,//$query->whereDate('created_at', Carbon::now()->subDays(1))->count(),
+            1,//$new_users
+        ];
+    
+        return view('admin.dashboard', compact('new_users','registered','has_paid','blocked','latest','charts'));
     }
 
     /**
@@ -73,7 +108,7 @@ class AuthController extends Controller
             return back()->withError('Compte non activé !');
         } catch (ThrottlingException $e) {
             $delay = $e->getDelay();
-           return back()->withError("Too many tries, account suspended, retru in $delay secondes !");
+           return back()->withError("Too many tries, account suspended, retry in $delay secondes !");
         }
 
         // Ooops.. something went wrong

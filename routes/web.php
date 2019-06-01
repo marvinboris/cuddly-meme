@@ -31,6 +31,12 @@ Route::get('logout', 'AuthController@getLogout')->name('logout');
 // Account Activation
 Route::get('activate/{userId}/{activationCode}', 'AuthController@getActivate')->name('activate');
 
+Route::get('activity-areas', 'FrontEndController@browseActivityAreas')->name('activity-areas');
+
+Route::get('contact', 'FrontEndController@contact')->name('contact');
+Route::post('contact', 'FrontEndController@postContact')->name('contact');
+
+
 Route::get('payment', 'FrontEndController@payment')->name('payment')->middleware('user');
 
 Route::group(['middleware' => 'has-paid'], function () {
@@ -39,6 +45,31 @@ Route::group(['middleware' => 'has-paid'], function () {
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], function () {
     // Error pages should be shown without requiring login
+
+Route::group(['prefix' => 'edit-user', 'middleware' => 'has-paid', 'as' => 'edit-user.'], function () {
+    Route::post('ajax-check-email', 'EditUserController@ajaxCheckEmail')->name('ajax-check-email');
+    Route::put('personal', 'EditUserController@personal')->name('personal');
+    Route::put('specialization', 'EditUserController@specialization')->name('specialization');
+
+    Route::put('video', 'EditUserController@updateVideo')->name('video');
+    Route::delete('del-video', 'EditUserController@delVideo')->name('del-video');
+
+    Route::put('update-cv', 'EditUserController@updateCV')->name('update-cv');
+
+    Route::post('add-attestation', 'EditUserController@addAttestation')->name('add-attestation');
+    Route::delete('del-attestation/{attestation}', 'EditUserController@delAttestation')->name('del-attestation');
+
+    Route::put('social-networks', 'EditUserController@socialNetworks')->name('social-networks');
+
+    Route::post('question/{question}', 'EditUserController@question')->name('question');
+
+    Route::post('change-password', 'EditUserController@changePassword')->name('change-password');
+});
+
+
+Route::group(['prefix' => 'admin', 'namespace'=>'Admin', 'as' => 'admin.'], function () {
+
+    # Error pages should be shown without requiring login
     Route::get('404', function () {
         return view('admin/404');
     });
