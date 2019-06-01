@@ -65,11 +65,6 @@ Route::group(['prefix' => 'edit-user', 'middleware' => 'has-paid', 'as' => 'edit
 
     Route::post('change-password', 'EditUserController@changePassword')->name('change-password');
 });
-
-
-Route::group(['prefix' => 'admin', 'namespace'=>'Admin', 'as' => 'admin.'], function () {
-
-    # Error pages should be shown without requiring login
     Route::get('404', function () {
         return view('admin/404');
     });
