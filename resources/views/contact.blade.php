@@ -10,7 +10,7 @@
 
 @section("content")
 
-@include("partials.header")
+@parent
 
 <div class="page-header">
   <div class="container">

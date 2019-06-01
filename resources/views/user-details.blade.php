@@ -89,7 +89,7 @@
 
 @section("content")
 
-@include("partials.nav")
+@parent
 
 
 

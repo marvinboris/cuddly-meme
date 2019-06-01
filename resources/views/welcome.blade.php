@@ -2,7 +2,7 @@
 
 @section("content")
 
-@include("partials.header")
+@parent
 
     <div id="subscribe" class="section bg-cyan">
         <div class="container">
