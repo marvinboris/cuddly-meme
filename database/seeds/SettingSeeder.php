@@ -2,16 +2,16 @@
 
 use Illuminate\Database\Seeder;
 
-class SettingSeeder extends Seeder
-{
+class SettingSeeder extends Seeder {
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    public function run()
-    {
+    public function run() {
         DB::table('settings')->delete();
-        DB::table('settings')->insert([]);
+        DB::table('settings')->insert([
+            'account_price' => 1,
+        ]);
     }
 }
