@@ -2,33 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\City;
-use App\Country;
-use App\ActivityArea;
-use App\Setting;
-use App\User;
-use App\File;
-use App\Transaction;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\Restore;
-use App\Mail\Contact;
-use Sentinel;
 use URL;
+use App\City;
+use App\File;
+use App\User;
+use Sentinel;
+use App\Country;
+use App\Setting;
+use Carbon\Carbon;
+use App\Transaction;
+use App\ActivityArea;
+use App\Mail\Contact;
+use App\Mail\Restore;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 
-
-class FrontEndController extends Controller
-{
+class FrontEndController extends Controller {
     public function ajaxGetCitiesByCountry(Request $req) {
         $req->validate(['id' => 'required|numeric|exists:countries,id']);
         $resp = City::where('country_id',$req->id)->select('id','name')->get();
         return response()->json($resp);
     }
 
-
-    public function ajaxSearchCities(Request $req){
+    public function ajaxSearchCities(Request $req) {
         $req->validate(['q' => 'required']);
         $data1 = City::distinct()->where('name','like',"$req->q%")->limit(8)->pluck('name')->toArray();
         $data2 = Country::distinct()->where('name','like',"$req->q%")->limit(7)->pluck('name')->toArray();
@@ -36,16 +33,14 @@ class FrontEndController extends Controller
         return response()->json($data);
     }
 
-
     public function home() {
         $activityAreas = ActivityArea::all();
         $activityAreas = array_sort($activityAreas, function ($item, $i) {
-                            return -1*$item->users->count();
-                        });
+            return -1 * $item->users->count();
+        });
         $setting = Setting::first();
         return view('welcome', compact('activityAreas','setting'));
     }
-
 
     public function register() {
         $activities = ActivityArea::all();
@@ -73,7 +68,7 @@ class FrontEndController extends Controller
 
         //upload cv
         if ($file = $request->file('cv_file')) {
-            $extension = $file->extension()?: 'pdf';
+            $extension = $file->extension() ?: 'pdf';
             $mime = $file->getMimeType();
             $destinationPath = public_path() . '/files/';
             $safeName = 'cv_' . str_random(20) . '.' . $extension;
@@ -82,14 +77,14 @@ class FrontEndController extends Controller
             }
             $file->move($destinationPath, $safeName);
             $user_data['cv_file_id'] = File::insertGetId(['filename' => $safeName, 'mime' => $mime]);
-        }else{
-            return back()->withInput()->withError("CV file is required");
+        } else {
+            return back()->withInput()->withError('CV file is required');
         }
 
         //generate user link by sluging his name
-        $link = self::slugify($request->first_name .' '. $request->last_name);
+        $link = self::slugify($request->first_name . ' ' . $request->last_name);
         while (User::where('link', $link)->first()) {
-            $link = self::slugify($request->first_name .' '. $request->last_name . '-' . str_random(4));
+            $link = self::slugify($request->first_name . ' ' . $request->last_name . '-' . str_random(4));
         }
 
         $user_data['link'] = $link;
@@ -110,44 +105,39 @@ class FrontEndController extends Controller
             $request->session()->put('user', $user);
 
             // Data to be used on the email view
-            $data->user_name = $user->first_name .' '. $user->last_name;
+            $data->user_name = $user->first_name . ' ' . $user->last_name;
             $data->activationUrl = URL::route('activate', [$user->id, Activation::create($user)->code]);
 
             // Send the activation code through email
             Mail::to($user->email)
                 ->send(new Restore($data));
-
         } catch (UserExistsException $e) {
-            return back()->withError("This user already exist !");
+            return back()->withError('This user already exist !');
         }
 
         return redirect()->route('registration-sucess');
     }
 
-
     public function registrationSucess(Request $request) {
         $user = $request->session()->pull('user', null);
-        if($user){
+        if ($user) {
             return view('registration-success', compact('user'));
         }
         return redirect()->route('login');
     }
 
-
     public function searchWorker(Request $req) {
-
         $location = $req['l'] ?: '';
         $activity_id = $req['a'] ?: '';
-
 
         $activityAreas = ActivityArea::all();
         $query = User::select('users.*');
 
-        if($activity_id) {
+        if ($activity_id) {
             $query = $query->where('users.activity_area_id',$activity_id);
         }
 
-        if($location) {
+        if ($location) {
             $query = $query->join('cities','cities.id','=','users.city_id')
                         ->join('countries','countries.id','=','cities.country_id')
                         ->where(function ($query) use ($location) {
@@ -164,10 +154,9 @@ class FrontEndController extends Controller
         return view('search-workers', compact('activityAreas','location','activity_id','users','total'));
     }
 
-
     public function userLink($link) {
         $user = User::whereLink($link)->first();
-        if(!$user){
+        if (!$user) {
             abort(404);
         }
 
@@ -184,12 +173,9 @@ class FrontEndController extends Controller
         }
 
         abort(404);
-
     }
 
-
-    private static function slugify($text)
-    {
+    private static function slugify($text) {
         // replace non letter or digits by -
         $text = preg_replace('~[^\pL\d]+~u', '-', $text);
 
@@ -215,17 +201,15 @@ class FrontEndController extends Controller
         return $text;
     }
 
-
     public function browseActivityAreas() {
         $activityAreas = ActivityArea::all();
         //sort by users number
         $activityAreas = array_sort($activityAreas, function ($item, $i) {
-            return -1*$item->users->count();
+            return -1 * $item->users->count();
         });
 
         return view('activity_areas', compact('activityAreas'));
     }
-
 
     public function contact() {
         return view('contact');
@@ -252,8 +236,7 @@ class FrontEndController extends Controller
             env('MAIL_FROM_ADDRESS')
             )->send(new Contact($data));
 
-
-        return back()->with('success', "Your message has been sent !");
+        return back()->with('success', 'Your message has been sent !');
     }
 
     public function payment() {
