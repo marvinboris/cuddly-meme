@@ -74,28 +74,23 @@
                 <div class="contact-icon">
                   <i class="lni-map-marker"></i>
                 </div>
-                <p>Main Office: NO.22-23 Street Name- City,Country <br> Customer Center: NO.130-45 Streen Name- City, Country</p>
+                <p>Main Office: Rue Mandessi Bell, Kayo Elie-BALI,Douala-CAMEROUN <br> Dev and Innov Head of Dept +237655728725. Douala-CAMEROUN</p>
               </div>
               <div class="single-contact">
                 <div class="contact-icon">
                   <i class="lni-envelope"></i>
                 </div>
-                <p><a href="mailto:hello@tom.com">Customer Support: info@mail.com Technical Support: </a></p>
-                <p><a href="mailto:tomsaulnier@gmail.com">support@mail.com</a></p>
+                <p>Customer Support: <a href="mailto:hello@tom.com">support@workoo.net</a></p>
+                <p>Technical Support:<a href="mailto:tomsaulnier@gmail.com"> support@workoo.net </a></p>
               </div>
               <div class="single-contact">
                 <div class="contact-icon">
                   <i class="lni-phone-handset"></i>
                 </div>
-                <p><a href="#">Main Office: +880 123 456 789</a></p>
-                <p><a href="#">Customer Supprort: +880 123 456 789</a></p>
+                <p><a href="#">Main Office:      +237655728725  </a></p>
+                <p><a href="#">Customer Supprort:  +237655728725</a></p>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="col-md-12">
-          <div id="conatiner-map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13004080.414077152!2d-104.65693512785852!3d37.27559283318413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432360b%3A0x1c3bb99243deb742!2sUnited+States!5e0!3m2!1sen!2sin!4v1530855407925" allowfullscreen=""></iframe>
           </div>
         </div>
       </div>
