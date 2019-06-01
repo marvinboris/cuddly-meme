@@ -42,11 +42,23 @@
                                 <input type="password" required class="form-control" name="password" placeholder="Password">
                             </div>
                         </div>
+                        
+                        <div class="form-group">
+                             <div class="col-md-12 pull-center">
+                                <div class="g-recaptcha" data-sitekey="6LeGoaYUAAAAAF_2hHldkzXHKYBwWCxZgKoARGll"></div>
+                                @if ($errors->has('g-recaptcha-response'))
+                                    <span class="invalid-feedback" style="display: block;">
+                                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                    </span>
+                                @endif
+                             </div> 
+                        </div>
+
                         <div class="form-group form-check">
                             <input type="checkbox" name="remember-me" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Keep Me Signed In</label>
                         </div>
-                        <button class="btn btn-common log-btn">Submit</button>
+                        <button class="btn btn-common log-btn">Submit ?</button>
                     </form>
                     <ul class="form-links">
                         <li class="text-center"><a href="{{ route('register') }}">Don't have an account?</a></li>
@@ -61,6 +73,6 @@
 
 
 @section('scripts')
-    <script>
-    </script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
 @endsection

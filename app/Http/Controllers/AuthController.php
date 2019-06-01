@@ -11,6 +11,7 @@ use stdClass;
 use App\Country;
 use App\Question;
 use App\ActivityArea;
+use App\Rules\Captcha;
 use App\Mail\ForgotPassword;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -86,7 +87,8 @@ class AuthController extends Controller {
     public function postSignin(Request $request) {
         $request->validate([
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required',
+            'g-recaptcha-response' => new Captcha()
         ]);
 
         try {
