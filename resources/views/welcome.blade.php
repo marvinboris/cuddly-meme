@@ -307,11 +307,6 @@
                                     @endif
                                 </span>
                             </div>
-                            <div class="">
-                                  <i class="lni-visa"></i>
-                                  <i class="lni-bitcoin"></i>
-                                  <i class="lni-dollar"></i>
-                            </div>
                         </div>
                         <div class="plan-button">
                             <a href="{{ route('register') }}" class="btn btn-border">Get Started</a>
