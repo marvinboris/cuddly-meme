@@ -18,8 +18,8 @@
             </a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link" href="{{ route('activity-areas') }}" >
-              Activity areas
+            <a class="nav-link" href="{{ route('how-it-works') }}" >
+              How it works 
             </a>
           </li>
           <li class="nav-item dropdown">

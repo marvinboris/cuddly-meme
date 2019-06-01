@@ -4,49 +4,109 @@
 
 @include("partials.header")
 
-    <section class="category section bg-gray">
+    <div id="subscribe" class="section bg-cyan">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Browse Activity Areas</h2>
-                <p>Most popular activity areas, sorted by popularity</p>
-            </div>
             <div class="row">
-{{--                 <div class="col-lg-3 col-md-6 col-xs-12 f-category">
-                    <a href="browse-jobs.html">
-                        <div class="icon bg-color-1">
-                            <i class="fa fa-home 3x"></i>
-                        </div>
-                        <h3>Finance</h3>
-                        <p>(4286 jobs)</p>
-                    </a>
+                <div class="col-lg-6 col-md-6 col-xs-12">
+                    <div class="img-sub">
+                        <img class="img-fluid" src="{{ asset('img/sub.png') }}" alt="">
+                    </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-xs-12 f-category">
-                    <a href="browse-jobs.html">
-                        <div class="icon bg-color-2">
-                            <i class="lni-world"></i>
+                <div class="col-lg-6 col-md-6 col-xs-12">
+                    <div class="subscribe-form">
+                        <div class="form-wrapper">
+                            <div class="sub-title">
+                                <h3>WORKOO.NET: LES RH AUTREMENT...</h3>
+                                <p>
+                                    Workoo est une plate forme
+                                    d’exposition des ressources
+                                    humaines, un saas conçu
+                                    pour la mise en valeur
+                                    facile des compétences de
+                                    tout bord. Seul l’essenciel y
+                                    est affiché, ce n’est pas un
+                                    réseau social. Les gens
+                                    payent $1 par an pour être
+                                    professionnellement
+                                    exposés dans le monde
+                                    entier.
+                                </p>
+                            </div>
                         </div>
-                        <h3>Sale/Markting</h3>
-                        <p>(2000 jobs)</p>
-                    </a>
-                </div> --}}
-                @foreach ($activityAreas as $item)
-                @if($loop->index == 8) @break @endif
-                <div class="col-lg-3 col-md-6 col-xs-12 f-category">
-                    <a href="browse-jobs.html">
-                        <div class="icon bg-color-{{ ($loop->index % 8) + 1 }}">
-                            <i class="lni-book"></i>
-                        </div>
-                        <h3>{{ $item->name }}</h3>
-                        <p>({{ $item->users->count() }} users)</p>
-                    </a>
+                    </div>
                 </div>
-                @endforeach
-                <div class="col-12 text-center mt-4">
-                    <a href="{{ route('activity-areas') }}" class="btn btn-common">Browse All</a>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="browse-workers" class="section bg-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <div class="text-wrapper">
+                        <div>
+                            <h3 class="section-title">LE PROBLEME QUI GÉNÈRE L’IDEE: UN PROCESSUS INCOMPLET...</h3>
+                            <p>
+                            L’information est la seule arme des guerres économiques
+                            de ce temps, et plus encore la mise en valeur de l’information.
+                            Workoo se veut aujourd'hui leader moteur d’un secteur
+                            Amèrement en retard sur l’avancé technologique du monde,
+                            ce qui naturellement coute cher à l’humanité. En effet,
+                            très souvent embauchés sous le coup d’un besoin instantané,
+                            le personnel est recruté sur la base de quelques éléments vifs,
+                            alors qu’il manque encore cruellement d’informations sur
+                            leurs aptitudes réelles. Trop tard souvent quand on s’en rend
+                            compte, on fais avec et on s’adapte. Or, ce n’est pas au poste
+                            de s’adapter aux incompétences de la personne,
+                            c’est à la personne d’être compatiblement évolutive face au poste. Ainsi, les profils
+                            véritablement correspondants sont renvoyés dans des secteurs inappropriés à leurs compétences et
+                            capacités par ‘’que-faire?’’, et le cercle vicieux recommence.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <div class="img-thumb">
+                        <img class="img-fluid" src="{{ asset('img/slider/img-1.png') }}" alt="">
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>  
+    <div id="subscribe" class="section bg-cyan">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-xs-12">
+                    <div class="img-sub">
+                        <img class="img-fluid" src="{{ asset('img/sub.png') }}" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-12">
+                    <div class="subscribe-form">
+                        <div class="form-wrapper">
+                            <div class="sub-title">
+                                <h3 class="section-title">UNE SOLUTION EFFICIENTE: LES RH AUTREMENT...</h3>
+                                <p>
+                                    Pour l’humanité nous avons totalement repensé le modèle du
+                                    recrutement direct, puisque ‘’la meilleur façon de prédire le
+                                    futur est de le créer’’.
+                                    Nous sommes partis sur les bases des réelles informations
+                                    nécessaires pour la mise en valeur d’une compétence,
+                                    qu’importe à quel niveau elle se situe. Nous avons ainsi
+                                    récencés un ensemble, qui répondent efficacement à tout le
+                                    champs de vision qui conduit à un recrutement des profils
+                                    correspondants pour le succès de tous.  
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <div id="browse-workers" class="section bg-gray">
         <div class="container">
             <div class="row">
@@ -110,142 +170,38 @@
                 </div>
             </div>
         </div>
-    </div>
-    <section class="how-it-works section">
+    </div>  
+
+    <section class="category section bg-gray">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">How It Works - For Job seekers</h2>
-                <p>
-
-                </p>
+                <h2 class="section-title">Browse Activity Areas</h2>
+                <p>Most popular activity areas, sorted by popularity</p>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="work-process">
-                        <span class="process-icon">
-                            <i class="lni-user"></i>
-                        </span>
-                        <h4>Create an Account</h4>
-                        <p>
-                           Create and account in the platform, with basic information
-                        </p>
-                    </div>
+                @foreach ($activityAreas as $item)
+                @if($loop->index == 8) @break @endif
+                <div class="col-lg-3 col-md-6 col-xs-12 f-category">
+                    <a href="browse-jobs.html">
+                        <div class="icon bg-color-{{ ($loop->index % 8) + 1 }}">
+                            <i class="lni-book"></i>
+                        </div>
+                        <h3>{{ $item->name }}</h3>
+                        <p>({{ $item->users->count() }} users)</p>
+                    </a>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="work-process step-2">
-                        <span class="process-icon">
-                            <i class="lni-world"></i>
-                        </span>
-                        <h4>Make a subscription payment</h4>
-                        <p>
-                            Pay only $ {{ $setting->account_price }} for a year
-                            in order to get your profile professionnally exposed in the world.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="work-process step-3">
-                        <span class="process-icon">
-                            <i class="lni-cup"></i>
-                        </span>
-                        <h4>Complete your profile </h4>
-                        <p>
-                            Complete your profile and get your next job offer right into your box
-                        </p>
-                    </div>
+                @endforeach
+                <div class="col-12 text-center mt-4">
+                    <a href="{{ route('activity-areas') }}" class="btn btn-common">Browse All</a>
                 </div>
             </div>
         </div>
     </section>
-    <section class="how-it-works section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">How It Works - For Employers </h2>
-                <p>
-
-                </p>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="work-process step-2">
-                        <span class="process-icon">
-                            <i class="lni-search"></i>
-                        </span>
-                        <h4>Research the talent</h4>
-                        <p>
-                            Use our powerful search engine and get right profile for your job offer
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="work-process step-2">
-                        <span class="process-icon">
-                            <i class="lni-comments"></i>
-                        </span>
-                        <h4>Get in touch </h4>
-                        <p>
-                            Get in touch with the matched person, for you to discuss about
-                            modalities
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="work-process step-2">
-                        <span class="process-icon">
-                            <i class="lni-bar-chart"></i>
-                        </span>
-                        <h4>Grow your business</h4>
-                        <p>
-                            Make your business grow with the talent,
-                            after hiring.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="how-it-works section bg-gray">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Accepted payment methods </h2>
-                <p>
-
-                </p>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="work-process step-2">
-                        <span class="process-icon">
-                            <i class="lni-mastercard"></i>
-                            <i class="lni-visa"></i>
-                        </span>
-                        <h4>Visa - mastercard</h4>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="work-process step-2">
-                        <span class="process-icon">
-                            <i class="lni-bitcoin"></i>
-                        </span>
-                        <h4>Cryptocurrencies</h4>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="work-process step-2">
-                        <span class="process-icon">
-                            <i class="lni-wallet"></i>
-                        </span>
-                        <h4>Mobile Money</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    
     <section id="testimonial" class="section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Clients Review</h2>
+                <h3 class="section-title">Clients Review</h3>
                 <p>
                     What they are saying about us.
                 </p>
@@ -274,6 +230,7 @@
             </div>
         </div>
     </section>
+
     <div id="pricing" class="section bg-gray">
         <div class="container">
             <div class="section-header">
@@ -313,48 +270,6 @@
                         </div>
                     </div>
                 </div>
-                {{-- <div class="col-lg-4 col-md-4 col-xs-12">
-                    <div class="pricing-table pricing-active border-color-red">
-                        <div class="pricing-details">
-                            <div class="icon">
-                                <i class="lni-drop"></i>
-                            </div>
-                            <h2>Advance</h2>
-                            <ul>
-                                <li>Post 1 Job</li>
-                                <li>No Featured Job</li>
-                                <li>Edit Your Job Listing</li>
-                                <li>Manage Application</li>
-                                <li>30-day Expired</li>
-                            </ul>
-                            <div class="price"><span>$</span>20<span>/Month</span></div>
-                        </div>
-                        <div class="plan-button">
-                            <a href="#" class="btn btn-border">Get Started</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-xs-12">
-                    <div class="pricing-table border-color-green">
-                        <div class="pricing-details">
-                            <div class="icon">
-                                <i class="lni-briefcase"></i>
-                            </div>
-                            <h2>Premium</h2>
-                            <ul>
-                                <li>Post 1 Job</li>
-                                <li>No Featured Job</li>
-                                <li>Edit Your Job Listing</li>
-                                <li>Manage Application</li>
-                                <li>30-day Expired</li>
-                            </ul>
-                            <div class="price"><span>$</span>40<span>/Month</span></div>
-                        </div>
-                        <div class="plan-button">
-                            <a href="#" class="btn btn-border">Get Started</a>
-                        </div>
-                    </div>
-                </div> --}}
             </div>
         </div>
     </div>

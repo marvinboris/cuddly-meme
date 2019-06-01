@@ -30,6 +30,8 @@
 
             @section("content")
 
+             @include('partials.header')
+
             @show
 
             @include("partials.footer")

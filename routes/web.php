@@ -27,6 +27,7 @@ Route::get('registration-sucess', 'FrontEndController@registrationSucess')->name
 Route::get('login', 'AuthController@login')->name('login');
 Route::post('login', 'AuthController@postSignin');
 Route::get('logout', 'AuthController@getLogout')->name('logout');
+Route::get('how-it-works', 'FrontEndController@howItWorks')->name('how-it-works');
 
 // Account Activation
 Route::get('activate/{userId}/{activationCode}', 'AuthController@getActivate')->name('activate');

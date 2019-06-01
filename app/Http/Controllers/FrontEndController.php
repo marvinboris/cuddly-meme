@@ -242,4 +242,15 @@ class FrontEndController extends Controller {
     public function payment() {
         return 'payment !';
     }
+
+    /**
+     * 
+     */
+
+     public function howItWorks(Request $request){
+         
+        $setting = Setting::first();
+
+        return view('how-it-works',compact('setting') );
+     }
 }
