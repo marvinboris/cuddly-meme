@@ -54,7 +54,7 @@
 
                         <div class="form-group {{ $errors->first('phone', 'has-error') }}">
                             <label class="control-label">Phone</label>
-                            <input type="tel" required name="phone" class="form-control" placeholder="example@domain.com" value="{{ @old('phone') }}">
+                            <input type="tel" required name="phone" class="form-control" placeholder="Your phone number" value="{{ @old('phone') }}">
                             {!! $errors->first('phone', '<small class="help-block">:message</small>') !!}
                         </div>
 
