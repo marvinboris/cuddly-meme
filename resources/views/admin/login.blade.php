@@ -2,8 +2,6 @@
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
   <!-- BEGIN: Head-->
-
-<!-- Mirrored from themeselection.com/demo/chameleon-admin-template/html/ltr/vertical-menu-template/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 19 May 2019 19:22:33 GMT -->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -62,7 +60,7 @@
             <div class="card border-grey border-lighten-3 px-1 py-1 m-0">
                 <div class="card-header border-0">
                     <div class="text-center mb-1">
-                        <img src="{{ asset('assets/admin/app-assets/images/logo/logo.png') }}" alt="branding logo">
+                        <img src="{{ asset('img/logo2.png') }}" alt="branding logo">
                     </div>
                     <div class="font-large-1  text-center">
                         Connexion | Admin
@@ -131,7 +129,4 @@
     <!-- END: Page JS-->
     @include('partials.notify')
   </body>
-  <!-- END: Body-->
-
-<!-- Mirrored from themeselection.com/demo/chameleon-admin-template/html/ltr/vertical-menu-template/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 19 May 2019 19:22:36 GMT -->
 </html>
