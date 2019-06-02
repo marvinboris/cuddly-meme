@@ -62,7 +62,7 @@ class EditUserController extends Controller
 
 
     public function updateVideo(Request $req) {
-        $req->validate(['video_file' => 'required|mimes:mp4,mov,ogg,qt']);
+        $req->validate(['video_file' => 'required|mimetypes:video/*']);
         $user = Sentinel::getUser();
         $user_data = [];
         $file_to_delete = [];
@@ -99,6 +99,44 @@ class EditUserController extends Controller
         return back()->with('success', "Updated successfully !");
     }
 
+    public function updatePic(Request $req) {
+        $req->validate(['pic_file' => 'required|image']);
+        $user = Sentinel::getUser();
+        $user_data = [];
+        $file_to_delete = [];
+        $file_to_delete_ids = [];
+
+        //upload video
+        if ($file = $req->file('pic_file')) {
+            $extension = $file->extension();
+            $mime = $file->getMimeType();
+            $destinationPath = public_path() . '/files/';
+            $safeName = 'pic_' . str_random(20) . '.' . $extension;
+            while (file_exists($destinationPath . $safeName)) {
+                $safeName = 'pic_' . str_random(20) . '.' . $extension;
+            }
+            $file->move($destinationPath, $safeName);
+            $user_data['pic_file_id'] = File::insertGetId(['filename' => $safeName, 'mime' => $mime]);
+
+            if ($user->pic) {
+                array_push($file_to_delete, $destinationPath . $user->pic->filename);
+                array_push($file_to_delete_ids, $user->pic->id);
+            }
+        }
+
+        User::whereId($user->id)->update($user_data);
+
+        //delete user files
+        File::whereIn('id', $file_to_delete_ids)->delete();
+        foreach ($file_to_delete as $item) {
+            if (file_exists($item)) {
+                unlink($item);
+            }
+        }
+
+        return back()->with('success', "Updated successfully !");
+    }
+
     public function delVideo() {
         $user = Sentinel::getUser();
         if ($user->video) {
@@ -106,9 +144,11 @@ class EditUserController extends Controller
             if (file_exists($item)) {
                 unlink($item);
             }
-            File::whereIn('id', $user->video->id)->delete();
+            $vid = $user->video->id;
+            User::whereId($user->id)->update(['video_file_id' => null]);
+            File::where('id', $vid)->delete();
         }
-        User::whereId($user->id)->update(['video_file_id' => NULL]);
+
         return back()->with('success', "Deleted successfully !");
     }
 

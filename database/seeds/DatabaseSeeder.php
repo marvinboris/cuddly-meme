@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder {
         Model::unguard();
 
         $this->call(ActivityAreaSeeder::class);
-        //$this->call(CityAndCountrySeeder::class);
+        $this->call(CityAndCountrySeeder::class);
         $this->call(SettingSeeder::class);
         $this->call(PaymentMethodSeeder::class);
         $this->call(QuestionSeeder::class);

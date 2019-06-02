@@ -67,7 +67,7 @@ class UsersController extends Controller
             'city_id' => 'required|exists:cities,id',
             'cv_file' => 'required|file|mimes:pdf',
             'pic_file' => 'file|image',
-            'video_file' => 'mimes:mp4,mov,ogg,qt'
+            'video_file' => 'mimetypes:video/*'
         ]);
 
         $user_data = $request->except('_token', 'activate', 'country_id', 'pic_file', 'cv_file', 'pic_file', 'video_file');
@@ -200,7 +200,7 @@ class UsersController extends Controller
             'city_id' => 'required|exists:cities,id',
             'cv_file' => 'file|mimes:pdf',
             'pic_file' => 'file|image',
-            'video_file' => 'mimes:mp4,mov,ogg,qt'
+            'video_file' => 'mimetypes:video/*'
         ]);
 
         if($user->email != $request->email){

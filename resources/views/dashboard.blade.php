@@ -68,11 +68,15 @@
                     <div class="author-resume">
                         <div class="thumb">
                             @if($user->pic)
-                            <img src="{{ url('files/' . $user->pic->filename) }}" class="my-rounded-circle" style="height:8em; width:8em; " alt="User picture">
+                            <img id="change-pic" src="{{ url('files/' . $user->pic->filename) }}" class="my-rounded-circle" style="height:8em; width:8em; " alt="User picture">
                             @else
-                            <img src="{{ asset('assets/default-avatar.png') }}" class="my-rounded-circle" style="height:8em; width:8em;" alt="default avatar">
+                            <img id="change-pic" src="{{ asset('assets/default-avatar.png') }}" class="my-rounded-circle" style="height:8em; width:8em;" alt="default avatar">
                             @endif
                         </div>
+                        <form style="display:none;" id="form-pic" action="{{ route('edit-user.update-pic') }}" method="POST" enctype="multipart/form-data" >
+                            @csrf @method('PUT')
+                            <input id="pic_file" type="file" name="pic_file" accept="image/*" />
+                        </form>
                         <div class="author-info">
                             <h3>{{ $user->first_name . ' ' . $user->last_name }} <small>({{ $user->views }} views)</small></h3>
                             <p class="sub-title">{{ $user->activityArea->name }} </p>
@@ -140,8 +144,8 @@
                                 <a href="{{ url('/files/' . $user->video->filename) }}" target="_blank">Open</a> |
                                 <a href="{{ url('/files/' . $user->video->filename ) }}" download>Download</a> |
                                 <a href="#" class="change-video">Change</a> |
-                                <a href="{{ route('del-video') }}" class="del-video">Remove</a>
-                                <form style="display:none;" id="del-video-form" action="{{ route('del-video') }}" method="POST">@csrf @method('DELETE')</form>
+                                <a href="#" class="del-video" data-form="#del-video-form">Remove</a>
+                                <form style="display:none;" id="del-video-form" action="{{ route('edit-user.del-video') }}" method="POST">@csrf @method('DELETE')</form>
                             @else
                             <a href="#" class="change-video"> Upload </a>
                             @endif
@@ -684,9 +688,18 @@
                 $('#form-cv').submit();
             });
 
+            //Profile Pic
+            $('#pic_file').change(function(){
+                $('#form-pic').submit();
+            });
+
+            $('#change-pic').click(function(){
+                $('#pic_file').click();
+            });
+
             //Delete
             $('.del-attestation, .del-video').click(function(){
-                if(confirm('Delete that certificate ?')){
+                if(confirm('Delete file ?')){
                     $( $(this).data('form') ).submit();
                 }
             });

@@ -167,7 +167,8 @@ class FrontEndController extends Controller {
             $lastTime = $lastTransaction->created_at;
             $since = Carbon::now()->subMonths($nbMonth);
             if ($lastTime->gte($since)) {
-                User::whereLink($link)->increment('views');
+                if(!Sentinel::check() || $user->id != Sentinel::getUser()->id)
+                    User::whereLink($link)->increment('views');
                 return view('user-details', compact('user'));
             }
         }
@@ -240,6 +241,18 @@ class FrontEndController extends Controller {
     }
 
     public function payment() {
+        $user = Sentinel::getUser();
+        $lastTransaction = Transaction::where('user_id', $user->id)->latest()->first();
+
+        if ($lastTransaction) {
+            $nbMonth = Setting::limit(1)->value('account_time') ?: 12;
+            $lastTime = $lastTransaction->created_at;
+            $since = Carbon::now()->subMonths($nbMonth);
+            if ($lastTime->gte($since)) {
+                return redirect()->route('dashboard');
+            }
+        }
+        
         return 'payment !';
     }
 

@@ -13,14 +13,18 @@ class User extends EloquentUser {
 	 */
 
     protected $table = 'users';
-    protected $guarded = [];
 
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
-    protected $hidden = ['password'];
+
+    protected $guarded = ['id'];
+
+    protected $fillable = [];
+
+	/**
+	 * The attributes excluded from the model's JSON form.
+	 *
+	 * @var array
+	 */
+	protected $hidden = ['password'];
 
     /**
     * To allow soft deletes

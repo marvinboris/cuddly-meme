@@ -42,7 +42,8 @@ class AuthController extends Controller {
      * @param string $activationCode
      * @return
      */
-    public function getActivate($userId,$activationCode = null) {
+    public function getActivate(Request $request, $userId,$activationCode = null)
+    {
         // Is user logged in?
         if (Sentinel::check()) {
             return Redirect::route('dashboard');
