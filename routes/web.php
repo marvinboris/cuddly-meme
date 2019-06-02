@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', 'FrontEndController@home')->name('home');
 
 Route::get('/sysadmin/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
@@ -18,7 +19,8 @@ Route::get('/sysadmin/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@
 Route::post('ajax-get-cities-by-country', 'FrontEndController@ajaxGetCitiesByCountry')->name('ajax-get-cities-by-country');
 Route::post('ajax-search-cities', 'FrontEndController@ajaxSearchCities')->name('ajax-search-cities');
 
-Route::match(['get', 'post'],'search', 'FrontEndController@searchWorker')->name('search-worker');
+Route::match(['get','post'],'search', 'FrontEndController@searchWorker')->name('search-worker');
+
 
 Route::get('register', 'FrontEndController@register')->name('register');
 Route::post('register', 'FrontEndController@postRegister');
@@ -29,7 +31,8 @@ Route::post('login', 'AuthController@postSignin');
 Route::get('logout', 'AuthController@getLogout')->name('logout');
 Route::get('how-it-works', 'FrontEndController@howItWorks')->name('how-it-works');
 
-// Account Activation
+
+# Account Activation
 Route::get('activate/{userId}/{activationCode}', 'AuthController@getActivate')->name('activate');
 
 Route::get('activity-areas', 'FrontEndController@browseActivityAreas')->name('activity-areas');
@@ -40,12 +43,11 @@ Route::post('contact', 'FrontEndController@postContact')->name('contact');
 
 Route::get('payment', 'FrontEndController@payment')->name('payment')->middleware('user');
 
+
 Route::group(['middleware' => 'has-paid'], function () {
     Route::get('dashboard', 'AuthController@dashboard')->name('dashboard');
 });
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], function () {
-    // Error pages should be shown without requiring login
 
 Route::group(['prefix' => 'edit-user', 'middleware' => 'has-paid', 'as' => 'edit-user.'], function () {
     Route::post('ajax-check-email', 'EditUserController@ajaxCheckEmail')->name('ajax-check-email');
@@ -66,6 +68,11 @@ Route::group(['prefix' => 'edit-user', 'middleware' => 'has-paid', 'as' => 'edit
 
     Route::post('change-password', 'EditUserController@changePassword')->name('change-password');
 });
+
+
+Route::group(['prefix' => 'admin', 'namespace'=>'Admin', 'as' => 'admin.'], function () {
+
+    # Error pages should be shown without requiring login
     Route::get('404', function () {
         return view('admin/404');
     });
@@ -73,25 +80,29 @@ Route::group(['prefix' => 'edit-user', 'middleware' => 'has-paid', 'as' => 'edit
         return view('admin/500');
     });
 
-    // All basic routes defined here
+    # All basic routes defined here
     Route::get('login', 'AuthController@getSignin')->name('login');
     Route::get('signin', 'AuthController@getSignin')->name('signin');
     Route::post('signin', 'AuthController@postSignin')->name('postSignin');
     Route::post('signup', 'AuthController@postSignup')->name('admin.signup');
     Route::post('forgot-password', 'AuthController@postForgotPassword')->name('signup');
 
-    // Forgot Password Confirmation
+    # Forgot Password Confirmation
     Route::get('forgot-password/{userId}/{passwordResetCode}', 'AuthController@getForgotPasswordConfirm')->name('forgot-password-confirm');
     Route::post('forgot-password/{userId}/{passwordResetCode}', 'AuthController@getForgotPasswordConfirm');
 
-    // Logout
+    # Logout
     Route::get('logout', 'AuthController@getLogout')->name('logout');
 });
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.', 'middleware' => 'admin'], function () {
+
+
+
+Route::group(['prefix' => 'admin', 'namespace'=>'Admin' , 'as' => 'admin.', 'middleware' => 'admin'], function () {
     Route::get('/', 'AuthController@dashboard')->name('dashboard');
     Route::get('home', 'AuthController@dashboard');
     Route::get('dashboard', 'AuthController@dashboard');
+
 
     Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
         Route::get('trashed', 'UsersController@trashed')->name('trashed');
@@ -117,5 +128,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.', 'mi
 
     Route::get('transactions', 'TransactionsController@transactions')->name('transactions');
 });
+
+
 
 Route::get('{link}', 'FrontEndController@userLink')->name('user-link');
