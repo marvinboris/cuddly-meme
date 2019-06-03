@@ -74,7 +74,10 @@
                 <div class="contact-icon">
                   <i class="lni-map-marker"></i>
                 </div>
-                <p>Main Office: Rue Mandessi Bell, Kayo Elie-BALI,Douala-CAMEROUN <br> Dev and Innov Head of Dept +237655728725. Douala-CAMEROUN</p>
+                <p>Cameroon Head Office: 1135 Rue Mandessi Bell Bali, Carrefour Kayo Elie – Douala.
+                  <br> 
+                  Dubai Head Office: Business BAY-Bleu Matrix Business Center, PrimeTower; Dubaï. 2nd floor, office number 27026.
+                </p>
               </div>
               <div class="single-contact">
                 <div class="contact-icon">
@@ -87,8 +90,8 @@
                 <div class="contact-icon">
                   <i class="lni-phone-handset"></i>
                 </div>
-                <p><a href="#">Main Office:      +237655728725  </a></p>
-                <p><a href="#">Customer Supprort:  +237655728725</a></p>
+                <p><a href="#">Customer Supprort: +237 655 888 468 / +237 655 728 725 </a></p>
+                <p><a href="#">Customer Supprort:  +971 55 531 3592</a></p>
               </div>
             </div>
           </div>
