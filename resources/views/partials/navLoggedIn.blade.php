@@ -8,7 +8,7 @@
         <span class="lni-menu"></span>
         <span class="lni-menu"></span>
         </button>
-        <a href="/" class="navbar-brand"><img src="{{ asset('img/logo3.png') }}" alt="logo"></a>
+        <a href="/" class="navbar-brand"><img src="{{ asset('img/workoo.png') }}" alt="logo"></a>
       </div>
       <div class="collapse navbar-collapse" id="main-navbar">
         <ul class="navbar-nav mr-auto w-100 justify-content-end">
@@ -23,8 +23,8 @@
             </a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link" href="{{ route('activity-areas') }}" >
-              Activity areas
+            <a class="nav-link" href="{{ route('how-it-works') }}" >
+              How it works
             </a>
           </li>
           <li class="nav-item dropdown">
