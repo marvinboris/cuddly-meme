@@ -8,7 +8,6 @@
 						<div class="textwidget">
 							<p>
 								WORKOO.NET is a Global Investment Trading Product <br/>
-								By KOUMBOU .F Jeffe
 							</p>
 						</div>
 					</div>

@@ -113,7 +113,7 @@
                 <div class="col-lg-6 col-md-12 col-sm-12">
                     <div class="text-wrapper">
                         <div>
-                            <h3>500+ talents</h3>
+                            <h3>Search talents</h3>
                             <p>
                                 Search all the jobs seeker on the platform.Find the best talents that suit well your needs.
                                 The right talent is out there.
@@ -171,33 +171,7 @@
             </div>
         </div>
     </div>  
-
-    <section class="category section bg-gray">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Browse Activity Areas</h2>
-                <p>Most popular activity areas, sorted by popularity</p>
-            </div>
-            <div class="row">
-                @foreach ($activityAreas as $item)
-                @if($loop->index == 8) @break @endif
-                <div class="col-lg-3 col-md-6 col-xs-12 f-category">
-                    <a href="browse-jobs.html">
-                        <div class="icon bg-color-{{ ($loop->index % 8) + 1 }}">
-                            <i class="lni-book"></i>
-                        </div>
-                        <h3>{{ $item->name }}</h3>
-                        <p>({{ $item->users->count() }} users)</p>
-                    </a>
-                </div>
-                @endforeach
-                <div class="col-12 text-center mt-4">
-                    <a href="{{ route('activity-areas') }}" class="btn btn-common">Browse All</a>
-                </div>
-            </div>
-        </div>
-    </section>
-    
+        
     <section id="testimonial" class="section">
         <div class="container">
             <div class="section-header">
