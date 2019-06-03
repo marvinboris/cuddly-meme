@@ -9,27 +9,18 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-xs-12">
                     <div class="img-sub">
-                        <img class="img-fluid" src="{{ asset('img/sub.png') }}" alt="">
+                        <img class="img-fluid" src="{{ asset('img/main/achievement.jpg') }}" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-xs-12">
                     <div class="subscribe-form">
                         <div class="form-wrapper">
                             <div class="sub-title">
-                                <h3>WORKOO.NET: LES RH AUTREMENT...</h3>
+                                <h3 style="font-weight:normal !important;font-size:36px !important">WORKOO.NET: HR OTHERWISE ...</h3>
                                 <p>
-                                    Workoo est une plate forme
-                                    d’exposition des ressources
-                                    humaines, un saas conçu
-                                    pour la mise en valeur
-                                    facile des compétences de
-                                    tout bord. Seul l’essenciel y
-                                    est affiché, ce n’est pas un
-                                    réseau social. Les gens
-                                    payent $1 par an pour être
-                                    professionnellement
-                                    exposés dans le monde
-                                    entier.
+                                Workoo is a human resources exhibition platform, a saas designed for 
+                                the easy enhancement of skills of all kinds. Only the essenciel is displayed, it is not a 
+                                social network. People pay $ 1 a year to be professionally exposed worldwide.
                                 </p>
                             </div>
                         </div>
@@ -46,29 +37,29 @@
                 <div class="col-lg-6 col-md-12 col-sm-12">
                     <div class="text-wrapper">
                         <div>
-                            <h3 class="section-title">LE PROBLEME QUI GÉNÈRE L’IDEE: UN PROCESSUS INCOMPLET...</h3>
+                            <h3 class="section-title" style="font-weight:normal !important;font-size:36px !important">THE PROBLEM THAT GENERATES THE IDEA: AN INCOMPLETE PROCESS ...</h3>
                             <p>
-                            L’information est la seule arme des guerres économiques
-                            de ce temps, et plus encore la mise en valeur de l’information.
-                            Workoo se veut aujourd'hui leader moteur d’un secteur
-                            Amèrement en retard sur l’avancé technologique du monde,
-                            ce qui naturellement coute cher à l’humanité. En effet,
-                            très souvent embauchés sous le coup d’un besoin instantané,
-                            le personnel est recruté sur la base de quelques éléments vifs,
-                            alors qu’il manque encore cruellement d’informations sur
-                            leurs aptitudes réelles. Trop tard souvent quand on s’en rend
-                            compte, on fais avec et on s’adapte. Or, ce n’est pas au poste
-                            de s’adapter aux incompétences de la personne,
-                            c’est à la personne d’être compatiblement évolutive face au poste. Ainsi, les profils
-                            véritablement correspondants sont renvoyés dans des secteurs inappropriés à leurs compétences et
-                            capacités par ‘’que-faire?’’, et le cercle vicieux recommence.
+                                Information is the only weapon of economic wars
+                                of this time, and more importantly the enhancement of information.
+                                Workoo is now the leader of a sector
+                                Bitterly behind the technological advance of the world,
+                                which of course is expensive for humanity. Indeed,
+                                very often hired under an instant need,
+                                the staff is recruited on the basis of some lively elements,
+                                while it is still sorely lacking information about
+                                their real abilities. Too late often when we get there
+                                account, we do with and we adapt. But it's not at the post
+                                to adapt to the incompetence of the person,
+                                it's up to the person to be adaptable to the job. Thus, the profiles
+                                genuinely correspondents are referred to sectors that are inappropriate to their skills and
+                                abilities by '' what-to? '', and the vicious circle begins again.
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12 col-sm-12">
                     <div class="img-thumb">
-                        <img class="img-fluid" src="{{ asset('img/slider/img-1.png') }}" alt="">
+                        <img class="img-fluid" src="{{ asset('img/main/business.jpg') }}" alt="">
                     </div>
                 </div>
             </div>
@@ -79,24 +70,25 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-xs-12">
                     <div class="img-sub">
-                        <img class="img-fluid" src="{{ asset('img/sub.png') }}" alt="">
+                        <img class="img-fluid" src="{{ asset('img/main/man.jpg') }}" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-xs-12">
                     <div class="subscribe-form">
                         <div class="form-wrapper">
                             <div class="sub-title">
-                                <h3 class="section-title">UNE SOLUTION EFFICIENTE: LES RH AUTREMENT...</h3>
+                                <h3 class="section-title" style="font-weight:normal !important;font-size:36px !important">AN EFFICIENT SOLUTION: HR OTHERWISE ...</h3>
                                 <p>
-                                    Pour l’humanité nous avons totalement repensé le modèle du
-                                    recrutement direct, puisque ‘’la meilleur façon de prédire le
-                                    futur est de le créer’’.
-                                    Nous sommes partis sur les bases des réelles informations
-                                    nécessaires pour la mise en valeur d’une compétence,
-                                    qu’importe à quel niveau elle se situe. Nous avons ainsi
-                                    récencés un ensemble, qui répondent efficacement à tout le
-                                    champs de vision qui conduit à un recrutement des profils
-                                    correspondants pour le succès de tous.  
+                                     For humanity we have totally redesigned the model of
+                                     direct recruitment, since the best way to predict
+                                     future is to create it.
+                                     We started on the basis of real information
+                                     necessary for the development of a skill,
+                                     what does it matter at what level it is? We have
+                                     a set, which effectively responds to all
+                                     fields of view that leads to a recruitment of profiles
+                                     corresponding for the success of all.
+
                                 </p>
                             </div>
                         </div>
@@ -171,7 +163,7 @@
             </div>
         </div>
     </div>  
-        
+
     <section id="testimonial" class="section">
         <div class="container">
             <div class="section-header">
