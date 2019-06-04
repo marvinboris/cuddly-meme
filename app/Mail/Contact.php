@@ -29,7 +29,7 @@ class Contact extends Mailable
     public function build()
     {
 //        return $this->view('emails.contact');
-        return $this->from(env('MAIL_FROM_ADDRESS'))
+        return $this->from('support@workoo.com')
             ->markdown('emails.contact');
     }
 }

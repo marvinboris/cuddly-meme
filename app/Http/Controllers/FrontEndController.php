@@ -234,7 +234,7 @@ class FrontEndController extends Controller {
 
         // Send the mail
         Mail::to(
-            env('MAIL_FROM_ADDRESS')
+           'support@workoo.net'
             )->send(new Contact($data));
 
         return back()->with('success', 'Your message has been sent !');

@@ -20,7 +20,7 @@ class Restore extends Mailable
      * @return void
      */
     public function __construct($user)
-    {
+    {  
         $this->user = $user;
     }
 
@@ -32,7 +32,7 @@ class Restore extends Mailable
     public function build()
     {
 //        return $this->view('emails.register-activate');
-        return $this->from(env('MAIL_FROM_ADDRESS'))
+        return $this->from('support@workoo.net')
             ->markdown('emails.register-activate');
     }
 }

@@ -23,7 +23,7 @@ Thanks,
     {{-- Footer --}}
     @slot('footer')
         @component('mail::footer')
-           &copy; 2017 All Copy right received
+           &copy; 2019 All Copy right received
         @endcomponent
     @endslot
 @endcomponent
