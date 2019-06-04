@@ -6,10 +6,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta name="description" content="Chameleon Admin is a modern Bootstrap 4 webapp &amp; admin dashboard html template with a large number of components, elegant design, clean and organized code.">
-    <meta name="keywords" content="admin template, Chameleon admin template, dashboard template, gradient admin template, responsive admin template, webapp, eCommerce dashboard, analytic dashboard">
-    <meta name="author" content="ThemeSelect">
+    <meta name="description" content="Workoo- The hiring paltform of the new world">
+    <meta name="keywords" content="Job, Hiring,Cameroon,Africa">
+    <meta name="author" content="Workoo">
     <title>Connexion - Admin Workoo</title>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="apple-touch-icon" href="{{ asset('assets/admin/app-assets/images/ico/apple-icon-120.png') }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/admin/app-assets/images/ico/favicon.ico') }}">
     <link href="{{ asset('assets/admin/fonts.googleapis.com/css93c2.css?family=Muli:300,300i,400,400i,600,600i,700,700i%7CComfortaa:300,400,700') }}" rel="stylesheet">
@@ -74,13 +75,13 @@
                             <fieldset class="form-group position-relative has-icon-left">
                                 <input type="text" class="form-control round" id="user-name" name="email" placeholder="Votre E-mail" required>
                                 <div class="form-control-position">
-                                    <i class="ft-user"></i>
+                                    <i class="fa fa-user"></i>
                                 </div>
                             </fieldset>
                             <fieldset class="form-group position-relative has-icon-left">
                                 <input type="password" class="form-control round" id="user-password" name="password" placeholder="Votre Mot de passe" required>
                                 <div class="form-control-position">
-                                    <i class="ft-lock"></i>
+                                    <i class="fa fa-lock"></i>
                                 </div>
                             </fieldset>
                             {{-- <input type="checkbox" name="remember-me" value="1"/> Se souvenir de moi --}}
