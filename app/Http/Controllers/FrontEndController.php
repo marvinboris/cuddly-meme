@@ -146,6 +146,10 @@ class FrontEndController extends Controller {
                         });
         }
 
+        $userRole = Sentinel::findRoleBySlug('user');
+
+        $query->join('role_users','role_users.user_id', '=', 'users.id')->where('role_users.role_id', $userRole->id);
+
         //$users = $query->simplePaginate(1);
         $users = $query->paginate(10);
         $total = json_decode($users->toJson());

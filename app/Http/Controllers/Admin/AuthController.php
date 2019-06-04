@@ -55,15 +55,15 @@ class AuthController extends Controller
         //New user data for chart
         $query = User::select('created_at');
         $charts = [
-            1,//$query->whereDate('created_at', Carbon::now()->subDays(6))->count(),
-            2,//$query->whereDate('created_at', Carbon::now()->subDays(5))->count(),
-            3,//$query->whereDate('created_at', Carbon::now()->subDays(4))->count(),
-            0,//$query->whereDate('created_at', Carbon::now()->subDays(3))->count(),
-            3,//$query->whereDate('created_at', Carbon::now()->subDays(2))->count(),
-            5,//$query->whereDate('created_at', Carbon::now()->subDays(1))->count(),
-            1,//$new_users
+            $query->whereDate('created_at', Carbon::now()->subDays(6))->count(),
+            $query->whereDate('created_at', Carbon::now()->subDays(5))->count(),
+            $query->whereDate('created_at', Carbon::now()->subDays(4))->count(),
+            $query->whereDate('created_at', Carbon::now()->subDays(3))->count(),
+            $query->whereDate('created_at', Carbon::now()->subDays(2))->count(),
+            $query->whereDate('created_at', Carbon::now()->subDays(1))->count(),
+            $new_users
         ];
-    
+
         return view('admin.dashboard', compact('new_users','registered','has_paid','blocked','latest','charts'));
     }
 

@@ -70,7 +70,7 @@ class UsersController extends Controller
             'video_file' => 'mimetypes:video/*'
         ]);
 
-        $user_data = $request->except('_token', 'activate', 'country_id', 'pic_file', 'cv_file', 'pic_file', 'video_file');
+        $user_data = $request->except('_token', 'activate', 'is_admin', 'country_id', 'pic_file', 'cv_file', 'pic_file', 'video_file');
 
         //upload cv
         if ($file = $request->file('cv_file')) {
@@ -128,8 +128,12 @@ class UsersController extends Controller
             // Register the user
             $user = Sentinel::register($user_data, $activate);
 
+            $roleSlug = 'user';
+            if($request->is_admin)
+                $roleSlug = 'admin';
             //add user to 'User' group
-            $role = Sentinel::findRoleBySlug('user');
+            $role = Sentinel::findRoleBySlug($roleSlug);
+
             if ($role) {
                 $role->users()->attach($user);
             }
