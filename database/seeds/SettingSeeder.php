@@ -11,7 +11,10 @@ class SettingSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('settings')->delete();
-        DB::table('settings')->insert([]);
+        DB::table('settings')->truncate();
+        DB::table('settings')->insert([
+            'account_time' => 12,
+            'account_price' => 1
+        ]);
     }
 }
