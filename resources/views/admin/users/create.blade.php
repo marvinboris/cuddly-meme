@@ -230,6 +230,25 @@
                                                 </div>
                                             </div>
 
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-3 label-control">Is admin</label>
+                                                        <div class="col-md-9">
+                                                            <input type="checkbox" name="is_admin">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{-- <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-3 label-control">3<sup>th</sup> Social network link</label>
+                                                        <div class="col-md-9">
+                                                            <input class="form-control" type="url" name="social_link3" placeholder="Social network link 3">
+                                                        </div>
+                                                    </div>
+                                                </div> --}}
+                                            </div>
+
                                         </div>
                                         <div class="form-actions right">
                                             <button type="button" class="btn btn-danger mr-1">
