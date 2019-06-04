@@ -47,7 +47,7 @@
       </div>
     </div>
   </div>
-  <div class="mobile-menu" data-logo="assets/img/logo-mobile.png"></div>
+  <div class="mobile-menu" data-logo="{{ asset('img/workoo.png') }}"></div>
 </nav>
 
 @include("partials.herocontainer")

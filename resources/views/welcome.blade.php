@@ -14,9 +14,9 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-xs-12">
                     <div class="subscribe-form">
-                        <div class="form-wrapper">
+                        <div class="text-wrapper">
                             <div class="sub-title">
-                                <h3 style="font-weight:normal !important;font-size:36px !important">WORKOO.NET: HR OTHERWISE ...</h3>
+                                <h3>WORKOO.NET: HR OTHERWISE ...</h3>
                                 <p>
                                 Workoo is a human resources exhibition platform, a saas designed for 
                                 the easy enhancement of skills of all kinds. Only the essenciel is displayed, it is not a 
@@ -31,41 +31,38 @@
         </div>
     </div>
 
-    <div id="browse-workers" class="section bg-gray">
+    <div id="browse-workerss" class="section bg-gray">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-12 col-sm-12">
-                    <div class="text-wrapper">
-                        <div>
-                            <h3 class="section-title" style="font-weight:normal !important;font-size:36px !important">THE PROBLEM THAT GENERATES THE IDEA: AN INCOMPLETE PROCESS ...</h3>
-                            <p>
-                                Information is the only weapon of economic wars
-                                of this time, and more importantly the enhancement of information.
-                                Workoo is now the leader of a sector
-                                Bitterly behind the technological advance of the world,
-                                which of course is expensive for humanity. Indeed,
-                                very often hired under an instant need,
-                                the staff is recruited on the basis of some lively elements,
-                                while it is still sorely lacking information about
-                                their real abilities. Too late often when we get there
-                                account, we do with and we adapt. But it's not at the post
-                                to adapt to the incompetence of the person,
-                                it's up to the person to be adaptable to the job. Thus, the profiles
-                                genuinely correspondents are referred to sectors that are inappropriate to their skills and
-                                abilities by '' what-to? '', and the vicious circle begins again.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="col-lg-6 order-1 order-lg-2">
                     <div class="img-thumb">
                         <img class="img-fluid" src="{{ asset('img/main/business.jpg') }}" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-12 order-2 order-lg-1">
+                    <div class="subscribe-form">
+                        <div class="text-wrapper">
+                            <div class="sub-title">
+                                <h3>THE PROBLEM THAT GENERATES THE IDEA:AN INCOMPLETE PROCESS...</h3>
+                                <p>
+                                Information is the only weapon of economic wars of this time, and more importantly the 
+                                enhancement of information. Workoo is now the leader of a sector Bitterly behind the technological 
+                                advance of the world, which of course is expensive for humanity. Indeed, very often hired under an 
+                                instant need, the staff is recruited on the basis of some lively elements, while it is still sorely 
+                                lacking information about their real abilities. Too late often when we get there account, we do with 
+                                and we adapt. But it's not at the post to adapt to the incompetence of the person, it's up to the person
+                                 to be adaptable to the job. Thus, 
+                                the profiles genuinely correspondents are referred to sectors that are inappropriate to 
+                                their skills and abilities by "what-to?", and the vicious circle begins again. 
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>  
-    <div id="subscribe" class="section bg-cyan">
+    <div id="subscribes" class="section bg-cyan">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-xs-12">
@@ -77,7 +74,7 @@
                     <div class="subscribe-form">
                         <div class="form-wrapper">
                             <div class="sub-title">
-                                <h3 class="section-title" style="font-weight:normal !important;font-size:36px !important">AN EFFICIENT SOLUTION: HR OTHERWISE ...</h3>
+                                <h3 class="section-title">AN EFFICIENT SOLUTION: HR OTHERWISE ...</h3>
                                 <p>
                                      For humanity we have totally redesigned the model of
                                      direct recruitment, since the best way to predict
@@ -102,7 +99,12 @@
     <div id="browse-workers" class="section bg-gray">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="col-lg-6 col-md-12 col-sm-12 order-1 order-lg-2">
+                    <div class="img-thumb">
+                        <img class="img-fluid" src="{{ asset('img/search.png') }}" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 order-2 order-lg-1">
                     <div class="text-wrapper">
                         <div>
                             <h3>Search talents</h3>
@@ -153,11 +155,6 @@
                             </div>
 
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-12 col-sm-12">
-                    <div class="img-thumb">
-                        <img class="img-fluid" src="{{ asset('img/search.png') }}" alt="">
                     </div>
                 </div>
             </div>
