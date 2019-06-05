@@ -244,7 +244,7 @@ class FrontEndController extends Controller {
         return back()->with('success', 'Your message has been sent !');
     }
 
-    public function payment() {
+    public function payment(Request $request) {
         $user = Sentinel::getUser();
         $lastTransaction = Transaction::where('user_id', $user->id)->latest()->first();
 
@@ -256,8 +256,14 @@ class FrontEndController extends Controller {
                 return redirect()->route('dashboard');
             }
         }
-        
-        return 'payment !';
+
+        $cinetpay = new CinetpayController();
+
+        $cinetpay = $cinetpay->deposit( $request ); 
+        $monetbil = new MonetbilController();
+        $monetbil = $monetbil->generateWidgetData(); 
+
+       return view('payment',compact('user','cinetpay','monetbil'));
     }
 
     /**

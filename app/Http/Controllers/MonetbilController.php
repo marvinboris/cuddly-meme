@@ -24,7 +24,7 @@ class MonetbilController extends Controller {
      * Generate data necessary for the widget
      * @return JSON object 
      */
-    public function generateWidgetData(Request $request) {
+    public function generateWidgetData() {
         $widgetParams = [
             'version' => 'v2.1',
             'service_key' => $this->settings->publickey,
@@ -46,24 +46,25 @@ class MonetbilController extends Controller {
             'email' => ''
         ];
 
-        $response = $this->client->post($this->settings->servicekey,[
+        $response = $this->client->post('https://api.monetbil.com/widget/v2.1/'.$this->settings->apikey,[
             'headers' => ['Content-Type' => 'application/x-www-form-urlencoded'],
             'form_params' => $json
         ]);
-
+            
         $response = json_decode($response->getBody()->getContents());
+         
 
-        if ( PAYMENT_SUCCESS_STATUS == $response->status ) {
+        if ( PAYMENT_SUCCESS_STATUS == $response->success ) {
             // Use will be redirected to this link in order to complete the payment
 
             $paymentLink = $response->payment_url;
             $payload['link'] = $paymentLink;
         } else {
             $payload['status'] = 'failure';
-            $payload['link'] = 'Something went wron, please try again later';
+            $payload['link'] = 'Something went wrong, please try again later';
         }
 
-        return response()->json( $payload );
+        return $payload;
     }
 
     /**

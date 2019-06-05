@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Transaction;
+use App\PaymentMethod;
+use CinetPay\CinetPay;
+use GuzzleHttp\Client;
+use Illuminate\Http\Request;
 
 class CinetpayController extends Controller {
     private $settings;
@@ -28,9 +32,9 @@ class CinetpayController extends Controller {
         $cinetPayData = [];
         $date = date('Y-m-d H:i:s');
         $date = new \DateTime($date);
-
+        
         $cinetPayData['apikey'] = $this->settings->apikey;
-        $cinetPayData['cpm_site_id'] = $this->siteId;
+        $cinetPayData['cpm_site_id'] = $this->settings->token;
         $cinetPayData['cpm_currency'] = 'CFA';
         $cinetPayData['cpm_page_action'] = 'PAYMENT';
         $cinetPayData['cpm_payment_config'] = 'SINGLE';
@@ -91,7 +95,6 @@ class CinetpayController extends Controller {
     public function deposit(Request $request) {
         $confTab = $this->getConf();
         $apiKey = $confTab['apikey'];
-
         $site_id = $confTab['cpm_site_id'];
         $id_transaction = CinetPay::generateTransId(); 
 
@@ -115,7 +118,7 @@ class CinetpayController extends Controller {
             $responsePayload['status'] = 'success';
             $responsePayload['message'] = 'Deposit initiated';
 
-            return $cp->setTransId($id_transaction)
+            $cp->setTransId($id_transaction)
                       ->setDesignation($paymentDescr)
                       ->setTransDate($txDate)
                       ->setAmount($amountToPay)
@@ -123,8 +126,10 @@ class CinetpayController extends Controller {
                       ->setCustom($userId)
                       ->setNotifyUrl($notify_url)
                       ->setReturnUrl($return_url)
-                      ->setCancelUrl($cancel_url)
-                      ->displayPayButton ($formName, $btnType, $btnSize);
+                      ->setCancelUrl($cancel_url);
+                      
+            return $cp;
+
         } catch (\Exception $e) {
             return response()->json($e->getMessage());
         }
@@ -137,7 +142,7 @@ class CinetpayController extends Controller {
     *  @param email string 
     *  @return JSON object 
     */
-    public function paymentNotify(Request $request) {
+    public function paymentNotify(Requ $request) {
         // Redirect here to Cinetpay with post data 
 
         $deposit = Transaction::where('tx_hash',$request->input('cpm_trans_id'))->first();

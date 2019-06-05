@@ -44,6 +44,7 @@ Route::post('contact', 'FrontEndController@postContact')->name('contact');
 Route::get('payment', 'FrontEndController@payment')->name('payment')->middleware('user');
 
 
+
 Route::group(['middleware' => 'has-paid'], function () {
     Route::get('dashboard', 'AuthController@dashboard')->name('dashboard');
 });
