@@ -47,42 +47,55 @@
     }
 
     .tooltip {
-  position: relative;
-  display: inline-block;
-}
+        position: relative;
+        display: inline-block;
+    }
 
-.tooltip .tooltiptext {
-  visibility: hidden;
-  width: 140px;
-  background-color: #555;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px;
-  position: absolute;
-  z-index: 1;
-  bottom: 150%;
-  left: 50%;
-  margin-left: -75px;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 140px;
+        background-color: #555;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px;
+        position: absolute;
+        z-index: 1;
+        bottom: 150%;
+        left: 50%;
+        margin-left: -75px;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
 
-.tooltip .tooltiptext::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #555 transparent transparent transparent;
-}
+    .tooltip .tooltiptext::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #555 transparent transparent transparent;
+    }
 
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-  opacity: 1;
-}
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    #my-row{
+        padding: 2em;
+        text-align: center;
+    }
+
+    #year-b{
+        padding-top: 1em;
+    }
+
+    .img-wrapper{
+        margin-right: 1em;
+    }
  </style>
 @endsection
 
@@ -97,7 +110,7 @@
 
 <div class="page-header">
     <div class="container">
-        <div class="row">
+        <div class="row" id="my-row">
             <div class="col-lg-8 col-md-6 col-xs-12">
                 <div class="breadcrumb-wrapper">
                     <div class="img-wrapper">
@@ -107,6 +120,7 @@
                         <img src="{{ asset('assets/default-avatar.png') }}" class="my-rounded-circle" style="height:8em; width:8em;" alt="default avatar">
                         @endif
                     </div>
+
                     <div class="content">
                         <h3 class="product-title">{{ $user->first_name . ' ' . $user->last_name }}</h3>
                         <p class="brand">{{ $user->activityArea->name }}</p>
@@ -121,7 +135,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 col-xs-12">
+            <div class="col-lg-4 col-md-6 col-xs-12" id="year-b">
                 <div class="month-price">
                     <span class="year"><b>{{ date('Y') - \Carbon\Carbon::createFromFormat('Y-m-d',$user->birthdate)->year }}</b></span>
                     <div class="price"> year old</div>
@@ -241,7 +255,19 @@
 
 
 
-
+<section id="social-link">
+    @for ($i = 1; $i <= 3; $i++)
+        @if($user->{'social_link'.$i})
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+            <iframe width="100%" height="500px" src="{{ /*url('iframe?url=' . */$user->{'social_link'.$i}/*)*/ }}"></iframe>
+            </div>
+        </div>
+        <br>
+        @endif
+    @endfor
+</section>
 
 
 <section id="featured" class="section bg-gray pb-45">

@@ -126,36 +126,6 @@
                         <p>{{ $user->specialization }}</p>
                         <p><a href="#" data-toggle="modal" data-target="#specializationModal">Edit</a></p>
                     </div>
-                    <div id="video" class="work-experence item">
-                        <h3>My Video</h3>
-                        <h5>@if($user->video) {{ $user->video->mime }} @else No uploaded video @endif</h5>
-                        <span class="date">@if($user->video) {{ $user->video->created_at->toDayDateTimeString() }} @else No set @endif</span>
-                        <p>
-                            @if($user->video)
-                                @include('file-viewer',['file' => $user->video, 'class' => 'video-box'])
-                            @else
-                                <video class="video-box" controls >
-                                    Please update your browser
-                                </video >
-                            @endif
-                        </p>
-                        <p>
-                            @if($user->video)
-                                <a href="{{ url('/files/' . $user->video->filename) }}" target="_blank">Open</a> |
-                                <a href="{{ url('/files/' . $user->video->filename ) }}" download>Download</a> |
-                                <a href="#" class="change-video">Change</a> |
-                                <a href="#" class="del-video" data-form="#del-video-form">Remove</a>
-                                <form style="display:none;" id="del-video-form" action="{{ route('edit-user.del-video') }}" method="POST">@csrf @method('DELETE')</form>
-                            @else
-                            <a href="#" class="change-video"> Upload </a>
-                            @endif
-                            <form style="display:none;" id="form-video" action="{{ route('edit-user.video') }}" method="POST" enctype="multipart/form-data" >
-                                @csrf @method('PUT')
-                                <input id="video_file" type="file" name="video_file" accept="video/*" />
-                            </form>
-                        </p>
-                        <br>
-                    </div>
                     <div id="my-cv" class="work-experence item">
                         <h3>Curriculum Vitae</h3>
                         <h5>{{ $user->cv->mime }}</h5>
@@ -190,6 +160,36 @@
                         <h4>No uploaded attestaion, certificate or diploma.</h4>
                         @endforelse
                         <p><a href="#" data-toggle="modal" data-target="#addAttestionModal">Add</a></p>
+                        <br>
+                    </div>
+                    <div id="video" class="work-experence item">
+                        <h3>My Video</h3>
+                        <h5>@if($user->video) {{ $user->video->mime }} @else No uploaded video @endif</h5>
+                        <span class="date">@if($user->video) {{ $user->video->created_at->toDayDateTimeString() }} @else No set @endif</span>
+                        <p>
+                            @if($user->video)
+                                @include('file-viewer',['file' => $user->video, 'class' => 'video-box'])
+                            @else
+                                <video class="video-box" controls >
+                                    Please update your browser
+                                </video >
+                            @endif
+                        </p>
+                        <p>
+                            @if($user->video)
+                                <a href="{{ url('/files/' . $user->video->filename) }}" target="_blank">Open</a> |
+                                <a href="{{ url('/files/' . $user->video->filename ) }}" download>Download</a> |
+                                <a href="#" class="change-video">Change</a> |
+                                <a href="#" class="del-video" data-form="#del-video-form">Remove</a>
+                                <form style="display:none;" id="del-video-form" action="{{ route('edit-user.del-video') }}" method="POST">@csrf @method('DELETE')</form>
+                            @else
+                            <a href="#" class="change-video"> Upload </a>
+                            @endif
+                            <form style="display:none;" id="form-video" action="{{ route('edit-user.video') }}" method="POST" enctype="multipart/form-data" >
+                                @csrf @method('PUT')
+                                <input id="video_file" type="file" name="video_file" accept="video/*" />
+                            </form>
+                        </p>
                         <br>
                     </div>
                     <div id="social-networks" class="work-experence item">
