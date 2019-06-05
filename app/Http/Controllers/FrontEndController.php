@@ -137,31 +137,31 @@ class FrontEndController extends Controller
     public function searchWorker(Request $req) {
 
         $location = $req['l'] ?: '';
-        $activity_id = $req['a'] ?: '';
+        $activity_id = $req['a'] ?: -1;
 
 
         $activityAreas = ActivityArea::all();
         $query = User::select('users.*');
 
-        if($activity_id) {
+        //if($activity_id) {
             $query = $query->where('users.activity_area_id',$activity_id);
-        }
+        //}
 
-        if($location) {
+        //if($location) {
             $query = $query->join('cities','cities.id','=','users.city_id')
                         ->join('countries','countries.id','=','cities.country_id')
                         ->where(function ($query) use ($location) {
                             $query->Where('cities.name','like',"%$location%")
                             ->orWhere('countries.name','like',"%$location%");
                         });
-        }
+        //}
 
         $userRole = Sentinel::findRoleBySlug('user');
 
         $query->join('role_users','role_users.user_id', '=', 'users.id')->where('role_users.role_id', $userRole->id);
 
         //$users = $query->simplePaginate(1);
-        $users = $query->paginate(10);
+        $users = $query->orderBy('views','desc')->paginate(10);
         $total = json_decode($users->toJson());
         $total = $total->total;
 
@@ -258,6 +258,13 @@ class FrontEndController extends Controller
 
 
         return back()->with('success', "Your message has been sent !");
+    }
+
+
+    public function iframe(Request $req) {
+        $req->validate(['url' => 'required|url']);
+        //return file_get_contents($req->url);
+        return redirect()->to($req->url);
     }
 
     public function payment() {
