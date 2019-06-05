@@ -104,14 +104,10 @@ class CinetpayController extends Controller {
         $amountToPay = 600; // @TODO make the amount comming from settings table
         $userId = $request->user()->id; 
 
-        $formName = 'goCinetPay';
         $notify_url = $confTab['notify_url']; 
 
         $return_url = $confTab['return_url'];
         $cancel_url = $confTab['cancel_url'];
-
-        $btnType = 2;
-        $btnSize = 'large'; 
 
         $cp = new CinetPay($site_id, $apiKey);
         try {
@@ -157,14 +153,14 @@ class CinetpayController extends Controller {
             }
         }
 
-        $deposit = new Deposit([
+        $deposit = new Transaction([
             'amount' => $request->input('cpm_amount'),
             'tx_id' => $this->generateRef(),
             'tx_hash' => $request->input('cpm_trans_id'),
             'user_id' => $request->input('cpm_custom'),
             'vendor' => 'cinetpay',
-            'method' => '', 
-            'type' => 'deposit',
+            'method' => 'momo', 
+            'type' => 'subscription',
             'status' => PAYMENT_PENDING_TEXT,
             'currency' => 'CFA', 
             'address' => $request->input('cel_phone_num')

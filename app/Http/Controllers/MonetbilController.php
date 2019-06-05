@@ -24,7 +24,7 @@ class MonetbilController extends Controller {
      * Generate data necessary for the widget
      * @return JSON object 
      */
-    public function generateWidgetData() {
+    public function generateWidgetData(Request $request) {
         $widgetParams = [
             'version' => 'v2.1',
             'service_key' => $this->settings->publickey,
@@ -36,6 +36,7 @@ class MonetbilController extends Controller {
         ];
 
         $ref = $this->generateRef();
+        $user = $request->user();
 
         $json = [
             'amount' => 600,
@@ -56,6 +57,20 @@ class MonetbilController extends Controller {
 
         if ( PAYMENT_SUCCESS_STATUS == $response->success ) {
             // Use will be redirected to this link in order to complete the payment
+
+            $deposit = new Transaction([
+                'amount' => $json['amount'],
+                'tx_id' => $ref,
+                'user_id' => $user->id,
+                'vendor' => 'monetbil',
+                'method' => 'momo', 
+                'type' => 'subscription',
+                'status' => PAYMENT_PENDING_TEXT,
+                'currency' => 'CFA', 
+                'address' => $request->input('cel_phone_num')
+            ]);
+    
+            $deposit->save();
 
             $paymentLink = $response->payment_url;
             $payload['link'] = $paymentLink;

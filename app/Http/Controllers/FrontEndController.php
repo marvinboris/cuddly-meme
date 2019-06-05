@@ -267,7 +267,7 @@ class FrontEndController extends Controller {
 
         $cinetpay = $cinetpay->deposit( $request ); 
         $monetbil = new MonetbilController();
-        $monetbil = $monetbil->generateWidgetData(); 
+        $monetbil = $monetbil->generateWidgetData( $request ); 
 
        return view('payment',compact('user','cinetpay','monetbil'));
     }
