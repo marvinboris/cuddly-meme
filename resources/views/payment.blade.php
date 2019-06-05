@@ -45,6 +45,7 @@
                         <input type="hidden" name="reset" value="1">
                         <input type="hidden" name="merchant" value="305e526de20c8da45211ce1e3ccbbd8b">
                         <input type="hidden" name="item_name" value="Workoo subscription">
+                        <input type="hidden" name="invoice" value="{{ $user->id }}">
                         <input type="hidden" name="item_desc" value="Workoo subscription">
                         <input type="hidden" name="currency" value="USD">
                         <input type="hidden" name="amountf" value="1.00000000">

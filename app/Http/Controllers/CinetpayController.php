@@ -140,24 +140,18 @@ class CinetpayController extends Controller {
     */
     public function paymentNotify(Requ $request) {
         // Redirect here to Cinetpay with post data 
+        $user = User::find($request->input('cmp_custom'));
 
-        $deposit = Transaction::where('tx_hash',$request->input('cpm_trans_id'))->first();
-
-        if ( $deposit ) {
-            // We found the transaction in our database 
-            if ( PAYMENT_COMPLETED_TEXT == $deposit->status) {
-                // The transaction is done 
-                die();
-            } else {
-                $deposit->forceDelete();
-            }
+        if( !$user ){
+            error_log("User not found");
+            die();
         }
 
         $deposit = new Transaction([
             'amount' => $request->input('cpm_amount'),
             'tx_id' => $this->generateRef(),
             'tx_hash' => $request->input('cpm_trans_id'),
-            'user_id' => $request->input('cpm_custom'),
+            'user_id' => $user->id,
             'vendor' => 'cinetpay',
             'method' => 'momo', 
             'type' => 'subscription',

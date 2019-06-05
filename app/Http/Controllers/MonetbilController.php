@@ -44,7 +44,7 @@ class MonetbilController extends Controller {
             'payment_ref' => $ref,
             'logo' => '',
             'notify_url' => $this->settings->notify_url,
-            'email' => ''
+            'email' => $user->email
         ];
 
         $response = $this->client->post('https://api.monetbil.com/widget/v2.1/'.$this->settings->apikey,[
@@ -57,21 +57,6 @@ class MonetbilController extends Controller {
 
         if ( PAYMENT_SUCCESS_STATUS == $response->success ) {
             // Use will be redirected to this link in order to complete the payment
-
-            $deposit = new Transaction([
-                'amount' => $json['amount'],
-                'tx_id' => $ref,
-                'user_id' => $user->id,
-                'vendor' => 'monetbil',
-                'method' => 'momo', 
-                'type' => 'subscription',
-                'status' => PAYMENT_PENDING_TEXT,
-                'currency' => 'CFA', 
-                'address' => $request->input('cel_phone_num')
-            ]);
-    
-            $deposit->save();
-
             $paymentLink = $response->payment_url;
             $payload['link'] = $paymentLink;
         } else {
@@ -88,12 +73,27 @@ class MonetbilController extends Controller {
      * @return boolean 
      */
     public function notify(Request $request) {
-        $tx = Transaction::where('tx_id',$request->input('payment_ref'))->first();
+      //  $tx = Transaction::where('tx_id',$request->input('payment_ref'))->first();
+        $user = User::where('email',$request->input('email'))->first();
 
-        if ( !$tx ) {
-            error_log('Payment not found ');
-            exit(false);
+        if(!$user){
+            error_log("user not found ");
+            die("not found");
         }
+
+
+        $tx = new Transaction([
+            'amount' => $request->input('amount'),
+            'tx_id' => $request->input('payment_ref'),
+            'tx_hash' => 'null',
+            'user_id' => $user->id,
+            'vendor' => 'monetbil',
+            'method' => 'momo', 
+            'type' => 'subscription',
+            'status' => PAYMENT_PENDING_TEXT,
+            'currency' => 'CFA', 
+            'address' => $request->input('phone')
+        ]);
 
         $tx->currency = $request->input('currency');
         $tx->tx_hash = $request->input('transaction_id');

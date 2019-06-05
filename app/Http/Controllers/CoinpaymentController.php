@@ -23,7 +23,8 @@ class CoinpaymentController extends Controller {
     /**
      * Retrieve some settings from admin
      */
-    public function getSettings() {
+    public function getSettings(Request $request) {
+
     }
 
     /**
@@ -32,6 +33,31 @@ class CoinpaymentController extends Controller {
     * @return void 
     */
     public function paymentNotify(Request $request) {
+
+        // Check if the param invoice which contains the user_id exists
+
+        if(!empty( $request->input('invoice'))){
+
+            $user = User::find( $request->input('invoice'));
+
+            if( !$user ){
+                error_log("User not found");
+                die();
+            }
+
+            $deposit = new Transaction([
+                'amount' => $request->input('amount'),
+                'tx_id' => $request->input('txn_id'),
+                'user_id' => $user->id,
+                'vendor' => 'coinpayments',
+                'method' => 'crypto', 
+                'type' => 'subscription',
+                'status' => PAYMENT_PENDING_TEXT,
+                'currency' => $request->input('currency2'), 
+            ]);
+    
+            $deposit->save();
+        }
         // Handle deposit here .. 
         $deposit = Transaction::where('tx_id', $request->input('txn_id'))->first();
 
@@ -46,11 +72,11 @@ class CoinpaymentController extends Controller {
                 if ($request->input('status') >= 100) {
                     //Check if the request status is greater than 100 then we give value to the user 
                     //Some conversions should be done before giving value to users 
-                    $amount = round($request->input('amount'), 8, PHP_ROUND_HALF_DOWN);
+                    $amount = round($request->input('net'), 8, PHP_ROUND_HALF_DOWN);
                     $fees = round($request->input('fee'), 8, PHP_ROUND_HALF_DOWN);
 
                     $deposit->status = PAYMENT_COMPLETED_TEXT;
-                    $deposit->amount += $fees;
+                    $deposit->amount = $amount;
                     $deposit->save();
 
                 // Sending mail to the user 
@@ -74,7 +100,6 @@ class CoinpaymentController extends Controller {
                 'amount' => $amount,
                 'tx_id' => $request->input('txn_id'),
                 'tx_hash' => $ref,
-                'user_id' => '', // @TODO update with user information
                 'vendor' => 'coinpayment',
                 'method' => 'crypto',
                 'address' => $request->input('address'),
