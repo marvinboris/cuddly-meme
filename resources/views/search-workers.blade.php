@@ -141,7 +141,7 @@
                     @if($activity_id != -1 || $location)
                         No user found
                     @else
-                        Enter your search credentials
+                        Use the search box to obtain results 
                     @endif
                 </h1>
             </div>

@@ -15,6 +15,7 @@ use App\ActivityArea;
 use App\Mail\Contact;
 use App\Mail\Restore;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 
@@ -154,6 +155,7 @@ class FrontEndController extends Controller {
                 $query->select(DB::raw(1))
                       ->from('transactions')
                       ->whereRaw('transactions.user_id = users.id')
+                      ->whereRaw('transactions.status = "completed" ')
                       ->whereDate('transactions.created_at','>',$since);
             });
 
@@ -190,7 +192,7 @@ class FrontEndController extends Controller {
 
         $lastTransaction = Transaction::where('user_id', $user->id)->latest()->first();
 
-        if ($lastTransaction) {
+        if ($lastTransaction && PAYMENT_COMPLETED_TEXT == $lastTransaction->status) {
             $nbMonth = Setting::limit(1)->value('account_time') ?: 12;
             $lastTime = $lastTransaction->created_at;
             $since = Carbon::now()->subMonths($nbMonth);
