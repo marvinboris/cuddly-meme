@@ -16,6 +16,7 @@ use App\Mail\Restore;
 use App\Mail\Contact;
 use Sentinel;
 use URL;
+use DB;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 
 
@@ -134,14 +135,39 @@ class FrontEndController extends Controller
     }
 
 
+
+    /* if ($user) {
+        $lastTransaction = Transaction::where('user_id', $user->id)->latest()->first();
+
+        if ($lastTransaction) {
+            $nbMonth = Setting::limit(1)->value('account_time') ?: 12;
+            $lastTime = $lastTransaction->created_at;
+            $since = Carbon::now()->subMonths($nbMonth);
+            if ($lastTime->gte($since)) {
+                return $next($request);
+            }
+        }
+
+        return Redirect::route('payment');
+    } */
+
+
     public function searchWorker(Request $req) {
 
         $location = $req['l'] ?: '';
         $activity_id = $req['a'] ?: -1;
 
+        $nbMonth = Setting::limit(1)->value('account_time') ?: 12;
+        $since = Carbon::now()->subMonths($nbMonth);
 
         $activityAreas = ActivityArea::all();
-        $query = User::select('users.*');
+        $query = User::select('users.*')
+            ->whereExists(function ($query) use($since) {
+                $query->select(DB::raw(1))
+                      ->from('transactions')
+                      ->whereRaw('transactions.user_id = users.id')
+                      ->whereDate('transactions.created_at','>',$since);
+            });
 
         //if($activity_id) {
             $query = $query->where('users.activity_area_id',$activity_id);
