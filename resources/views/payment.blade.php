@@ -29,12 +29,12 @@
                 <div class="page-login-form box">
                     <h3>Complete The Payment By Choosing a method </h3>
 
-                     <h3> For West Africa </h3>
+                     <h3> For West Africa And Cameroon </h3>
                         <a href="#" class="west-africa"> <img src="https://secure.cinetpay.com/img/om_resized.png" style="width:75px;height:40px"></a>
                         <a href="#" class="west-africa"> <img src="https://secure.cinetpay.com/img/momo_resized.png" style="width:75px;height:40px"></a>
                         <a href="#" class="west-africa"> <img src="https://secure.cinetpay.com/img/flooz_resized.png" style="width:75px;height:40px"></a>
                     <br/> <br/>
-                     <h3> For Central Africa </h3>
+                     <h3> For Central Africa except Cameroon </h3>
                         <a href="{{ $monetbil['link'] }}"> <img src="https://secure.cinetpay.com/img/om_resized.png" style="width:75px;height:40px"></a>
                         <a href="{{ $monetbil['link'] }}"> <img src="https://secure.cinetpay.com/img/momo_resized.png" style="width:75px;height:40px"></a>
                         {{ $cinetpay->displayPayButton('cinetpay',2,'large')}}
