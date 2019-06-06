@@ -126,19 +126,43 @@ class FrontEndController extends Controller {
         return redirect()->route('login');
     }
 
+    /* if ($user) {
+        $lastTransaction = Transaction::where('user_id', $user->id)->latest()->first();
+
+        if ($lastTransaction) {
+            $nbMonth = Setting::limit(1)->value('account_time') ?: 12;
+            $lastTime = $lastTransaction->created_at;
+            $since = Carbon::now()->subMonths($nbMonth);
+            if ($lastTime->gte($since)) {
+                return $next($request);
+            }
+        }
+
+        return Redirect::route('payment');
+    } */
+
     public function searchWorker(Request $req) {
         $location = $req['l'] ?: '';
         $activity_id = $req['a'] ?: -1;
 
+        $nbMonth = Setting::limit(1)->value('account_time') ?: 12;
+        $since = Carbon::now()->subMonths($nbMonth);
+
         $activityAreas = ActivityArea::all();
-        $query = User::select('users.*');
+        $query = User::select('users.*')
+            ->whereExists(function ($query) use ($since) {
+                $query->select(DB::raw(1))
+                      ->from('transactions')
+                      ->whereRaw('transactions.user_id = users.id')
+                      ->whereDate('transactions.created_at','>',$since);
+            });
 
         //if($activity_id) {
-            $query = $query->where('users.activity_area_id',$activity_id);
+        $query = $query->where('users.activity_area_id',$activity_id);
         //}
 
         //if($location) {
-            $query = $query->join('cities','cities.id','=','users.city_id')
+        $query = $query->join('cities','cities.id','=','users.city_id')
                         ->join('countries','countries.id','=','cities.country_id')
                         ->where(function ($query) use ($location) {
                             $query->Where('cities.name','like',"%$location%")
@@ -171,8 +195,9 @@ class FrontEndController extends Controller {
             $lastTime = $lastTransaction->created_at;
             $since = Carbon::now()->subMonths($nbMonth);
             if ($lastTime->gte($since)) {
-                if(!Sentinel::check() || $user->id != Sentinel::getUser()->id)
+                if (!Sentinel::check() || $user->id != Sentinel::getUser()->id) {
                     User::whereLink($link)->increment('views');
+                }
                 return view('user-details', compact('user'));
             }
         }
@@ -269,17 +294,15 @@ class FrontEndController extends Controller {
         $monetbil = new MonetbilController();
         $monetbil = $monetbil->generateWidgetData( $request ); 
 
-       return view('payment',compact('user','cinetpay','monetbil'));
+        return view('payment',compact('user','cinetpay','monetbil'));
     }
 
     /**
      * 
      */
-
-     public function howItWorks(Request $request){
-         
+    public function howItWorks(Request $request) {
         $setting = Setting::first();
 
         return view('how-it-works',compact('setting') );
-     }
+    }
 }
