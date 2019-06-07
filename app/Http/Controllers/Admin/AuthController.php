@@ -2,36 +2,32 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-
-use Cartalyst\Sentinel\Checkpoints\NotActivatedException;
-use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
-use Cartalyst\Sentinel\Laravel\Facades\Activation;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Redirect;
+use URL;
 use Mail;
+use View;
+use App\User;
 use Reminder;
 use Sentinel;
-use URL;
-use Validator;
-use View;
 use stdClass;
-use App\Mail\ForgotPassword;
-use App\User;
 use App\Setting;
-use App\Transaction;
 use Carbon\Carbon;
+use App\Transaction;
+use App\Mail\ForgotPassword;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
+use Cartalyst\Sentinel\Laravel\Facades\Activation;
+use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
+use Cartalyst\Sentinel\Checkpoints\NotActivatedException;
 
-class AuthController extends Controller
-{
+class AuthController extends Controller {
     /**
      * Admin dashboard.
      *
      * @return View
      */
-    public function dashboard()
-    {
+    public function dashboard() {
         $account_time = Setting::limit(1)->value('account_time') ?: 12;
         $new_users = User::whereDate('created_at', Carbon::today())->count();
         $registered = User::withTrashed()->count();
@@ -39,9 +35,9 @@ class AuthController extends Controller
         $dt = Carbon::now()->subMonths($account_time);
         $has_paid = Transaction::whereDate('transactions.created_at','>=', $dt)->count();
         $latest = User::latest()->limit(5)->get();
-        foreach($latest as $user) {
+        foreach ($latest as $user) {
             $user->status = 'Pending';
-            $lastTransaction = Transaction::where('user_id', $user->id)->latest()->first();
+            $lastTransaction = Transaction::where('user_id', $user->id)->where('status', 'completed')->latest()->first();
             if ($lastTransaction) {
                 $lastTime = $lastTransaction->created_at;
                 $since = Carbon::now()->subMonths($account_time);
@@ -49,7 +45,6 @@ class AuthController extends Controller
                     $user->status = 'Completed';
                 }
             }
-
         }
 
         //New user data for chart
@@ -72,8 +67,7 @@ class AuthController extends Controller
      *
      * @return View
      */
-    public function getSignin()
-    {
+    public function getSignin() {
         // Is the user logged in?
         if (Sentinel::check()) {
             return Redirect::route('admin.dashboard');
@@ -88,9 +82,7 @@ class AuthController extends Controller
      * @param Request $request
      * @return Redirect
      */
-    public function postSignin(Request $request)
-    {
-
+    public function postSignin(Request $request) {
         $request->validate([
             'email' => 'required|email',
             'password' => 'required'
@@ -101,20 +93,18 @@ class AuthController extends Controller
             if (Sentinel::authenticate($request->only(['email', 'password']), $request->get('remember-me', false))) {
                 // Redirect to the dashboard page
                 $user = Sentinel::getUser();
-                return Redirect::route("admin.dashboard")->with('success', "Welcome $user->first_name");
+                return Redirect::route('admin.dashboard')->with('success', "Welcome $user->first_name");
             }
-
         } catch (NotActivatedException $e) {
             return back()->withError('Compte non activé !');
         } catch (ThrottlingException $e) {
             $delay = $e->getDelay();
-           return back()->withError("Too many tries, account suspended, retry in $delay secondes !");
+            return back()->withError("Too many tries, account suspended, retry in $delay secondes !");
         }
 
         // Ooops.. something went wrong
-        return Redirect::back()->withInput()->withError("Incorrect email or password !");
+        return Redirect::back()->withInput()->withError('Incorrect email or password !');
     }
-
 
     /**
      * Forgot password form processing page.
@@ -122,8 +112,7 @@ class AuthController extends Controller
      *
      * @return Redirect
      */
-    public function postForgotPassword(Request $request)
-    {
+    public function postForgotPassword(Request $request) {
         $request->validate(['email' => 'required|email']);
 
         $data = new stdClass();
@@ -136,20 +125,19 @@ class AuthController extends Controller
                 return back()->with('error', 'User not found !');
             }
             $activation = Activation::completed($user);
-            if(!$activation){
+            if (!$activation) {
                 return back()->with('error', 'Account not activated !');
             }
             $reminder = Reminder::exists($user) ?: Reminder::create($user);
             // Data to be used on the email view
 
-            $data->user_name = $user->first_name .' ' .$user->last_name;
+            $data->user_name = $user->first_name . ' ' . $user->last_name;
             $data->forgotPasswordUrl = URL::route('forgot-password-confirm', [$user->id, $reminder->code]);
 
             // Send the activation code through email
 
             Mail::to($user->email)
                 ->send(new ForgotPassword($data));
-
         } catch (UserNotFoundException $e) {
             // Even though the email was not found, we will pretend
             // we have sent the password reset code through email,
@@ -167,17 +155,16 @@ class AuthController extends Controller
      * @param  string $passwordResetCode
      * @return View
      */
-    public function getForgotPasswordConfirm($userId,$passwordResetCode = null)
-    {
+    public function getForgotPasswordConfirm($userId,$passwordResetCode = null) {
         // Find the user using the password reset code
-        if(!$user = Sentinel::findById($userId)) {
+        if (!$user = Sentinel::findById($userId)) {
             // Redirect to the forgot password page
             return Redirect::route('forgot-password')->with('error', 'User not found !');
         }
-        if($reminder = Reminder::exists($user)) {
-            if($passwordResetCode == $reminder->code) {
+        if ($reminder = Reminder::exists($user)) {
+            if ($passwordResetCode == $reminder->code) {
                 return view('admin.auth.forgot-password-confirm');
-            } else{
+            } else {
                 return 'code does not match';
             }
         } else {
@@ -196,8 +183,7 @@ class AuthController extends Controller
      * @param  string   $passwordResetCode
      * @return Redirect
      */
-    public function postForgotPasswordConfirm(Request $request, $userId, $passwordResetCode = null)
-    {
+    public function postForgotPasswordConfirm(Request $request, $userId, $passwordResetCode = null) {
         $request->validate([
             'password' => 'required|between:3,32',
             'password_confirm' => 'required|same:password'
@@ -207,11 +193,11 @@ class AuthController extends Controller
         $user = Sentinel::findById($userId);
         if (!$reminder = Reminder::complete($user, $passwordResetCode, $request->get('password'))) {
             // Ooops.. something went wrong
-            return Redirect::route('signin')->with('error',"OOPS something went wrong !");
+            return Redirect::route('signin')->with('error','OOPS something went wrong !');
         }
 
         // Password successfully reseted
-        return Redirect::route('signin')->with('success', "Your password has been successfully reset !");
+        return Redirect::route('signin')->with('success', 'Your password has been successfully reset !');
     }
 
     /**
@@ -219,14 +205,11 @@ class AuthController extends Controller
      *
      * @return Redirect
      */
-    public function getLogout()
-    {
+    public function getLogout() {
         // Log the user out
         Sentinel::logout();
 
         // Redirect to the users page
         return redirect('admin/signin')->with('info', 'Logout successfully !');
     }
-
-
 }

@@ -58,6 +58,7 @@
                         <li><a href="#my-link">My Link</a></li>
                         <li><a href="#question-answers">My Answers <span class="notinumber">{{ $user->responses->count() }}</span></a></li>
                         <li><a href="#account-infos">Account infos</a></li>
+                        <li><a href="#payments">Payments</a></li>
                         <li><a href="#" data-toggle="modal" data-target="#changePasswordModal">Change Password</a></li>
                         <li><a href="{{ route('logout') }}">Sing Out</a></li>
                     </ul>
@@ -234,6 +235,17 @@
                         <hr>
                         <h4>Account views</h4>
                         <p>{{ $user->views }}</p>
+                    </div>
+                    <div id="payments" class="education item">
+                        <h3>Payments</h3>
+                        @foreach ($user->transactions as $item)
+                        @if(strtolower($item->status) == 'completed')
+                        <h4>{{ $item->method }}</h4>
+                        <h5>$ {{ round($item->amount,2) }}</h5>
+                        <p title="{{ $item->created_at->diffForHumans() }}">{{ $item->created_at->toDayDateTimeString() }}</p>
+                        <hr>
+                        @endif
+                        @endforeach
                     </div>
                 </div>
             </div>

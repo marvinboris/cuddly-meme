@@ -14,17 +14,16 @@ class User extends EloquentUser {
 
     protected $table = 'users';
 
-
     protected $guarded = ['id'];
 
     protected $fillable = [];
 
-	/**
-	 * The attributes excluded from the model's JSON form.
-	 *
-	 * @var array
-	 */
-	protected $hidden = ['password'];
+    /**
+     * The attributes excluded from the model's JSON form.
+     *
+     * @var array
+     */
+    protected $hidden = ['password'];
 
     /**
     * To allow soft deletes
@@ -59,5 +58,9 @@ class User extends EloquentUser {
 
     public function attestations() {
         return $this->hasMany(Attestation::class, 'user_id');
+    }
+
+    public function transactions() {
+        return $this->hasMany(Transaction::class, 'user_id');
     }
 }
