@@ -136,22 +136,6 @@ class FrontEndController extends Controller
 
 
 
-    /* if ($user) {
-        $lastTransaction = Transaction::where('user_id', $user->id)->latest()->first();
-
-        if ($lastTransaction) {
-            $nbMonth = Setting::limit(1)->value('account_time') ?: 12;
-            $lastTime = $lastTransaction->created_at;
-            $since = Carbon::now()->subMonths($nbMonth);
-            if ($lastTime->gte($since)) {
-                return $next($request);
-            }
-        }
-
-        return Redirect::route('payment');
-    } */
-
-
     public function searchWorker(Request $req) {
 
         $location = $req['l'] ?: '';
@@ -166,6 +150,7 @@ class FrontEndController extends Controller
                 $query->select(DB::raw(1))
                       ->from('transactions')
                       ->whereRaw('transactions.user_id = users.id')
+                      ->where('transactions.status', 'Completed')
                       ->whereDate('transactions.created_at','>',$since);
             });
 
@@ -201,7 +186,7 @@ class FrontEndController extends Controller
             abort(404);
         }
 
-        $lastTransaction = Transaction::where('user_id', $user->id)->latest()->first();
+        $lastTransaction = Transaction::where('user_id', $user->id)->where('status', 'Completed')->latest()->first();
 
         if ($lastTransaction) {
             $nbMonth = Setting::limit(1)->value('account_time') ?: 12;

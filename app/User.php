@@ -66,4 +66,10 @@ class User extends EloquentUser
         return $this->hasMany(Attestation::class, 'user_id');
     }
 
+
+    public function transactions() {
+        return $this->hasMany(Transaction::class, 'user_id');
+
+    }
+
 }

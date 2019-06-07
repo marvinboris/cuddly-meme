@@ -41,7 +41,7 @@ class AuthController extends Controller
         $latest = User::latest()->limit(5)->get();
         foreach($latest as $user) {
             $user->status = 'Pending';
-            $lastTransaction = Transaction::where('user_id', $user->id)->latest()->first();
+            $lastTransaction = Transaction::where('user_id', $user->id)->where('status', 'Completed')->latest()->first();
             if ($lastTransaction) {
                 $lastTime = $lastTransaction->created_at;
                 $since = Carbon::now()->subMonths($account_time);

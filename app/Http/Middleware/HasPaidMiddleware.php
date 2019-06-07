@@ -21,7 +21,7 @@ class HasPaidMiddleware
     public function handle($request, Closure $next)
     {
         if($user = Sentinel::getUser()) {
-            $lastTransaction = Transaction::where('user_id', $user->id)->latest()->first();
+            $lastTransaction = Transaction::where('user_id', $user->id)->where('status', 'Completed')->latest()->first();
 
             if ($lastTransaction) {
 
