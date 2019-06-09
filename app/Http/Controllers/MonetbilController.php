@@ -42,18 +42,18 @@ class MonetbilController extends Controller {
             'amount' => 600,
             'item_ref' => $ref,
             'payment_ref' => $ref,
-            'logo' => '',
+            'logo' => 'https://zupimages.net/up/19/23/ft57.png',
             'notify_url' => $this->settings->notify_url,
-            'email' => $user->email
+            'email' => $user->email,
+            'country' => 'SN'
         ];
 
-        $response = $this->client->post('https://api.monetbil.com/widget/v2.1/'.$this->settings->apikey,[
+        $response = $this->client->post('https://api.monetbil.com/widget/v2.1/' . $this->settings->apikey,[
             'headers' => ['Content-Type' => 'application/x-www-form-urlencoded'],
             'form_params' => $json
         ]);
-            
+
         $response = json_decode($response->getBody()->getContents());
-         
 
         if ( PAYMENT_SUCCESS_STATUS == $response->success ) {
             // Use will be redirected to this link in order to complete the payment
@@ -73,14 +73,13 @@ class MonetbilController extends Controller {
      * @return boolean 
      */
     public function notify(Request $request) {
-      //  $tx = Transaction::where('tx_id',$request->input('payment_ref'))->first();
+        //  $tx = Transaction::where('tx_id',$request->input('payment_ref'))->first();
         $user = User::where('email',$request->input('email'))->first();
 
-        if(!$user){
-            error_log("user not found ");
-            die("not found");
+        if (!$user) {
+            error_log('user not found ');
+            die('not found');
         }
-
 
         $tx = new Transaction([
             'amount' => $request->input('amount'),
