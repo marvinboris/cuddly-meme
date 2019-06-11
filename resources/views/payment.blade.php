@@ -2,8 +2,8 @@
 @extends("partials.layout")
 
 @section('stylesheet')
- <style>
- </style>
+<link rel="stylesheet" type="text/css" href="{{ asset('css/cryptocoins/css/cryptocoins.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/cryptocoins/css/cryptocoins-colors.css') }}">
 @endsection
 
 
@@ -29,17 +29,7 @@
                 <div class="page-login-form box">
                     <h3>Complete The Payment By Choosing a method </h3>
 
-                     <h3> For West Africa And Cameroon </h3>
-                        <a href="#" class="west-africa"> <img src="https://secure.cinetpay.com/img/om_resized.png" style="width:75px;height:40px"></a>
-                        <a href="#" class="west-africa"> <img src="https://secure.cinetpay.com/img/momo_resized.png" style="width:75px;height:40px"></a>
-                        <a href="#" class="west-africa"> <img src="https://secure.cinetpay.com/img/flooz_resized.png" style="width:75px;height:40px"></a>
-                    <br/> <br/>
-                     <h3> For Central Africa except Cameroon </h3>
-                        <a href="{{ $monetbil['link'] }}"> <img src="https://secure.cinetpay.com/img/om_resized.png" style="width:75px;height:40px"></a>
-                        <a href="{{ $monetbil['link'] }}"> <img src="https://secure.cinetpay.com/img/momo_resized.png" style="width:75px;height:40px"></a>
-                        {{ $cinetpay->displayPayButton('cinetpay',2,'large')}}
-                    <br/> <br/>
-                    <h3> With Cryptocurrencies </h3>
+                    <h3> World Wide - With Cryptocurrencies </h3>
                     <form action="https://www.coinpayments.net/index.php" method="post">
                         <input type="hidden" name="cmd" value="_pay_simple">
                         <input type="hidden" name="reset" value="1">
@@ -51,9 +41,24 @@
                         <input type="hidden" name="amountf" value="1.00000000">
                         <input type="hidden" name="want_shipping" value="0">
                         <input type="hidden" name="success_url" value="https://workoo.net">
-                        <input type="image" src="https://www.coinpayments.net/images/pub/CP-main-medium.png" alt="Buy Now with CoinPayments.net">
+                         <button type="submit" class="btn btn-primary-outline" style="background:transparent">
+                             <i class="cc BTC fa-4x" aria-hidden="true"></i>
+                             <i class="cc XRP fa-4x" aria-hidden="true"></i>
+                             <i class="cc ETH fa-4x" aria-hidden="true"></i>
+                             <i class="cc BCH fa-4x" aria-hidden="true"></i>
+                         </button> 
                     </form>
 
+                     <h3> For West Africa And Cameroon </h3>
+                        <a href="#" class="west-africa"> <img src="https://secure.cinetpay.com/img/om_resized.png" style="width:75px;height:40px"></a>
+                        <a href="#" class="west-africa"> <img src="https://secure.cinetpay.com/img/momo_resized.png" style="width:75px;height:40px"></a>
+                        <a href="#" class="west-africa"> <img src="https://secure.cinetpay.com/img/flooz_resized.png" style="width:75px;height:40px"></a>
+                    <br/> <br/>
+                     <h3> For Central Africa except Cameroon </h3>
+                        <a href="{{ $monetbil['link'] }}"> <img src="https://secure.cinetpay.com/img/om_resized.png" style="width:75px;height:40px"></a>
+                        <a href="{{ $monetbil['link'] }}"> <img src="https://secure.cinetpay.com/img/momo_resized.png" style="width:75px;height:40px"></a>
+                        {{ $cinetpay->displayPayButton('cinetpay',2,'large')}}
+                    <br/> <br/>
                      
                  </div>
             </div>
