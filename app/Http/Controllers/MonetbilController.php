@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\User;
+use App\Transaction;
 use App\PaymentMethod;
 use GuzzleHttp\Client;
-use App\Transaction;
+use Illuminate\Http\Request;
 
 class MonetbilController extends Controller {
     private $settings;
@@ -81,18 +82,22 @@ class MonetbilController extends Controller {
             die('not found');
         }
 
-        $tx = new Transaction([
-            'amount' => $request->input('amount'),
-            'tx_id' => $request->input('payment_ref'),
-            'tx_hash' => 'null',
-            'user_id' => $user->id,
-            'vendor' => 'monetbil',
-            'method' => 'momo', 
-            'type' => 'subscription',
-            'status' => PAYMENT_PENDING_TEXT,
-            'currency' => 'CFA', 
-            'address' => $request->input('phone')
-        ]);
+        $tx = Transaction::where("tx_id",$request->input("payment_ref"))->first() ;
+        
+        if( !$tx){
+            $tx = new Transaction([
+                'amount' => $request->input('amount'),
+                'tx_id' => $request->input('payment_ref'),
+                'tx_hash' => 'null',
+                'user_id' => $user->id,
+                'vendor' => 'monetbil',
+                'method' =>  $request->input('operator'), 
+                'type' => 'subscription',
+                'status' => PAYMENT_PENDING_TEXT,
+                'currency' => 'CFA', 
+                'address' => $request->input('phone')
+            ]);
+        }
 
         $tx->currency = $request->input('currency');
         $tx->tx_hash = $request->input('transaction_id');
@@ -103,7 +108,7 @@ class MonetbilController extends Controller {
         $tx->amount = $request->input('amount');
 
         if ( PAYMENT_SUCCESS_TEXT == $request->input('status') ) {
-            $tx->status = PAYMENT_SUCCESS_TEXT;
+            $tx->status = PAYMENT_COMPLETED_TEXT;
         } else {
             $tx->status = $request->input('status');
         }

@@ -20,5 +20,8 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         //
+        '/payment/cinetpay/notify',
+        '/payment/monetbil/notify',
+        '/payment/coinpayments/notify',
     ];
 }

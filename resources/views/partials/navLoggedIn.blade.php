@@ -1,3 +1,9 @@
+<style>
+  .nav-link{
+    color:white !important;
+  }
+</style> 
+
 <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar">
   <div class="container">
     <div class="theme-header clearfix">
