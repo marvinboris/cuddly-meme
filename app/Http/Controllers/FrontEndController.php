@@ -270,7 +270,7 @@ class FrontEndController extends Controller {
             $nbMonth = Setting::limit(1)->value('account_time') ?: 12;
             $lastTime = $lastTransaction->created_at;
             $since = Carbon::now()->subMonths($nbMonth);
-            if ($lastTime->gte($since)) {
+            if ($lastTime->gte($since) && PAYMENT_COMPLETED_TEXT == $lastTransaction->status ) {
                 return redirect()->route('dashboard');
             }
         }
@@ -281,7 +281,10 @@ class FrontEndController extends Controller {
         $monetbil = new MonetbilController();
         $monetbil = $monetbil->generateWidgetData( $request ); 
 
-        return view('payment',compact('user','cinetpay','monetbil'));
+        $visa = new VisaController();
+        $visa = $visa->getConf( $request );
+
+        return view('payment',compact('user','cinetpay','monetbil','visa'));
     }
 
     /**

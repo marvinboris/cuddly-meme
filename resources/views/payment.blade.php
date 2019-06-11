@@ -49,6 +49,17 @@
                          </button> 
                     </form>
 
+                    <h3> Visa - Master card </h3>
+                    <div class="row">
+                        <div class="col-md-5 offset-md-1">
+                            <a href="{{ $visa->redirectUrl }}"><i class="fa fa-cc-mastercard fa-4x card" style="color:red"></i></a>
+                        </div>
+                        <div class="col-md-5">
+                            <a href="{{ $visa->redirectUrl }}"><i class="fa fa-cc-visa fa-4x card" style="color:blue"></i></a>
+                        </div>
+                        
+                    </div>
+
                      <h3> For West Africa And Cameroon </h3>
                         <a href="#" class="west-africa"> <img src="https://secure.cinetpay.com/img/om_resized.png" style="width:75px;height:40px"></a>
                         <a href="#" class="west-africa"> <img src="https://secure.cinetpay.com/img/momo_resized.png" style="width:75px;height:40px"></a>
