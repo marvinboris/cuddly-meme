@@ -8,6 +8,7 @@ use App\PaymentMethod;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use function GuzzleHttp\json_decode;
+use App\Country;
 
 class VisaController extends Controller {
 
@@ -19,7 +20,7 @@ class VisaController extends Controller {
         
         $this->settings = PaymentMethod::where('vendor','monetbil')->first();
 
-        $this->client = $this->client = new Client([
+        $this->client = new Client([
             'base_uri' => 'https://www.softeller.com/api_softeller/request_payment',
             'timeout' => 180
         ]);
@@ -33,12 +34,13 @@ class VisaController extends Controller {
 
         $user = $request->user();
         $city = City::where("id",$user->city_id)->first();
+        $country = Country::where("id",$city->country_id)->first();
 
         $userid = '2278';          // votre user id fourni par softeler
         $login = '237655728725';  // login du compte softeller fourni par IWOMI
         $password = '1Pulapula94';     // fourni par iwomi
-        $country = 'Cameroun';   // pays ou le client émet la transaction
-        $town = 'Douala';     // ville our le client ...
+        $country = $country->name;   // pays ou le client émet la transaction
+        $town = $city->name;     // ville our le client ...
         $amount = '600';     // montant a débité au client (cest le montant exact qui sera débité au client (un entier)
         $first_name = $user->first_name;     // prenom du client
         $last_name = $user->first_name;   // nom du client
