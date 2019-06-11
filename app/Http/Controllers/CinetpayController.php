@@ -46,7 +46,7 @@ class CinetpayController extends Controller {
         $cinetPayData['cpm_designation'] = 'Deposit in Yuscard';
         $cinetPayData['form_action'] = 'https://secure.cinetpay.com';
         $cinetPayData['notify_url'] = $this->settings->notify_url;
-        $cinetPayData['cpm_return_mode'] = 'POST';        
+        $cinetPayData['cpm_return_mode'] = 'GET';        
         $cinetPayData['return_url'] = 'https://workoo.net';
         $cinetPayData['cancel_url'] = 'https://workoo.net';
 
@@ -153,7 +153,7 @@ class CinetpayController extends Controller {
         $deposit = Transaction::where('tx_hash',$request->input('cpm_trans_id'))->first();
 
         if( !$deposit ){
-            
+
             $deposit = new Transaction([
                 'amount' => $request->input('cpm_amount'),
                 'tx_id' => $this->generateRef(),
