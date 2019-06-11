@@ -46,7 +46,13 @@ class AtivityAreasController extends Controller
             'name' => 'required',
             'description' => 'present'
         ]);
+        
+        $alreadyExists = ActivityArea::where('name',$request->input('name'))->first() ;
 
+        if( $alreadyExists ){
+            return redirect()->route('admin.activity_areas.index')->withError('Activity area already exists');
+
+        }
         ActivityArea::create($request->except('_token', '_method'));
 
         return redirect()->route('admin.activity_areas.index')->withSuccess('Activity area added successfully !');
