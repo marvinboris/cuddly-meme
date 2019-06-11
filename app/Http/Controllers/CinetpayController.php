@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Transaction;
 use App\PaymentMethod;
 use CinetPay\CinetPay;
@@ -138,29 +139,38 @@ class CinetpayController extends Controller {
     *  @param email string 
     *  @return JSON object 
     */
-    public function paymentNotify(Requ $request) {
+    public function paymentNotify(Request $request) {
         // Redirect here to Cinetpay with post data 
-        $user = User::find($request->input('cmp_custom'));
+        $user = User::find($request->input('cpm_custom'));
 
         if( !$user ){
             error_log("User not found");
             die();
         }
 
-        $deposit = new Transaction([
-            'amount' => $request->input('cpm_amount'),
-            'tx_id' => $this->generateRef(),
-            'tx_hash' => $request->input('cpm_trans_id'),
-            'user_id' => $user->id,
-            'vendor' => 'cinetpay',
-            'method' => 'momo', 
-            'type' => 'subscription',
-            'status' => PAYMENT_PENDING_TEXT,
-            'currency' => 'CFA', 
-            'address' => $request->input('cel_phone_num')
-        ]);
+        // Check if such tx_hash already exists 
 
-        $deposit->save();
+        $deposit = Transaction::where('tx_hash',$request->input('cpm_trans_id'))->first();
+
+        if( !$deposit ){
+            
+            $deposit = new Transaction([
+                'amount' => $request->input('cpm_amount'),
+                'tx_id' => $this->generateRef(),
+                'tx_hash' => $request->input('cpm_trans_id'),
+                'user_id' => $user->id,
+                'vendor' => 'cinetpay',
+                'method' => 'momo', 
+                'type' => 'subscription',
+                'status' => PAYMENT_PENDING_TEXT,
+                'currency' => 'CFA', 
+                'address' => $request->input('cel_phone_num')
+            ]);
+
+            $deposit->save();
+        }
+
+  
 
         //Let's now check the payment status 
 
@@ -171,7 +181,7 @@ class CinetpayController extends Controller {
             'form_params' => [
                 'apikey' => $this->settings->apikey,
                 'cpm_site_id' => $this->settings->token, // site_id in this case 
-                'cpm_trans_id' => $deposit->tx_id
+                'cpm_trans_id' => $deposit->tx_hash
             ]
         ]);
 

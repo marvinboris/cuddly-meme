@@ -42,7 +42,9 @@ Route::post('contact', 'FrontEndController@postContact')->name('contact');
 
 
 Route::get('payment', 'FrontEndController@payment')->name('payment')->middleware('user');
-
+Route::post('/payment/cinetpay/notify','CinetpayController@paymentNotify');
+Route::post('/payment/monetbil/notify','MonetbilController@notify');
+Route::post('/payment/coinpayments/notify','CinetpayController@paymentNotify');
 
 
 Route::group(['middleware' => 'has-paid'], function () {
