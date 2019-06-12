@@ -254,7 +254,7 @@
 </section>
 
 
-
+{{--
 <section id="social-link">
     @for ($i = 1; $i <= 3; $i++)
         @if($user->{'social_link'.$i})
@@ -267,6 +267,20 @@
         <br>
         @endif
     @endfor
+</section> --}}
+
+<section id="social-link">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4"><h3>Curriculum Vitae</h3></div>
+    </div>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+        {{-- @include('file-viewer', ['file' => $user->cv, /*'w' => '100%', 'h' => '500px'*/]) --}}
+        <iframe width="100%" height="500px" src="{{  url( "/files/" . $user->cv->filename ) }}"></iframe>
+        </div>
+    </div>
 </section>
 
 
