@@ -9,6 +9,7 @@ use App\Attestation;
 use App\File;
 use App\Response;
 use Sentinel;
+use Image;
 use Hash;
 
 class EditUserController extends Controller
@@ -117,6 +118,14 @@ class EditUserController extends Controller
             }
             $file->move($destinationPath, $safeName);
             $user_data['pic_file_id'] = File::insertGetId(['filename' => $safeName, 'mime' => $mime]);
+
+            // crop image
+            $path = $destinationPath . $safeName;
+            $img = Image::make($path);
+
+            $img->crop($req->input('w'), $req->input('h'), $req->input('x1'), $req->input('y1'));
+            $img->save($path);
+
 
             if ($user->pic) {
                 array_push($file_to_delete, $destinationPath . $user->pic->filename);
