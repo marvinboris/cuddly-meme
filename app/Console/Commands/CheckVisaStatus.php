@@ -36,7 +36,7 @@ class CheckVisaStatus extends Command {
      * @return mixed
      */
     public function handle( ) {
-        $txList = Transaction::where(["vendor"=>"visa/mastercard","status"=>"pending"])->get();
+        $txList = Transaction::where(['vendor' => 'visa/mastercard', 'status' => 'pending'])->get();
 
         foreach ($txList as $tx) {
             $this->check( $tx );
@@ -46,41 +46,42 @@ class CheckVisaStatus extends Command {
     /**
      * Handle the given transaction 
      */
-
-     public function check($tx ){
-        
-            $userid = '2278';          // votre user id fourni par softeler
+    public function check($tx ) {
+        $userid = '2278';          // votre user id fourni par softeler
             $login = '237655728725';  // login du compte softeller fourni par IWOMI
             $password = '1Pulapula94';     // fourni par iwomi 
             $TransactionCode = $tx->tx_hash;
-    
-            $salt = md5($userid);
-            $pass = hash('sha256', $salt.$password);
-    
-            $json = [
-                'Login' => $login,
-                'Password' => $pass,
-                'TransactionCode' => $TransactionCode
-            ];
-            
-    
-            $client = new Client([
-                'base_uri' => 'https://www.softeller.com/api_softeller/request_payment',
-                'timeout' => 180
-            ]);
-    
-            $response = $client->post('https://www.softeller.com/api_softeller/check_status',[
-                'headers' => ['Content-Type' => 'application/x-www-form-urlencoded'],
-                'json' => $json
-            ]);
-            
-            $response = json_decode($response->getBody()->getContents());
-    
-            if( PAYMENT_COMPLETED_TEXT == $response->status || 'Completed' == $response->status ){
-                $tx->status = PAYMENT_COMPLETED_TEXT;
-                $tx->save();
-    
-                error_log( "Transaction saved ");
-            }
-     }
+
+        $salt = md5($userid);
+        $pass = hash('sha256', $salt . $password);
+
+        $json = [
+            'Login' => $login,
+            'Password' => $pass,
+            'TransactionCode' => $TransactionCode
+        ];
+
+        $client = new Client([
+            'base_uri' => 'https://www.softeller.com/api_softeller/request_payment',
+            'timeout' => 180
+        ]);
+
+        $response = $client->post('https://www.softeller.com/api_softeller/check_status',[
+            'headers' => ['Content-Type' => 'application/x-www-form-urlencoded'],
+            'json' => $json
+        ]);
+
+        $response = json_decode($response->getBody()->getContents());
+        
+        $logs = var_export( $response );
+
+        error_log( $logs );
+
+        if ( '01' == $response->status || PAYMENT_COMPLETED_TEXT == $response->message || 'Success' == $response->message ) {
+            $tx->status = PAYMENT_COMPLETED_TEXT;
+            $tx->save();
+
+            error_log( 'Transaction saved ');
+        }
+    }
 }
