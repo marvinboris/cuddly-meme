@@ -5,11 +5,14 @@
 @if(strpos($file->mime, 'image') !== false)
     <img src="{{ $path_url }}" alt="Fichier image non trouvé" class="{{ isset($class) ? $class: '' }}">
 @elseif(strpos($file->mime, 'pdf') !== false)
-    @if(isset($class))
-        @include('pdf-viewer', ['url' => $path_url, 'class' => $class ])
-    @else
-        @include('pdf-viewer', ['url' => $path_url ])
-    @endif
+    @php
+        $params = [];
+        $params['url'] = $path_url;
+        if(isset($class)) $params['class'] = $class;
+        if(isset($w)) $params['w'] = $w;
+        if(isset($h)) $params['h'] = $h;
+    @endphp
+    @include('pdf-viewer', $params)
 @elseif(strpos($file->mime, 'video') !== false)
     <video width="{{ isset($vw) ? $vw : 320 }}" height="{{ isset($vh) ? $vh : 240 }}" controls class="{{ isset($class) ? $class: '' }}">
         <source src="{{ $path_url }}" type="{{ $file->mime }}">

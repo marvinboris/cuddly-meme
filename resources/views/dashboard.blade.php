@@ -76,8 +76,18 @@
                         </div>
                         <form style="display:none;" id="form-pic" action="{{ route('edit-user.update-pic') }}" method="POST" enctype="multipart/form-data" >
                             @csrf @method('PUT')
-                            <input id="pic_file" type="file" name="pic_file" accept="image/*" />
+                            <input id="pic_file" type="file" name="pic_file" class="image" accept="image/*" />
+                            <input type="hidden" name="x1" value="" />
+                            <input type="hidden" name="y1" value="" />
+                            <input type="hidden" name="w" value="" />
+                            <input type="hidden" name="h" value="" />
                         </form>
+                        <div class="row mt-5 mb-5" style="display:none;" id="div-previewimage">
+                            <p><img id="previewimage" style="display:none;"/></p>
+                            <br>
+                            <button class="btn btn-success" id="send_pic_file" >Change image</button>
+                            <button class="btn" id="cancel_send_pic_file" >Cancel</button>
+                        </div>
                         <div class="author-info">
                             <h3>{{ $user->first_name . ' ' . $user->last_name }} <small>({{ $user->views }} views)</small></h3>
                             <p class="sub-title">{{ $user->activityArea->name }} </p>
@@ -701,8 +711,21 @@
             });
 
             //Profile Pic
-            $('#pic_file').change(function(){
+            /*$('#pic_file').change(function(){
                 $('#form-pic').submit();
+            });*/
+            //Profile Pic
+            $('#send_pic_file').click(function(){
+                $('#form-pic').submit();
+            });
+
+            $('#cancel_send_pic_file').click(function(){
+                $('.imgareaselect-outer').hide();
+                $('.imgareaselect-border1').hide();
+                $('.imgareaselect-border2').hide();
+                $('.imgareaselect-border3').hide();
+                $('.imgareaselect-border4').hide();
+                $('#div-previewimage').hide(500);
             });
 
             $('#change-pic').click(function(){
@@ -739,6 +762,33 @@
                     $(this).find('button[type=submit]').removeAttr('disabled');
                 }
             });
+        });
+    </script>
+    <script>
+        jQuery(function($) {
+
+            var p = $("#previewimage");
+            $("body").on("change", ".image", function(){
+
+                var imageReader = new FileReader();
+                imageReader.readAsDataURL(document.querySelector(".image").files[0]);
+
+                imageReader.onload = function (oFREvent) {
+                    p.attr('src', oFREvent.target.result).fadeIn();
+                    $('#div-previewimage').show(750);
+                };
+            });
+
+            $('#previewimage').imgAreaSelect({
+                onSelectEnd: function (img, selection) {
+                    $('input[name="x1"]').val(selection.x1);
+                    $('input[name="y1"]').val(selection.y1);
+                    $('input[name="w"]').val(selection.width);
+                    $('input[name="h"]').val(selection.height);
+                }
+            });
+
+
         });
     </script>
 @endsection

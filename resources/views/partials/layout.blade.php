@@ -22,6 +22,8 @@
         <link rel="stylesheet" href="{{ asset('css/main.css') }}" >
         <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" >
         <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}" >
+
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/jquery.imgareaselect-0.9.10/css/imgareaselect-default.css') }}" />
         @yield("stylesheet")
 
     </head>
@@ -45,6 +47,8 @@
             <script src="{{ asset('js/waypoints.min.js') }}" ></script>
             <script src="{{ asset('js/form-validator.min.js') }}" ></script>
             <script src="{{ asset('js/contact-form-script.js') }}" ></script>
+            <script type="text/javascript" src="{{ asset('assets/jquery.imgareaselect-0.9.10/scripts/jquery.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('assets/jquery.imgareaselect-0.9.10/scripts/jquery.imgareaselect.pack.js') }}"></script>
             <script src="{{ asset('js/main.js') }}" ></script>
             @include('partials.notify')
             @yield("scripts")
