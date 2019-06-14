@@ -90,7 +90,7 @@
                         </div>
                         <div class="author-info">
                             <h3>{{ $user->first_name . ' ' . $user->last_name }} <small>({{ $user->views }} views)</small></h3>
-                            <p class="sub-title">{{ $user->activityArea->name }} </p>
+                            <p class="sub-title">@if( !empty( $user->activityArea ) {{ $user->activityArea->name }} @else "Disabled/Not set" @endif  </p>
                             <p class="sub-title">{{ $user->email }} </p>
                             <p>
                             @if(strtoupper($user->sex) == 'M')
