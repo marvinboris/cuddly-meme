@@ -66,9 +66,9 @@
             <script src="{{ asset('js/waypoints.min.js') }}" ></script>
             <script src="{{ asset('js/form-validator.min.js') }}" ></script>
             <script src="{{ asset('js/contact-form-script.js') }}" ></script>
+            <script src="{{ asset('js/main.js') }}" ></script>
             <script type="text/javascript" src="{{ asset('assets/jquery.imgareaselect-0.9.10/scripts/jquery.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('assets/jquery.imgareaselect-0.9.10/scripts/jquery.imgareaselect.pack.js') }}"></script>
-            <script src="{{ asset('js/main.js') }}" ></script>
             @include('partials.notify')
             @yield("scripts")
 
