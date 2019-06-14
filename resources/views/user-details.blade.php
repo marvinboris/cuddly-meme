@@ -123,7 +123,7 @@
 
                     <div class="content">
                         <h3 class="product-title">{{ $user->first_name . ' ' . $user->last_name }}</h3>
-                        <p class="brand">@if( !empty( $user->activityArea ) {{ $user->activityArea->name }} @else "Disabled/Not set" @endif </p>
+                        <p class="brand">@if( !empty( $user->activityArea ) ) {{ $user->activityArea->name }} @else "Disabled/Not set" @endif   </p>
                         <div class="tags">
                             <span><i class="lni-map-marker"></i> {{ $user->city->name }}, {{ $user->city->country->name }}</span>
                             @if(strtoupper($user->sex) == 'M')
@@ -198,14 +198,6 @@
             <div class="col-lg-4 col-md-12 col-xs-12">
                 <div class="sideber">
                     <div class="widghet">
-                        <h3>Curriculum Vitae</h3>
-                        <div class="maps">
-                            <div id="map" class="map-full">
-                                @include('file-viewer', ['file' => $user->cv])
-                            </div>
-                        </div>
-                    </div>
-                    <div class="widghet">
                         <h3>Share This User</h3>
                         <div class="share-job">
                             <form method="post" class="subscribe-form">
@@ -250,6 +242,18 @@
                 </div>
             </div>
         </div>
+        <section id="social-link">
+            <div class="row mt-5">
+                <div class="col-md-4"><h4>Curriculum Vitae</h4></div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-md-12 col-xs-12 ">
+                {{-- @include('file-viewer', ['file' => $user->cv, /*'w' => '100%', 'h' => '500px'*/]) --}}
+                <iframe width="100%" height="500px" src="{{  url( "/files/" . $user->cv->filename ) }}"></iframe>
+                </div>
+            </div>
+        </section>
+
     </div>
 </section>
 
@@ -268,21 +272,6 @@
         @endif
     @endfor
 </section> --}}
-
-<section id="social-link">
-    <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4"><h3>Curriculum Vitae</h3></div>
-    </div>
-    <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-10">
-        {{-- @include('file-viewer', ['file' => $user->cv, /*'w' => '100%', 'h' => '500px'*/]) --}}
-        <iframe width="100%" height="500px" src="{{  url( "/files/" . $user->cv->filename ) }}"></iframe>
-        </div>
-    </div>
-</section>
-
 
 <section id="featured" class="section bg-gray pb-45">
     <div class="container">
