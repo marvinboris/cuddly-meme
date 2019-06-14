@@ -275,7 +275,7 @@
 
 <section id="featured" class="section bg-gray pb-45">
     <div class="container">
-        <h4 class="small-title text-left">Others infos</h4>
+        <h4 class="small-title text-left">Other information</h4>
         <div class="row">
 
             @if($user->cv)
