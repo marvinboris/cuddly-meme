@@ -123,7 +123,7 @@
 
                     <div class="content">
                         <h3 class="product-title">{{ $user->first_name . ' ' . $user->last_name }}</h3>
-                        <p class="brand">{{ $user->activityArea->name }}</p>
+                        <p class="brand">@if( !empty( $user->activityArea ) {{ $user->activityArea->name }} @else "Disabled/Not set" @endif </p>
                         <div class="tags">
                             <span><i class="lni-map-marker"></i> {{ $user->city->name }}, {{ $user->city->country->name }}</span>
                             @if(strtoupper($user->sex) == 'M')
