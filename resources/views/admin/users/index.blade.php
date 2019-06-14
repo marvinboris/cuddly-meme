@@ -72,7 +72,7 @@
                                                         @else
                                                             <td></td>
                                                         @endif --}}
-                                                        <td title="@if( !empty( $user->activityArea ) {{ $user->activityArea->description }} @else 'Activity Disabled/Not set' @endif }">
+                                                        <td title="@if( !empty( $user->activityArea) ) {{ $user->activityArea->description }} @else 'Activity Disabled/Not set' @endif }">
                                                             @if( !empty( $user->activityArea ) ) {{ $user->activityArea->name }} @else "Disabled/Not set" @endif  
                                                         </td>
                                                         <td title="user link to the platfom">
