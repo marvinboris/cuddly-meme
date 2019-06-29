@@ -9,18 +9,16 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-xs-12">
                     <div class="img-sub">
-                        <img class="img-fluid" src="{{ asset('img/main/achievement.jpg') }}" alt="">
+                        <img class="img-fluid" src="{{ asset('img/main/office-1081807_1920.jpg') }}" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-xs-12">
                     <div class="subscribe-form">
                         <div class="text-wrapper">
-                            <div class="sub-title">
-                                <h3>WORKOO.NET: HR OTHERWISE ...</h3>
-                                <p>
-                                Workoo is a human resources exhibition platform, a saas designed for 
-                                the easy enhancement of skills of all kinds. Only the essenciel is displayed, it is not a 
-                                social network. People pay $ 1 a year to be professionally exposed worldwide.
+                            <div>
+                                <h4>WORKOO.NET: HR OTHERWISE ...</h4>
+                                <p class="lead">
+                                    Workoo.net is a human ressources exhibition platform, a Saas designed to easily enhance competences of all kind. Only the essencial is displayed, it is not a social media. People pay 1 Dollar per year to be professionally exposed worlwide. 
                                 </p>
                             </div>
                         </div>
@@ -36,24 +34,16 @@
             <div class="row">
                 <div class="col-lg-6 order-1 order-lg-2">
                     <div class="img-thumb">
-                        <img class="img-fluid" src="{{ asset('img/main/business.jpg') }}" alt="">
+                        <img class="img-fluid" src="{{ asset('img/main/achievement.jpg') }}" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-xs-12 order-2 order-lg-1">
                     <div class="subscribe-form">
                         <div class="text-wrapper">
-                            <div class="sub-title">
-                                <h3>THE PROBLEM THAT GENERATES THE IDEA:AN INCOMPLETE PROCESS...</h3>
-                                <p>
-                                Information is the only weapon of economic wars of this time, and more importantly the 
-                                enhancement of information. Workoo is now the leader of a sector Bitterly behind the technological 
-                                advance of the world, which of course is expensive for humanity. Indeed, very often hired under an 
-                                instant need, the staff is recruited on the basis of some lively elements, while it is still sorely 
-                                lacking information about their real abilities. Too late often when we get there account, we do with 
-                                and we adapt. But it's not at the post to adapt to the incompetence of the person, it's up to the person
-                                 to be adaptable to the job. Thus, 
-                                the profiles genuinely correspondents are referred to sectors that are inappropriate to 
-                                their skills and abilities by "what-to?", and the vicious circle begins again. 
+                            <div>
+                                <h4>THE PROBLEM THAT GENERATES THE IDEA:AN INCOMPLETE PROCESS...</h4>
+                                <p class="lead">
+                                    We created workoo.net because we knew how difficult it was to access your dream job, as also inappropropriate competence are 80% of compagnies growth issues.
                                 </p>
                             </div>
                         </div>
@@ -61,31 +51,24 @@
                 </div>
             </div>
         </div>
-    </div>  
+    </div> 
+
     <div id="subscribes" class="section bg-cyan">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-xs-12">
                     <div class="img-sub">
-                        <img class="img-fluid" src="{{ asset('img/main/man.jpg') }}" alt="">
+                        <img class="img-fluid" src="{{ asset('img/main/business.jpg') }}" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-xs-12">
                     <div class="subscribe-form">
                         <div class="form-wrapper">
-                            <div class="sub-title">
-                                <h3 class="section-title">AN EFFICIENT SOLUTION: HR OTHERWISE ...</h3>
-                                <p>
-                                     For humanity we have totally redesigned the model of
-                                     direct recruitment, since the best way to predict
-                                     future is to create it.
-                                     We started on the basis of real information
-                                     necessary for the development of a skill,
-                                     what does it matter at what level it is? We have
-                                     a set, which effectively responds to all
-                                     fields of view that leads to a recruitment of profiles
-                                     corresponding for the success of all.
-
+                            <div>
+                                <h4 class="section-title">AN EFFICIENT SOLUTION: HR OTHERWISE ...</h4>
+                                <p class="lead">
+                                    Very often hired under an instant need, the staff is recruited on the basis of some lively elements, while it is still sorely lacking information about their real abilities. Too late often when we realise, we do with and we adapt. But it's not the post to adapt to the incompetence of the person, it's up to the person to be gradually adaptable to the job.<br>
+                                    Then we collected a set of information, which effectively responds to all the necessary field of vision for a success recruitment of the corresponding profiles. 
                                 </p>
                             </div>
                         </div>
@@ -96,7 +79,32 @@
         </div>
     </div>
 
-    <div id="browse-workers" class="section bg-gray">
+    <div id="browse-workerss" class="section bg-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 order-1 order-lg-2">
+                    <div class="img-thumb">
+                        <img class="img-fluid" src="{{ asset('img/main/man.jpg') }}" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-12 order-2 order-lg-1">
+                    <div class="subscribe-form">
+                        <div class="text-wrapper">
+                            <div>
+                                {{-- <h4>THE PROBLEM THAT GENERATES THE IDEA:AN INCOMPLETE PROCESS...</h4> --}}
+                                <p class="lead">
+                                    You, the Job Opportunity seekers, are asked where your skills and your personality flourish.<br>
+                                    The recruiter finds great profiles, based on deeply clear and precised information.                                    
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    <div id="browse-workers" class="section bg-cyan">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-12 col-sm-12 order-1 order-lg-2">
@@ -107,8 +115,8 @@
                 <div class="col-lg-6 col-md-12 col-sm-12 order-2 order-lg-1">
                     <div class="text-wrapper">
                         <div>
-                            <h3>Search talents</h3>
-                            <p>
+                            <h4>Search talents</h4>
+                            <p class="lead">
                                 Search all the jobs seeker on the platform.Find the best talents that suit well your needs.
                                 The right talent is out there.
                             </p>
@@ -164,8 +172,8 @@
     <section id="testimonial" class="section">
         <div class="container">
             <div class="section-header">
-                <h3 class="section-title">Clients Review</h3>
-                <p>
+                <h4 class="section-title">Clients Review</h4>
+                <p class="lead">
                     What they are saying about us.
                 </p>
             </div>
@@ -198,7 +206,7 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Pricing Plan</h2>
-                <p>Single pricing plan to rule them all</p>
+                <p class="lead">Single pricing plan to rule them all</p>
             </div>
             <div class="row pricing-tables">
                 <div class="col-md-3 col-lg-3"></div>

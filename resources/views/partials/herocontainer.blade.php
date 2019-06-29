@@ -1,14 +1,14 @@
 @if(Request::is('/'))
        <!-- Main navigation -->
         <header>
-          <div class="view" style="background-image: url('../img/wall/wall1.JPG'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+          <div class="view" style="background-image: url('../img/wall/Workoo Web site cover.GIF'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
             <!-- Mask & flexbox options-->
             <div class="mask rgba-gradient align-items-center">
               <!-- Content -->
               <div class="container">
                   <div class="row pt-5">
                     <div class="col-md-12 offset-md-1 white-text text-center text-md-left mt-xl-5 wow fadeInLeft" data-wow-delay="0.3s">
-                        <h2 class="head-title" style="color:white !important">THE HIRING PLATFORM OF THE NEW WORLD</h2>
+                        <h2 class="head-title" style="color:white !important">THE RECRUITMENT PLATFORM OF THE NEW WORLD</h2>
                     </div>
                   </div>
 
@@ -19,7 +19,7 @@
                     <div class="jobseeker item-box">
                         <div class="content-inner">
                             <h3 style="color:white !important">I'm Jobseeker </h3>
-                            <p  style="color:white !important">Register and get your CV professionaly exposed.</p>
+                            <p  style="color:white !important">Register and get your CV professionally exposed.</p>
                             <a href="#pricing" class="btn btn-border-filled">Get started</a>
                         </div>
                         <div class="img-thumb">

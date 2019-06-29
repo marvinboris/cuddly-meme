@@ -138,9 +138,3 @@ Route::group(['prefix' => 'admin', 'namespace'=>'Admin' , 'as' => 'admin.', 'mid
 Route::get('iframe','FrontEndController@iframe')->name('iframe');
 
 Route::get('{link}', 'FrontEndController@userLink')->name('user-link');
-
-Route::get('/test/wecashup', function () {
-    return view('wecashup-test');
-});
-
-Route::name('wecashup.payment')->post('wecashup', 'WecashupController@payment');

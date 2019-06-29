@@ -4,7 +4,7 @@
 			<div class="row">
 				<div class="col-lg-3 col-md-3 col-xs-12">
 					<div class="widget">
-						<div class="footer-logo"><img src="{{asset('img/workoo-footer.png')}}" alt=""></div>
+						<div class="overflow-hidden"><img style="object-fit: center; height: 100px;" class="d-block mx-auto" src="{{asset('img/wall/workoo-big.png')}}" alt=""></div>
 						<div class="textwidget">
 							<p>
 								WORKOO.NET is a Global Investment Trading Product <br/>
