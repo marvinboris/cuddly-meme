@@ -70,7 +70,6 @@
                         <a href="{{ $monetbil['link'] }}"> <img src="https://secure.cinetpay.com/img/momo_resized.png" style="width:75px;height:40px"></a>
                         {{ $cinetpay->displayPayButton('cinetpay',2,'large')}}
                     <br/> <br/>
-
                  </div>
             </div>
         </div>
