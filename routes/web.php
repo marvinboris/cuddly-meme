@@ -138,3 +138,4 @@ Route::group(['prefix' => 'admin', 'namespace'=>'Admin' , 'as' => 'admin.', 'mid
 Route::get('iframe','FrontEndController@iframe')->name('iframe');
 
 Route::get('{link}', 'FrontEndController@userLink')->name('user-link');
+
