@@ -171,6 +171,9 @@ class FrontEndController extends Controller {
 
     public function userLink($link) {
         $user = User::whereLink($link)->first();
+        $questions = Question::all();
+        $activities = ActivityArea::all();
+        $countries = Country::all();
         if (!$user) {
             abort(404);
         }
@@ -185,7 +188,7 @@ class FrontEndController extends Controller {
                 if (!Sentinel::check() || $user->id != Sentinel::getUser()->id) {
                     User::whereLink($link)->increment('views');
                 }
-                return view('user-details', compact('user'));
+                return view('user-details', compact('user', 'questions', 'activities', 'countries'));
             }
         }
 

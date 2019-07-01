@@ -111,7 +111,7 @@
                             </div>
                             <div class="manager-meta">
                                 <span class="location"><i class="ti-location-pin"></i> {{ $user->city->name }}, {{ $user->city->country->name }}</span>
-                                <span class="rate"><i class="ti-time"></i> {{ date('Y') - \Carbon\Carbon::createFromFormat('Y-m-d',$user->birthdate)->year }} year old</span>
+                                <span class="rate"><i class="ti-time"></i> {{ date('Y') - \Carbon\Carbon::createFromFormat('Y-m-d',$user->birthdate)->year }} years old</span>
                             </div>
                         </div>
                     </div>

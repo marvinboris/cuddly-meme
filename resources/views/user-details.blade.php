@@ -149,56 +149,11 @@
         </div>
     </div>
 </div>
+
 <section class="job-detail section">
     <div class="container">
         <div class="row justify-content-between">
             <div class="col-lg-8 col-md-12 col-xs-12">
-                {{-- <div class="content-area">
-                    <h4>Specialization</h4>
-                    <p>{{ $user->specialization }}</p>
-                    <h5>User details</h5>
-                    <ul>
-                        @if($user->email) <li>- <b>Email :</b> {{ $user->email }}</li> @endif
-                        @if($user->phone) <li>- <b>Phone :</b> {{ $user->phone }} ({{ $user->city->country->name }})</li> @endif
-                        @if($user->birthdate) <li>- <b>Age :</b> {{ date('Y') - \Carbon\Carbon::createFromFormat('Y-m-d',$user->birthdate)->year }} years old</li> @endif
-                        @if($c = $user->attestations->count())<li>- <b>Paper :</b> {{$c}} Attestation{{ $c > 1 ? 's':'' }}</li> @endif
-                        @if($c = $user->responses->count())<li>- <b>Answers to common questions :</b> {{$c}}</li> @endif
-                    </ul>
-                    @if(count($user->responses) > 0)
-                        <h5>Answers to common asked questions</h5>
-                        <p>These answers above are answers of {{ $user->first_name }} to the common asked questions during job interview.</p> --}}
-                         {{--<a href="#" class="btn btn-common">Apply job</a> --}}
-
-                        {{-- <div id="faq" class="section pb-45">
-                            <div class="container">
-                                <div class="row">
-
-                                    @foreach($user->responses as $response)
-                                    <div class="col-lg-12 col-md-12 col-xs-12">
-                                        <div class="panel-group" id="accordion">
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{$response->id}}">
-                                                        {{ $response->question->label }}
-                                                    </a>
-                                                    </h4>
-                                                </div>
-                                                <div id="collapse{{$response->id}}" class="panel-collapse collapse in show">
-                                                    <div class="panel-body">
-                                                        <p>{{ $response->content }}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    @endforeach
-
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-                </div> --}}
                 <div class="inner-box resume" id="resume">
                     <div class="author-resume">
                         <div class="thumb">
@@ -278,13 +233,11 @@
                             <a href="{{ url( "/files/" . $item->file->filename ) }}" target="_blank">Open</a>
                         </p>
                         <hr>
-                        @empty
-                        <h4>No uploaded attestation, certificate or diploma.</h4>
                         @endforelse
                         <br>
                     </div>
                     <div id="video" class="work-experence item">
-                        <h3>My Video</h3>
+                        <h3>Video</h3>
                         <h5>@if($user->video) {{ $user->video->mime }} @else No uploaded video @endif</h5>
                         <span class="date">@if($user->video) {{ $user->video->created_at->toDayDateTimeString() }} @else No set @endif</span>
                         <p>
@@ -407,36 +360,9 @@
                 </div>
             </div>
         </div>
-        {{-- <section id="social-link">
-            <div class="row mt-5">
-                <div class="col-md-4"><h4>Curriculum Vitae</h4></div>
-            </div>
-            <div class="row">
-                <div class="col-lg-8 col-md-12 col-xs-12 "> --}}
-                {{-- @include('file-viewer', ['file' => $user->cv, /*'w' => '100%', 'h' => '500px'*/]) --}}
-                {{-- <iframe width="100%" height="500px" src="{{  url( "/files/" . $user->cv->filename ) }}"></iframe>
-                </div>
-            </div>
-        </section> --}}
 
     </div>
 </section>
-
-
-{{--
-<section id="social-link">
-    @for ($i = 1; $i <= 3; $i++)
-        @if($user->{'social_link'.$i})
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-10">
-            <iframe width="100%" height="500px" src="{{ /*url('iframe?url=' . */$user->{'social_link'.$i}/*)*/ }}"></iframe>
-            </div>
-        </div>
-        <br>
-        @endif
-    @endfor
-</section> --}}
 
 <section id="featured" class="section bg-gray pb-45">
     <div class="container">
