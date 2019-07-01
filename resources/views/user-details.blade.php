@@ -110,25 +110,20 @@
 
 <div class="page-header">
     <div class="container">
-        <div class="row bg-cyan" style="border-radius: 15px;" id="my-row">
+        <div class="row" id="my-row">
             <div class="col-lg-8 col-md-6 col-xs-12">
                 <div class="breadcrumb-wrapper">
                     <div class="img-wrapper">
                         @if($user->pic)
-                        <img src="{{ url('files/' . $user->pic->filename) }}" class="my-rounded-circle" style="height: 9em; width: 9em; object-fit: cover; object-position: top; " alt="User picture">
+                        <img src="{{ url('files/' . $user->pic->filename) }}" class="my-rounded-circle" style="height:8em; width:8em; " alt="User picture">
                         @else
-                        <img src="{{ asset('assets/default-avatar.png') }}" class="my-rounded-circle" style="height: 9em; width: 9em; object-fit: cover; object-position: top;" alt="default avatar">
+                        <img src="{{ asset('assets/default-avatar.png') }}" class="my-rounded-circle" style="height:8em; width:8em;" alt="default avatar">
                         @endif
                     </div>
 
                     <div class="content">
                         <h3 class="product-title">{{ $user->first_name . ' ' . $user->last_name }}</h3>
                         <p class="brand">@if( !empty( $user->activityArea ) ) {{ $user->activityArea->name }} @else "Disabled/Not set" @endif   </p>
-                        <ul class="fa-ul">
-                            <li>{{ $user->specialization }}</li>
-                            <li><i class="fa fa-li fa-phone"></i>{{ $user->phone }}</li>
-                            <li><i class="fa fa-li fa-email"></i>{{ $user->email }}</li>
-                        </ul>
                         <div class="tags">
                             <span><i class="lni-map-marker"></i> {{ $user->city->name }}, {{ $user->city->country->name }}</span>
                             @if(strtoupper($user->sex) == 'M')
@@ -143,7 +138,7 @@
             <div class="col-lg-4 col-md-6 col-xs-12" id="year-b">
                 <div class="month-price">
                     <span class="year"><b>{{ date('Y') - \Carbon\Carbon::createFromFormat('Y-m-d',$user->birthdate)->year }}</b></span>
-                    <div class="price"> years old</div>
+                    <div class="price"> year old</div>
                 </div>
             </div>
         </div>
@@ -158,15 +153,15 @@
                     <p>{{ $user->specialization }}</p>
                     <h5>User details</h5>
                     <ul>
-                        @if($user->email) <li>- <b>Email :</b> {{ $user->email }}</li> @endif
-                        @if($user->phone) <li>- <b>Phone :</b> {{ $user->phone }} ({{ $user->city->country->name }})</li> @endif
-                        @if($user->birthdate) <li>- <b>Age :</b> {{ date('Y') - \Carbon\Carbon::createFromFormat('Y-m-d',$user->birthdate)->year }} years old</li> @endif
-                        @if($c = $user->attestations->count())<li>- <b>Paper :</b> {{$c}} Attestation{{ $c > 1 ? 's':'' }}</li> @endif
-                        @if($c = $user->responses->count())<li>- <b>Answers to common questions :</b> {{$c}}</li> @endif
+                        @if($user->email) <li>- <b>Email:</b> {{ $user->email }}</li> @endif
+                        @if($user->phone) <li>- <b>Phone:</b> {{ $user->phone }} ({{ $user->city->country->name }})</li> @endif
+                        @if($user->birthdate) <li>- <b>Age:</b> {{ date('Y') - \Carbon\Carbon::createFromFormat('Y-m-d',$user->birthdate)->year }} year old</li> @endif
+                        @if($c = $user->attestations->count())<li>- <b>Paper:</b> {{$c}} Attestation{{ $c > 1 ? 's':'' }}</li> @endif
+                        @if($c = $user->responses->count())<li>- <b>Answers to common quesitons:</b> {{$c}}</li> @endif
                     </ul>
                     @if(count($user->responses) > 0)
-                        <h5>Answers to common asked questions</h5>
-                        <p>These answers above are answers of {{ $user->first_name }} to the common asked questions during job interview.</p>
+                        <h5>Answer to common asked question</h5>
+                        <p>These answer above are answer of {{ $user->first_name }} to the common asked question in hiring process</p>
                          {{--<a href="#" class="btn btn-common">Apply job</a> --}}
 
                         <div id="faq" class="section pb-45">
@@ -184,7 +179,7 @@
                                                     </a>
                                                     </h4>
                                                 </div>
-                                                <div id="collapse{{$response->id}}" class="panel-collapse collapse in show">
+                                                <div id="collapse{{$response->id}}" class="panel-collapse collapse in">
                                                     <div class="panel-body">
                                                         <p>{{ $response->content }}</p>
                                                     </div>
