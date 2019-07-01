@@ -60,7 +60,7 @@
                         <li><a href="#account-infos">Account infos</a></li>
                         <li><a href="#payments">Payments</a></li>
                         <li><a href="#" data-toggle="modal" data-target="#changePasswordModal">Change Password</a></li>
-                        <li><a href="{{ route('logout') }}">Sing Out</a></li>
+                        <li><a href="{{ route('logout') }}">Sign Out</a></li>
                     </ul>
                 </div>
             </div>

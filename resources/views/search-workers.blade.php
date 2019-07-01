@@ -90,7 +90,7 @@
 
             @forelse ($users as $user)
 
-            <div class="col-lg-12 col-md-6 col-xs-12">
+            <div class="col-12">
                 <div class="manager-resumes-item">
                     <div class="manager-content">
                         <a href="{{ $user->pic ? url('files/' . $user->pic->filename) : '#' }}" {{ $user->pic ? "target='_blank'":"" }}>
@@ -104,6 +104,10 @@
                             <div class="manager-name">
                                 <h4><a href="{{ url($user->link) }}">{{ $user->first_name . ' ' . $user->last_name }}</a></h4>
                                 <h5>{{ $user->activityArea->name }}</h5>
+                                <ul class="fa-ul">
+                                    <li><i class="fa fa-li fa-phone"></i>{{ $user->phone }}</li>
+                                    <li><i class="fa fa-li fa-envelope"></i>{{ $user->email }}</li>
+                                </ul>
                             </div>
                             <div class="manager-meta">
                                 <span class="location"><i class="ti-location-pin"></i> {{ $user->city->name }}, {{ $user->city->country->name }}</span>

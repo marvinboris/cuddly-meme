@@ -7,7 +7,7 @@
               <!-- Content -->
               <div class="container">
                   <div class="row pt-5">
-                    <div class="col-md-12 offset-md-1 white-text text-center text-md-left mt-xl-5 wow fadeInLeft" data-wow-delay="0.3s">
+                    <div class="col-md-12 white-text text-center text-md-left mt-xl-5 wow fadeInLeft" data-wow-delay="0.3s">
                         <h2 class="head-title" style="color:white !important">THE RECRUITMENT PLATFORM OF THE NEW WORLD</h2>
                     </div>
                   </div>
@@ -15,7 +15,7 @@
                 <!--Grid row-->
                 <div class="row pt-5">
                   <!--Grid column-->
-                  <div class="col-md-6 white-text offset-md-1 text-center text-md-left mt-xl-5 mb-5 wow fadeInLeft" data-wow-delay="0.3s">
+                  <div class="col-md-6 white-text text-center text-md-left mt-xl-5 mb-5 wow fadeInLeft" data-wow-delay="0.3s">
                     <div class="jobseeker item-box">
                         <div class="content-inner">
                             <h3 style="color:white !important">I'm Jobseeker </h3>
@@ -29,7 +29,7 @@
                   </div>
                   <!--Grid column-->
                   <!--Grid column-->
-                  <div class="col-md-6 col-xl-5 white-text text-center text-md-left mt-xl-5 wow fadeInRight">
+                  <div class="col-md-6 white-text text-center text-md-left mt-xl-5 wow fadeInRight">
                      <div class="recruiter item-box">
                         <div class="content-inner">
                             <h3  style="color:white !important">I'm Recruiter</h3>
