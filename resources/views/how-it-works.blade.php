@@ -18,7 +18,7 @@
             <div class="section-header">
                 <h2 class="section-title">For Job seekers</h2>
             </div>
-            <div class="row">
+            <div class="row justify-content-center">
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="work-process">
                         <span class="process-icon">
@@ -61,7 +61,7 @@
             <div class="section-header">
                 <h2 class="section-title">For Employers </h2>
             </div>
-            <div class="row">
+            <div class="row justify-content-center">
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="work-process step-2">
                         <span class="process-icon">

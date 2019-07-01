@@ -140,7 +140,7 @@
                 </div>
             </div>
             @empty
-            <div class="col-lg-12 col-md-6 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-xs-12">
                 <h1 class="text-center">
                     @if($activity_id != -1 || $location)
                         No user found

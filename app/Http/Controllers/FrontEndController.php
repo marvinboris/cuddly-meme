@@ -8,6 +8,7 @@ use App\File;
 use App\User;
 use Sentinel;
 use App\Country;
+use App\Question;
 use App\Setting;
 use Carbon\Carbon;
 use App\Transaction;
