@@ -201,7 +201,7 @@
 
                 
                 <div class="inner-box my-resume" id="my-resume">
-                    <div class="author-resume">
+                    {{-- <div class="author-resume">
                         <div class="thumb">
                             @if($user->pic)
                             <img id="change-pic" src="{{ url('files/' . $user->pic->filename) }}" class="my-rounded-circle" style="height: 8em; width: 8em; object-fit: cover; object-position: top; " alt="User picture">
@@ -251,7 +251,7 @@
                                 @endforeach
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="about-me item">
                         <h3>Specialization</h3>
                         <p>{{ $user->specialization }}</p>
@@ -260,16 +260,17 @@
                         <h3>Curriculum Vitae</h3>
                         <h5>{{ $user->cv->mime }}</h5>
                         <span class="date">{{ $user->cv->created_at->toDayDateTimeString() }} </span>
-                        <p>
+                        {{-- <p>
                             @include('file-viewer',['file' => $user->cv, 'class' => 'cv-box'])
-                        </p>
+                        </p> --}}
+                        <iframe width="100%" height="500px" src="{{  url( "/files/" . $user->cv->filename ) }}"></iframe>
                         <p>
                             <a href="{{ url('/files/' . $user->cv->filename) }}" target="_blank">Open</a> |
                             <a href="{{ url('/files/' . $user->cv->filename) }}" download>Download</a>
                         <br>
                     </div>
                     <div id="certificates" class="work-experence item">
-                        <h3>My Certificates</h3>
+                        <h3>Certificates</h3>
                         @forelse ($user->attestations as $item)
                         <h4>{{ $item->name }}</h4>
                         <h5>{{ $item->file->mime }}</h5>
@@ -280,12 +281,12 @@
                         </p>
                         <hr>
                         @empty
-                        <h4>No uploaded attestaion, certificate or diploma.</h4>
+                        <h4>No uploaded attestation, certificate or diploma.</h4>
                         @endforelse
                         <br>
                     </div>
                     <div id="video" class="work-experence item">
-                        <h3>My Video</h3>
+                        <h3>Video</h3>
                         <h5>@if($user->video) {{ $user->video->mime }} @else No uploaded video @endif</h5>
                         <span class="date">@if($user->video) {{ $user->video->created_at->toDayDateTimeString() }} @else No set @endif</span>
                         <p>
@@ -306,7 +307,7 @@
                         <br>
                     </div>
                     <div id="social-networks" class="work-experence item">
-                        <h3>My Social Networks</h3>
+                        <h3>Social Networks</h3>
                         @for($i = 1; $i <= 3; $i++)
                             @if($user->{'social_link'.$i})
                             <a href="{{ $user->{'social_link'.$i} }}" target="_blank"><h4>-> {{ $user->{'social_link'.$i} }}</h4></a>
@@ -322,10 +323,12 @@
                         <h3>Common asked questions</h3>
                         @foreach($questions as $question)
                         @php $resp = $user->responses->where('question_id', $question->id)->first(); @endphp
+                        @if ($resp)
                         <h4>{{ $question->label }}</h4>
                         <h5>@if($resp) {{ $resp->content }} @else No answer @endif</h5>
                         @if($resp) <span class="date">Answered {{ $resp->created_at->diffForHumans() }}</span>@endif
                         <br>
+                        @endif
                         @endforeach
                     </div>
                 </div>
@@ -404,17 +407,17 @@
                 </div>
             </div>
         </div>
-        <section id="social-link">
+        {{-- <section id="social-link">
             <div class="row mt-5">
                 <div class="col-md-4"><h4>Curriculum Vitae</h4></div>
             </div>
             <div class="row">
-                <div class="col-lg-8 col-md-12 col-xs-12 ">
+                <div class="col-lg-8 col-md-12 col-xs-12 "> --}}
                 {{-- @include('file-viewer', ['file' => $user->cv, /*'w' => '100%', 'h' => '500px'*/]) --}}
-                <iframe width="100%" height="500px" src="{{  url( "/files/" . $user->cv->filename ) }}"></iframe>
+                {{-- <iframe width="100%" height="500px" src="{{  url( "/files/" . $user->cv->filename ) }}"></iframe>
                 </div>
             </div>
-        </section>
+        </section> --}}
 
     </div>
 </section>
@@ -435,7 +438,7 @@
     @endfor
 </section> --}}
 
-<section id="featured" class="section bg-gray pb-45">
+{{-- <section id="featured" class="section bg-gray pb-45">
     <div class="container">
         <h4 class="small-title text-left">Other information</h4>
         <div class="row">
@@ -498,7 +501,7 @@
 
         </div>
     </div>
-</section>
+</section> --}}
 @endsection
 
 
