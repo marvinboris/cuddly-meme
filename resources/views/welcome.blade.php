@@ -16,8 +16,8 @@
                     <div class="subscribe-form">
                         <div class="text-wrapper">
                             <div class="pt-3">
-                                <h4 class="d-none d-sm-block">WORKOO.NET: HR OTHERWISE ...</h4>
-                                <h3 class="d-sm-none h3 text-dark">WORKOO.NET: HR OTHERWISE ...</h3>
+                                <h4 class="d-none d-sm-block">WORKOO.NET: HR OTHERWISE </h4>
+                                <h3 class="d-sm-none h3 text-dark">WORKOO.NET: HR OTHERWISE </h3>
                                 <p class="lead text-dark">
                                     Workoo.net is a human ressources exhibition platform, a Saas designed to easily enhance competences of all kind. Only the essencial is displayed, it is not a social media. People pay 1 Dollar per year to be professionally exposed worlwide. 
                                 </p>
@@ -42,8 +42,8 @@
                     <div class="subscribe-form">
                         <div class="text-wrapper">
                             <div class="pt-3">
-                                <h4 class="d-none d-sm-block">THE PROBLEM THAT GENERATES THE IDEA:AN INCOMPLETE PROCESS...</h4>
-                                <h3 class="d-sm-none h3 text-dark">THE PROBLEM THAT GENERATES THE IDEA:AN INCOMPLETE PROCESS...</h3>
+                                <h4 class="d-none d-sm-block">THE PROBLEM THAT GENERATES THE IDEA:AN INCOMPLETE PROCESS</h4>
+                                <h3 class="d-sm-none h3 text-dark">THE PROBLEM THAT GENERATES THE IDEA:AN INCOMPLETE PROCESS</h3>
                                 <p class="lead text-dark">
                                     We created workoo.net because we knew how difficult it was to access your dream job, as also inappropropriate competence are 80% of compagnies growth issues.
                                 </p>
@@ -67,8 +67,8 @@
                     <div class="subscribe-form">
                         <div class="form-wrapper">
                             <div class="pt-3">
-                                <h4 class="d-none d-sm-block">AN EFFICIENT SOLUTION: HR OTHERWISE ...</h4>
-                                <h3 class="d-sm-none h3 text-dark">AN EFFICIENT SOLUTION: HR OTHERWISE ...</h3>
+                                <h4 class="d-none d-sm-block">AN EFFICIENT SOLUTION: HR OTHERWISE </h4>
+                                <h3 class="d-sm-none h3 text-dark">AN EFFICIENT SOLUTION: HR OTHERWISE </h3>
                                 <p class="lead text-dark">
                                     Very often hired under an instant need, the staff is recruited on the basis of some lively elements, while it is still sorely lacking information about their real abilities. Too late often when we realise, we do with and we adapt. But it's not the post to adapt to the incompetence of the person, it's up to the person to be gradually adaptable to the job.<br>
                                     Then we collected a set of information, which effectively responds to all the necessary field of vision for a success recruitment of the corresponding profiles. 
