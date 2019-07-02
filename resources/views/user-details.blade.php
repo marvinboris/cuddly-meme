@@ -294,6 +294,7 @@
                         <h3>Video</h3>
                         <h5>@if($user->video) {{ $user->video->mime }} @else No uploaded video @endif</h5>
                         <span class="date">@if($user->video) {{ $user->video->created_at->toDayDateTimeString() }} @else No set @endif</span>
+                        @if ($user->video)
                         <p>
                             @if($user->video)
                                 @include('file-viewer',['file' => $user->video, 'class' => 'video-box'])
@@ -309,6 +310,7 @@
                                 <a href="{{ url('/files/' . $user->video->filename ) }}" download>Download</a>
                             @endif
                         </p>
+                        @endif
                         <br>
                     </div>
                     <div id="social-networks" class="work-experence item">
@@ -348,7 +350,7 @@
                             <li><a href="#my-cv">CV</a></li>
                             <li><a href="#certificates">Certificates</a></li>
                             <li><a href="#social-networks">Social networks</a></li>
-                            <li><a href="#question-answers">Answers <span class="notinumber">{{ $user->responses->count() }}</span></a></li>
+                            <li><a href="#question-answers">Answers</a></li>
                         </ul>
                     </div>
                 </div>
