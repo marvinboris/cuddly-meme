@@ -124,9 +124,9 @@
                     <div class="content">
                         <h3 class="product-title">{{ $user->first_name . ' ' . $user->last_name }}</h3>
                         <p class="brand">@if( !empty( $user->activityArea ) ) {{ $user->activityArea->name }} @else "Disabled/Not set" @endif</p>
-                        <ul class="fa-ul">
-                            <li><i class="fa fa-li fa-phone"></i>{{ $user->phone }}</li>
-                            <li><i class="fa fa-li fa-envelope"></i>{{ $user->email }}</li>
+                        <ul class="list-unstyled">
+                            <li><i class="fa mr-1 fa-phone"></i>{{ $user->phone }}</li>
+                            <li><i class="fa mr-1 fa-envelope"></i>{{ $user->email }}</li>
                         </ul>
                         <div class="tags">
                             <span><i class="lni-map-marker"></i> {{ $user->city->name }}, {{ $user->city->country->name }}</span>
@@ -139,8 +139,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 col-xs-12" id="year-b">
-                <div class="month-price">
+            <div class="col-lg-4 col-md-6 col-xs-12 text-center" id="year-b">
+                <div class="month-price mx-auto" style="clear: both;">
                     <span class="year"><b>{{ date('Y') - \Carbon\Carbon::createFromFormat('Y-m-d',$user->birthdate)->year }}</b></span>
                     <div class="price"> years old</div>
                 </div>
@@ -263,7 +263,12 @@
                         {{-- <p>
                             @include('file-viewer',['file' => $user->cv, 'class' => 'cv-box'])
                         </p> --}}
-                        <iframe width="100%" height="500px" src="{{  url( "/files/" . $user->cv->filename ) }}"></iframe>
+                        <object data="{{  url( "/files/" . $user->cv->filename ) }}" type="application/pdf" width="100%" height="500px">
+                            <p>It appears you don't have a PDF plugin for this browser.
+                            you can <a href="{{  url( "/files/" . $user->cv->filename ) }}">click here to
+                            download the PDF file.</a></p>
+                          </object>
+                        {{-- <iframe width="100%" height="500px" src="{{  url( "/files/" . $user->cv->filename ) }}"></iframe> --}}
                         <p>
                             <a href="{{ url('/files/' . $user->cv->filename) }}" target="_blank">Open</a> |
                             <a href="{{ url('/files/' . $user->cv->filename) }}" download>Download</a>
@@ -338,25 +343,12 @@
                     <div class="widghet">
                         <h4>User information</h4>
                         <ul class="list-item">
-                            <li><a class="active" href="#my-resume">My Resume</a></li>
-                            <li><a href="#video">My Video</a></li>
-                            <li><a href="#my-cv">My CV</a></li>
-                            <li><a href="#certificates">My Certificates <span class="notinumber">{{ $user->attestations->count() }}</span></a></li>
-                            @php
-                                $sn = 0;
-                                for($i=1; $i <=3; $i++){
-                                    if($user->{'social_link'.$i}){
-                                        $sn++;
-                                    }
-                                }
-                            @endphp
-                            <li><a href="#social-networks">My Social networks <span class="notinumber">{{ $sn }}</span></a></li>
-                            <li><a href="#my-link">My Link</a></li>
-                            <li><a href="#question-answers">My Answers <span class="notinumber">{{ $user->responses->count() }}</span></a></li>
-                            <li><a href="#account-infos">Account infos</a></li>
-                            <li><a href="#payments">Payments</a></li>
-                            <li><a href="#" data-toggle="modal" data-target="#changePasswordModal">Change Password</a></li>
-                            <li><a href="{{ route('logout') }}">Sign Out</a></li>
+                            <li><a class="active" href="#my-resume">Resume</a></li>
+                            <li><a href="#video">Video</a></li>
+                            <li><a href="#my-cv">CV</a></li>
+                            <li><a href="#certificates">Certificates</a></li>
+                            <li><a href="#social-networks">Social networks</a></li>
+                            <li><a href="#question-answers">Answers <span class="notinumber">{{ $user->responses->count() }}</span></a></li>
                         </ul>
                     </div>
                 </div>

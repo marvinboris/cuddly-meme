@@ -50,6 +50,12 @@
     </div>
     <div class="mobile-menu" data-logo="{{ asset('img/workoo.png') }}"></div>
   </nav>
+
+  @section('scripts')
+      <script>
+        document.querySelector('div.mobile-menu div.slicknav_menu > a').setAttribute('href', '/');
+      </script>
+  @endsection
   
   @include("partials.herocontainer")
   
