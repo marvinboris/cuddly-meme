@@ -207,7 +207,8 @@
                         <h3>My Social Networks</h3>
                         @for($i = 1; $i <= 3; $i++)
                             @if($user->{'social_link'.$i})
-                            <a href="{{ $user->{'social_link'.$i} }}" target="_blank"><h4>-> {{ $user->{'social_link'.$i} }}</h4></a>
+                            <iframe src="{{ $user->{'social_link'.$i} }}" width="100%" height="500px" frameborder="0"></iframe>
+                            {{-- <a href="{{ $user->{'social_link'.$i} }}" target="_blank"><h4>-> {{ $user->{'social_link'.$i} }}</h4></a> --}}
                             @endif
                         @endfor
                         @if(!$user->social_link1 && !$user->social_link2 && !$user->social_link3)
