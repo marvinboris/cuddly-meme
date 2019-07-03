@@ -105,7 +105,6 @@
 @parent
 
 
-
 </header>
 
 <div class="page-header">
@@ -317,7 +316,12 @@
                         <h3>Social Networks</h3>
                         @for($i = 1; $i <= 3; $i++)
                             @if($user->{'social_link'.$i})
-                            <iframe src="{{ $user->{'social_link'.$i} }}" width="100%" height="500px" frameborder="0"></iframe>
+                                @if (preg_match('#facebook#', $user->{'social_link' . $i}))
+                                <div id="fb-root"></div>
+                                <div class="fb-page" data-href="{{ $user->{'social_link' . $i} }}" data-tabs="timeline" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="{{ $user->{'social_link' . $i} }}" class="fb-xfbml-parse-ignore"><a href="{{ $user->{'social_link' . $i} }}">Facebook link</a></blockquote></div>
+                                @else
+                                <iframe src="{{ $user->{'social_link'.$i} }}" width="100%" height="500px" frameborder="0"></iframe>
+                                @endif
                             {{-- <a href="{{ $user->{'social_link'.$i} }}" target="_blank"><h4>-> {{ $user->{'social_link'.$i} }}</h4></a> --}}
                             @endif
                         @endfor
@@ -501,6 +505,7 @@
 
 
 @section('scripts')
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v3.3"></script>
 <script>
     document.getElementById('copy').onclick = function(e){
         //copy val to clibord
