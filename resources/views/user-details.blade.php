@@ -318,7 +318,9 @@
                             @if($user->{'social_link'.$i})
                                 @if (preg_match('#facebook#', $user->{'social_link' . $i}))
                                 <div id="fb-root"></div>
-                                <div class="fb-page" data-href="{{ $user->{'social_link' . $i} }}" data-tabs="timeline" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="{{ $user->{'social_link' . $i} }}" class="fb-xfbml-parse-ignore"><a href="{{ $user->{'social_link' . $i} }}">Facebook link</a></blockquote></div>
+                                <div style="overflow: hidden;">
+                                    <div class="fb-page" data-href="{{ $user->{'social_link' . $i} }}" data-tabs="timeline" data-width="500" data-height="500" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="{{ $user->{'social_link' . $i} }}" class="fb-xfbml-parse-ignore"><a href="{{ $user->{'social_link' . $i} }}">Facebook link</a></blockquote></div>
+                                </div>
                                 @else
                                 <iframe src="{{ $user->{'social_link'.$i} }}" width="100%" height="500px" frameborder="0"></iframe>
                                 @endif
