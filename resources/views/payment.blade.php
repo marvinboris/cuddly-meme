@@ -52,10 +52,10 @@
                     <h3> Visa - Master card </h3>
                     <div class="row">
                         <div class="col-md-5 offset-md-1">
-                            <a href="{{ $visa->redirectUrl }}"><i class="fa fa-cc-mastercard fa-4x card" style="color:red"></i></a>
+                            <a href="{{ $visa->redirectUrl }}"><img src="{{ asset('img/https___blogs-images.forbes.com_steveolenski_files_2016_07_Mastercard_new_logo-1200x865.jpg') }}" alt="Logo Master Card" style="width:75px;height:40px"></a>
                         </div>
                         <div class="col-md-5">
-                            <a href="{{ $visa->redirectUrl }}"><i class="fa fa-cc-visa fa-4x card" style="color:blue"></i></a>
+                            <a href="{{ $visa->redirectUrl }}"><img src="{{ asset('img/Visa_Inc._logo.svg.png') }}" alt="Logo Visa" style="width:75px;height:40px"></a>
                         </div>
                         
                     </div>
@@ -64,6 +64,7 @@
                         <a href="#" class="west-africa"> <img src="https://secure.cinetpay.com/img/om_resized.png" style="width:75px;height:40px"></a>
                         <a href="#" class="west-africa"> <img src="https://secure.cinetpay.com/img/momo_resized.png" style="width:75px;height:40px"></a>
                         <a href="#" class="west-africa"> <img src="https://secure.cinetpay.com/img/flooz_resized.png" style="width:75px;height:40px"></a>
+                        {{ $cinetpay->displayPayButton('cinetpay',2,'large')}}
                     <br/> <br/>
                      {{-- <h3> For Central Africa except Cameroon </h3>
                         <a href="{{ $monetbil['link'] }}"> <img src="https://secure.cinetpay.com/img/om_resized.png" style="width:75px;height:40px"></a>
