@@ -111,6 +111,7 @@ class AtivityAreasController extends Controller
     }
 
     public function multiDelete(Request $request) {
+        return $request->all();
         $checkboxes = $request->checkboxArray;
         $activities = array();
         foreach ($checkboxes as $id) {

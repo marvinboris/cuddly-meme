@@ -28,6 +28,22 @@
             <div class="col-lg-5 col-md-6 col-xs-12">
                 <div class="page-login-form box">
                     <h3>Complete The Payment By Choosing a method </h3>
+                    
+                    <h3> Visa - Master card </h3>
+                    <div class="row justify-content-center">
+                        <div class="col-md-5">
+                            <a href="{{ $visa->redirectUrl }}"><img src="{{ asset('img/visa-Mastercard-logo.jpg') }}" alt="Logo Visa + Mastercard" class="img-fluid"></a>
+                        </div>
+                    </div>
+
+                    <h3> For West Africa And Cameroon </h3>
+                    <div class="row justify-content-center">
+                        <div class="col text-center"><a href="#" class="west-africa"> <img src="https://secure.cinetpay.com/img/om_resized.png" style="width:75px;height:40px"></a></div>
+                        <div class="col text-center"><a href="#" class="west-africa"> <img src="https://secure.cinetpay.com/img/momo_resized.png" style="width:75px;height:40px"></a></div>
+                        <div class="col text-center"><a href="#" class="west-africa"> <img src="https://secure.cinetpay.com/img/flooz_resized.png" style="width:75px;height:40px"></a></div>
+                        {{ $cinetpay->displayPayButton('cinetpay',2,'large')}}
+                    </div>
+                    <br/> <br/>
 
                     <h3> World Wide - With Cryptocurrencies </h3>
                     <form action="https://www.coinpayments.net/index.php" method="post">
@@ -49,23 +65,6 @@
                          </button> 
                     </form>
 
-                    <h3> Visa - Master card </h3>
-                    <div class="row">
-                        <div class="col-md-5 offset-md-1">
-                            <a href="{{ $visa->redirectUrl }}"><img src="{{ asset('img/https___blogs-images.forbes.com_steveolenski_files_2016_07_Mastercard_new_logo-1200x865.jpg') }}" alt="Logo Master Card" style="width:75px;height:40px"></a>
-                        </div>
-                        <div class="col-md-5">
-                            <a href="{{ $visa->redirectUrl }}"><img src="{{ asset('img/Visa_Inc._logo.svg.png') }}" alt="Logo Visa" style="width:75px;height:40px"></a>
-                        </div>
-                        
-                    </div>
-
-                     <h3> For West Africa And Cameroon </h3>
-                        <a href="#" class="west-africa"> <img src="https://secure.cinetpay.com/img/om_resized.png" style="width:75px;height:40px"></a>
-                        <a href="#" class="west-africa"> <img src="https://secure.cinetpay.com/img/momo_resized.png" style="width:75px;height:40px"></a>
-                        <a href="#" class="west-africa"> <img src="https://secure.cinetpay.com/img/flooz_resized.png" style="width:75px;height:40px"></a>
-                        {{ $cinetpay->displayPayButton('cinetpay',2,'large')}}
-                    <br/> <br/>
                      {{-- <h3> For Central Africa except Cameroon </h3>
                         <a href="{{ $monetbil['link'] }}"> <img src="https://secure.cinetpay.com/img/om_resized.png" style="width:75px;height:40px"></a>
                         <a href="{{ $monetbil['link'] }}"> <img src="https://secure.cinetpay.com/img/momo_resized.png" style="width:75px;height:40px"></a>
