@@ -35,6 +35,7 @@
                             <a href="{{ $visa->redirectUrl }}"><img src="{{ asset('img/visa-Mastercard-logo.jpg') }}" alt="Logo Visa + Mastercard" class="img-fluid"></a>
                         </div>
                     </div>
+                    <br/> <br/>
 
                     <h3> For West Africa And Cameroon </h3>
                     <div class="row justify-content-center">
@@ -46,7 +47,7 @@
                     <br/> <br/>
 
                     <h3> World Wide - With Cryptocurrencies </h3>
-                    <form action="https://www.coinpayments.net/index.php" method="post">
+                    <form action="https://www.coinpayments.net/index.php" method="post" class="text-center">
                         <input type="hidden" name="cmd" value="_pay_simple">
                         <input type="hidden" name="reset" value="1">
                         <input type="hidden" name="merchant" value="305e526de20c8da45211ce1e3ccbbd8b">

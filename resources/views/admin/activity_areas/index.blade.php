@@ -35,7 +35,7 @@
                     <div class="row">
                         <form class="col-12" method="POST" action="{{ route('admin.activity_areas.multi-delete') }}">
                             @csrf
-                            @method('delete')
+                            {{-- @method('delete') --}}
                             <div class="card">
                                 <div class="card-header">
 
