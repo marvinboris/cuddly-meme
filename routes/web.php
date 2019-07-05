@@ -123,6 +123,7 @@ Route::group(['prefix' => 'admin', 'namespace'=>'Admin' , 'as' => 'admin.', 'mid
 
     Route::group(['prefix' => 'activity_areas', 'as' => 'activity_areas.'], function () {
         Route::put('restore/{activity_area}', 'AtivityAreasController@restore')->name('restore');
+        Route::delete('multi-delete', 'AtivityAreasController@multiDelete')->name('multi-delete');
     });
     Route::resource('activity_areas', 'AtivityAreasController');
 

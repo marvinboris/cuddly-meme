@@ -109,4 +109,14 @@ class AtivityAreasController extends Controller
         ActivityArea::onlyTrashed()->whereId($id)->restore();
         return back()->withSuccess("Activity area enabled successfully !");
     }
+
+    public function multiDelete(Request $request) {
+        $checkboxes = $request->checkboxArray;
+        $activities = array();
+        foreach ($checkboxes as $id) {
+            $activities[+$id] = ActivityArea::findOrFail(+$id);
+            $activities[+$id]->forceDelete();
+        }
+        return back()->withSuccess("Activity area(s) successfully deleted !");
+    }
 }

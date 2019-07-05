@@ -33,7 +33,9 @@
                 <!-- Scroll - horizontal table -->
                 <section id="horizontal">
                     <div class="row">
-                        <div class="col-12">
+                        <form class="col-12" method="POST" action="{{ route('admin.activity_areas.multi-delete') }}">
+                            @csrf
+                            @method('delete')
                             <div class="card">
                                 <div class="card-header">
 
@@ -42,8 +44,11 @@
                                     <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
                                         <ul class="list-inline mb-0">
-                                            <button class="btn btn-success" data-toggle="modal" data-target="#addModal">
+                                            <button class="btn btn-success" type="button" data-toggle="modal" data-target="#addModal">
                                                 <i class="fa fa-plus"></i> Add
+                                            </button>
+                                            <button class="btn btn-danger" type="submit">
+                                                <i class="fa fa-minus"></i> Delete
                                             </button>
                                         </ul>
                                     </div>
@@ -54,6 +59,9 @@
                                             <table class="table display nowrap table-striped table-bordered zero-configuration">
                                                 <thead>
                                                     <tr>
+                                                        <th>
+                                                            <input type="checkbox" name="all" id="select-all">
+                                                        </th>
                                                         <th>#</th>
                                                         <th>Name</th>
                                                         <th>Description</th>
@@ -65,6 +73,9 @@
                                                 <tbody>
                                                     @foreach ($activities as $activity)
                                                     <tr>
+                                                        <th>
+                                                            <input type="checkbox" name="checkboxArray[]" class="checkbox" value="{{ $activity->id }}">
+                                                        </th>
                                                         <td>{{ $loop->index +1 }}</td>
                                                         <td>{{ $activity->name }}</td>
                                                         <td>{{ $activity->description }}</td>
@@ -97,7 +108,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </section>
             </div>
@@ -141,4 +152,8 @@
         </div>
     </div>
 </form>
+@endsection
+
+@section('footer_scripts')
+    @include('partials.multi-delete-script')
 @endsection
