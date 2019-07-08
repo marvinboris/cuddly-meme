@@ -33,7 +33,7 @@
                         <div class="form-group">
                             <div class="input-icon">
                                 <i class="lni-user"></i>
-                                <input type="text" required id="sender-email" class="form-control" name="email" placeholder="E-mail">
+                                <input type="email" required id="sender-email" class="form-control" name="email" placeholder="E-mail">
                             </div>
                         </div>
                         <div class="form-group">

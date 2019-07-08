@@ -26,7 +26,7 @@
                         </span>
                         <h4>Create an Account</h4>
                         <p>
-                           Create and account in the platform, with basic information
+                           Create and account in the platform, with basic information.
                         </p>
                     </div>
                 </div>
@@ -37,8 +37,7 @@
                         </span>
                         <h4>Make a subscription payment</h4>
                         <p>
-                            Pay only $ {{ $setting->account_price }} for a year
-                            in order to get your profile professionnally exposed in the world.
+                            Pay only $ {{ $setting->account_price }} for a year in order to get your profile professionally exposed in the world. Pay with all payment methods from Mobile Money to Visa.
                         </p>
                     </div>
                 </div>
@@ -49,7 +48,7 @@
                         </span>
                         <h4>Complete your profile </h4>
                         <p>
-                            Complete your profile and get your next job offer right into your box
+                            Complete your profile and get your next job offer right into your box.
                         </p>
                     </div>
                 </div>
@@ -69,7 +68,7 @@
                         </span>
                         <h4>Research the talent</h4>
                         <p>
-                            Use our powerful search engine and get right profile for your job offer
+                            Use our powerful search engine and get right profile for your job offer.
                         </p>
                     </div>
                 </div>
@@ -81,7 +80,7 @@
                         <h4>Get in touch </h4>
                         <p>
                             Get in touch with the matched person, for you to discuss about
-                            modalities
+                            modalities.
                         </p>
                     </div>
                 </div>

@@ -104,6 +104,7 @@
                             <div class="manager-name">
                                 <h4><a href="{{ url($user->link) }}">{{ $user->first_name . ' ' . $user->last_name }}</a></h4>
                                 <h5>{{ $user->activityArea->name }}</h5>
+                                <h6>{{ $user->specialization }}</h6>
                                 <ul class="fa-ul">
                                     <li><i class="fa fa-li fa-phone"></i>{{ $user->phone }}</li>
                                     <li><i class="fa fa-li fa-envelope"></i>{{ $user->email }}</li>
@@ -112,13 +113,13 @@
                             <div class="manager-meta">
                                 <span class="location"><i class="ti-location-pin"></i> {{ $user->city->name }}, {{ $user->city->country->name }}</span>
                                 <span class="rate"><i class="ti-time"></i> {{ date('Y') - \Carbon\Carbon::createFromFormat('Y-m-d',$user->birthdate)->year }} years old</span>
+                                <div class="resume-exp">
+                                    <span style="cursor:default;" class="btn btn-common btn-xs">{{ strtoupper($user->sex) == 'M' ? 'Man':'Woman'  }} </span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="item-body">
-                        <div class="content">
-                            <p>{{ $user->specialization }}</p>
-                        </div>
+                    {{-- <div class="item-body">
                         <div class="resume-skills">
                             <div class="tag-list float-left">
                                 @if($user->cv) <span>CV</span> @endif
@@ -132,11 +133,8 @@
                                     @endif
                                 @endforeach
                             </div>
-                            <div class="resume-exp float-right">
-                                <span style="cursor:default;" class="btn btn-common btn-xs">{{ strtoupper($user->sex) == 'M' ? 'Man':'Woman'  }} </span>
-                            </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             @empty

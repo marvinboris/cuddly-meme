@@ -59,7 +59,7 @@
             <script src="{{ asset('js/jquery-min.js') }}" ></script>
             <script src="{{ asset('js/popper.min.js') }}" ></script>
             <script src="{{ asset('js/bootstrap.min.js') }}" ></script>
-            <!-- <script src="{{ asset('js/color-switcher.js') }}" ></script> -->
+            {{-- <!-- <script src="{{ asset('js/color-switcher.js') }}" ></script> --> --}}
             <script src="{{ asset('js/owl.carousel.min.js') }}" ></script>
             <script src="{{ asset('js/jquery.slicknav.js') }}" ></script>
             <script src="{{ asset('js/jquery.counterup.min.js') }}" ></script>

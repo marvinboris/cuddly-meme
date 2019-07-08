@@ -43,6 +43,16 @@ class User extends EloquentUser
         return ucwords(strtolower($value));
     }
 
+    public function completion()
+    {
+        $percentage = 0;
+        if ($this->cv) $percentage += 25;
+        if ($this->video) $percentage += 25;
+        if (count($this->responses) > 0) $percentage += 25 / count($this->responses);
+        if ($this->social_link1 || $this->social_link2 || $this->social_link3) $percentage += 25;
+        return $percentage;
+    }
+
     public function city()
     {
         return $this->belongsTo(City::class, 'city_id');

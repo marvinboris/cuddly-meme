@@ -123,6 +123,7 @@
                     <div class="content">
                         <h3 class="product-title">{{ $user->first_name . ' ' . $user->last_name }}</h3>
                         <p class="brand">@if( !empty( $user->activityArea ) ) {{ $user->activityArea->name }} @else "Disabled/Not set" @endif</p>
+                        <p class="brand">{{ $user->specialization }}</p>
                         <ul class="list-unstyled">
                             <li><i class="fa mr-1 fa-phone"></i>{{ $user->phone }}</li>
                             <li><i class="fa mr-1 fa-envelope"></i>{{ $user->email }}</li>
@@ -251,10 +252,10 @@
                             </div>
                         </div>
                     </div> --}}
-                    <div class="about-me item">
+                    {{-- <div class="about-me item">
                         <h3>Specialization</h3>
                         <p>{{ $user->specialization }}</p>
-                    </div>
+                    </div> --}}
                     <div id="my-cv" class="work-experence item">
                         <h3>Curriculum Vitae</h3>
                         <h5>{{ $user->cv->mime }}</h5>
@@ -264,7 +265,7 @@
                         </p> --}}
                         <object data="{{  url( "/files/" . $user->cv->filename ) }}" type="application/pdf" width="100%" height="500px">
                             <p>It appears you don't have a PDF plugin for this browser.
-                            you can <a href="{{  url( "/files/" . $user->cv->filename ) }}">click here to
+                            You can <a href="{{  url( "/files/" . $user->cv->filename ) }}">click here to
                             download the PDF file.</a></p>
                           </object>
                         {{-- <iframe width="100%" height="500px" src="{{  url( "/files/" . $user->cv->filename ) }}"></iframe> --}}
@@ -352,6 +353,12 @@
                     <div class="widghet">
                         <h4>User information</h4>
                         <ul class="list-item">
+                            <li>
+                                Profile completion percentage
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: {{ $user->percentage }}%" aria-valuenow="{{ $user->percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </li>
                             <li><a class="active" href="#my-resume">Resume</a></li>
                             <li><a href="#video">Video</a></li>
                             <li><a href="#my-cv">CV</a></li>

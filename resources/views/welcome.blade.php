@@ -95,8 +95,10 @@
                         <div class="text-wrapper">
                             <div class="pt-3">
                                 <p class="lead text-dark">
-                                    You, the Job Opportunity seekers, are asked where your skills and your personality flourish.<br>
-                                    The recruiter finds great profiles, based on deeply clear and precised information.                                    
+                                    <ul class="fa-ul lead text-dark">
+                                        <li><i class="fa fa-li fa-circle"></i> You, the Job Opportunity seekers, are asked where your skills and your personality flourish.</li>
+                                        <li><i class="fa fa-li fa-circle"></i> The recruiter finds great profiles, based on deeply clear and precised information.</li>
+                                    </ul>                                   
                                 </p>
                             </div>
                         </div>
@@ -222,7 +224,6 @@
                             <ul>
                                 <li>Get your profile featured</li>
                                 <li>Profile view counts</li>
-                                <li>Get notified on new jobs</li>
                                 <li>Edit Your Job Listing</li>
                                 <li>1 year Expired</li>
                             </ul>

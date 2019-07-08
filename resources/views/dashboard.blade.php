@@ -42,6 +42,12 @@
                 <div class="right-sideabr">
                     <h4>Manage Account</h4>
                     <ul class="list-item">
+                        <li>
+                            Profile completion percentage
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: {{ $user->percentage }}%" aria-valuenow="{{ $user->percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </li>
                         <li><a class="active" href="#my-resume">My Resume</a></li>
                         <li><a href="#video">My Video</a></li>
                         <li><a href="#my-cv">My CV</a></li>
@@ -69,7 +75,7 @@
                     <div class="author-resume">
                         <div class="thumb">
                             @if($user->pic)
-                            <img id="change-pic" src="{{ url('files/' . $user->pic->filename) }}" class="my-rounded-circle" style="height:8em; width:8em; " alt="User picture">
+                            <img id="change-pic" src="{{ url('files/' . $user->pic->filename) }}" class="my-rounded-circle" style="height:8em; width:8em; object-fit:cover; object-position:top;" alt="User picture">
                             @else
                             <img id="change-pic" src="{{ asset('assets/default-avatar.png') }}" class="my-rounded-circle" style="height:8em; width:8em;" alt="default avatar">
                             @endif
