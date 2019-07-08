@@ -163,15 +163,15 @@ class FrontEndController extends Controller {
         $query->join('role_users','role_users.user_id', '=', 'users.id')->where('role_users.role_id', $userRole->id);
 
         //$users = $query->simplePaginate(1);
-        // $users = $query->orderBy('views','desc')->paginate(10);
-        $users = $query->get();
+        $users = $query->orderBy('views','desc')->paginate(10);
+        // $users = $query->get();
 
-        $percentage = array();
-        foreach ($users as $key => $user)
-        {
-            $percentage[$key] = $user->percentage;
-        }
-        array_multisort($percentage, SORT_DESC, $users);
+        // $percentage = array();
+        // foreach ($users as $key => $user)
+        // {
+        //     $percentage[$key] = $user->percentage;
+        // }
+        // array_multisort($percentage, SORT_DESC, $users);
 
         $total = json_decode($users->toJson());
         $total = $total->total;

@@ -224,7 +224,7 @@
                             <ul>
                                 <li>Get your profile featured</li>
                                 <li>Profile view counts</li>
-                                <li>Edit Your Job Listing</li>
+                                {{-- <li>Edit Your Job Listing</li> --}}
                                 <li>1 year Expired</li>
                             </ul>
                             <div class="price">
