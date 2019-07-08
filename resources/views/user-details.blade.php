@@ -317,15 +317,15 @@
                         <h3>Social Networks</h3>
                         @for($i = 1; $i <= 3; $i++)
                             @if($user->{'social_link'.$i})
-                                @if (preg_match('#facebook#', $user->{'social_link' . $i}))
+                                {{-- @if (preg_match('#facebook#', $user->{'social_link' . $i}))
                                 <div id="fb-root"></div>
                                 <div style="overflow: hidden;">
                                     <div class="fb-page" data-href="{{ $user->{'social_link' . $i} }}" data-tabs="timeline" data-width="500" data-height="500" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="{{ $user->{'social_link' . $i} }}" class="fb-xfbml-parse-ignore"><a href="{{ $user->{'social_link' . $i} }}">Facebook link</a></blockquote></div>
                                 </div>
-                                @else
-                                <iframe src="{{ $user->{'social_link'.$i} }}" width="100%" height="500px" frameborder="0"></iframe>
+                                @else --}}
+                                {{-- <iframe src="{{ $user->{'social_link'.$i} }}" width="100%" height="500px" frameborder="0"></iframe> --}}
                                 @endif
-                            {{-- <a href="{{ $user->{'social_link'.$i} }}" target="_blank"><h4>-> {{ $user->{'social_link'.$i} }}</h4></a> --}}
+                            <a href="{{ $user->{'social_link'.$i} }}" target="_blank"><h4>-> {{ $user->{'social_link'.$i} }}</h4></a>
                             @endif
                         @endfor
                         @if(!$user->social_link1 && !$user->social_link2 && !$user->social_link3)

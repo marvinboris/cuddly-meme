@@ -37,9 +37,9 @@
 							</div>
 						</form>
 						<ul class="mt-3 footer-social">
-							<li><a class="facebook" href="#"><i class="lni-facebook-filled"></i></a></li>
-							<li><a class="twitter" href="#"><i class="lni-twitter-filled"></i></a></li>
-							<li><a class="linkedin" href="#"><i class="lni-linkedin-fill"></i></a></li>
+							<li><a class="facebook" href="https://www.facebook.com/workoo.net/?ref=br_rs"><i class="lni-facebook-filled"></i></a></li>
+							<li><a class="twitter" href="https://twitter.com/WorkooN"><i class="lni-twitter-filled"></i></a></li>
+							<li><a class="linkedin" href="https://www.linkedin.com/company/workoo/"><i class="lni-linkedin-fill"></i></a></li>
 						</ul>
 					</div>
 				</div>
@@ -51,5 +51,6 @@
 	<i class="lni-arrow-up"></i>
 </a>
 <div id="preloader">
+	<img src="{{ asset('img/wall/workoo-big.png') }}" style="height: 50px; position: absolute; top: 50%; left: 50%; transform: translate(-35px,0px);" alt="logo">
 	<div class="loader" id="loader-1"></div>
 </div>
