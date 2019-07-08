@@ -51,6 +51,6 @@
 	<i class="lni-arrow-up"></i>
 </a>
 <div id="preloader">
-	<img src="{{ asset('img/wall/workoo-big.png') }}" style="height: 50px; position: absolute; top: 50%; left: 50%; transform: translate(-35px,0px);" alt="logo">
+	<img src="{{ asset('img/wall/workoo-big.png') }}" style="height: 200px; position: absolute; top: 50%; left: 50%; transform: translate(calc(-50% - 10px),calc(-50% - 10px));" alt="logo">
 	<div class="loader" id="loader-1"></div>
 </div>

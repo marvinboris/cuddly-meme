@@ -19,7 +19,7 @@
                                 <h4 class="d-none d-sm-block">WORKOO.NET: HR OTHERWISE </h4>
                                 <h3 class="d-sm-none h3 text-dark">WORKOO.NET: HR OTHERWISE </h3>
                                 <p class="lead text-dark">
-                                    Workoo.net is a human ressources exhibition platform, a Saas designed to easily enhance competences of all kind. Only the essencial is displayed, it is not a social media. People pay 1 Dollar per year to be professionally exposed worlwide. 
+                                    Workoo.net is a human resources exhibition platform, a Saas designed to easily enhance competences of all kind. Only the essencial is displayed, it is not a social media. People pay 1 Dollar per year to be professionally exposed worlwide. 
                                 </p>
                             </div>
                         </div>

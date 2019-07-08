@@ -113,8 +113,8 @@
                             <div class="manager-meta">
                                 <span class="location"><i class="ti-location-pin"></i> {{ $user->city->name }}, {{ $user->city->country->name }}</span>
                                 <span class="rate"><i class="ti-time"></i> {{ date('Y') - \Carbon\Carbon::createFromFormat('Y-m-d',$user->birthdate)->year }} years old</span>
-                                <div class="resume-expo text-white">
-                                    <span style="cursor:default;" class="btn btn-common btn-xs">{{ strtoupper($user->sex) == 'M' ? 'Man':'Woman'  }} </span>
+                                <div class="resume-expo">
+                                    <span style="cursor:default;" class="btn btn-common btn-xs text-white">{{ strtoupper($user->sex) == 'M' ? 'Man':'Woman'  }} </span>
                                 </div>
                             </div>
                         </div>
