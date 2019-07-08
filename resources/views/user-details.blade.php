@@ -324,7 +324,7 @@
                                 </div>
                                 @else --}}
                                 {{-- <iframe src="{{ $user->{'social_link'.$i} }}" width="100%" height="500px" frameborder="0"></iframe> --}}
-                                @endif
+                                {{-- @endif --}}
                             <a href="{{ $user->{'social_link'.$i} }}" target="_blank"><h4>-> {{ $user->{'social_link'.$i} }}</h4></a>
                             @endif
                         @endfor
