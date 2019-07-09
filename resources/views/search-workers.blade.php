@@ -116,6 +116,12 @@
                                 <div class="resume-expo">
                                     <span style="cursor:default;" class="btn btn-common btn-xs text-white">{{ strtoupper($user->sex) == 'M' ? 'Man':'Woman'  }} </span>
                                 </div>
+                                <div class="text-center">
+                                    <span class="text-success">{{ App\User::completion($user) }}%</span>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: {{ App\User::completion($user) }}%" aria-valuenow="{{ App\User::completion($user) }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

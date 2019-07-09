@@ -117,8 +117,7 @@ class FrontEndController extends Controller {
             return back()->withError('This user already exist !');
         }
 
-        return redirect()->route('payment');
-        // return redirect()->route('registration-sucess');
+        return redirect()->route('registration-sucess');
     }
 
     public function registrationSucess(Request $request) {

@@ -354,9 +354,9 @@
                         <h4>User information</h4>
                         <ul class="list-item">
                             <li>
-                                Profile completion percentage
+                                Profile completion percentage <span class="text-success">{{ App\User::completion($user) }}%</span>
                                 <div class="progress">
-                                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: {{ App\User::completion($user) }}%" aria-valuenow="{{ App\User::completion($user) }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: {{ App\User::completion($user) }}%" aria-valuenow="{{ App\User::completion($user) }}" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </li>
                             <li><a class="active" href="#my-resume">Resume</a></li>
