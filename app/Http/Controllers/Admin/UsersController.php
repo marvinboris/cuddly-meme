@@ -180,6 +180,7 @@ class UsersController extends Controller
     {
         $activities = ActivityArea::all();
         $countries = Country::all();
+        $questions = Question::all();
         return view(self::$view_folder . 'edit', compact('user', 'questions', 'activities', 'countries'));
     }
 

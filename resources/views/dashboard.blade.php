@@ -45,7 +45,7 @@
                         <li>
                             Profile completion percentage
                             <div class="progress">
-                                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: {{ $user->percentage }}%" aria-valuenow="{{ $user->percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: {{ App\User::completion($user) }}%" aria-valuenow="{{ App\User::completion($user) }}" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </li>
                         <li><a class="active" href="#my-resume">My Resume</a></li>

@@ -43,13 +43,13 @@ class User extends EloquentUser
         return ucwords(strtolower($value));
     }
 
-    public function completion()
+    public static function completion($user)
     {
         $percentage = 0;
-        if ($this->cv) $percentage += 25;
-        if ($this->video) $percentage += 25;
-        if (count($this->responses) > 0) $percentage += 25 / count($this->responses);
-        if ($this->social_link1 || $this->social_link2 || $this->social_link3) $percentage += 25;
+        if ($user->cv) $percentage += 25;
+        if ($user->video) $percentage += 25;
+        if (count($user->responses) > 0) $percentage += 25 / count($user->responses);
+        if ($user->social_link1 || $user->social_link2 || $user->social_link3) $percentage += 25;
         return $percentage;
     }
 
