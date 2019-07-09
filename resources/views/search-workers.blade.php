@@ -119,7 +119,13 @@
                                 <div class="text-center">
                                     <span class="text-success">{{ App\User::completion($user) }}%</span>
                                     <div class="progress">
-                                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: {{ App\User::completion($user) }}%" aria-valuenow="{{ App\User::completion($user) }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style="width: {{ (App\User::completion($user) > (100/3)) ? (100/3) : (App\User::completion($user)) }}%" aria-valuenow="{{ (App\User::completion($user) > (100/3)) ? (100/3) : (App\User::completion($user)) }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                        @if (App\User::completion($user))
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: {{ (App\User::completion($user) > (200/3)) ? (100/3) : (App\User::completion($user) - (100/3)) }}%" aria-valuenow="{{ (App\User::completion($user) > (200/3)) ? (100/3) : (App\User::completion($user) - (100/3)) }}" aria-valuemin="0" aria-valuemax="100"></div>    
+                                        @endif
+                                        @if (App\User::completion($user))
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: {{ (App\User::completion($user) > (100)) ? (100/3) : (App\User::completion($user) - (200/3)) }}%" aria-valuenow="{{ (App\User::completion($user) > (100)) ? (100/3) : (App\User::completion($user) - (200/3)) }}" aria-valuemin="0" aria-valuemax="100"></div>    
+                                        @endif
                                     </div>
                                 </div>
                             </div>
