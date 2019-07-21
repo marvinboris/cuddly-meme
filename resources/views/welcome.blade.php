@@ -1,5 +1,9 @@
 @extends("partials.layout")
 
+@section('stylesheet')
+<meta name="google-site-verification" content="Ra-XuXXLGAaIR9jQhleWunW0plFyVwMEj5ukzIlN9Bc" />
+@endsection
+
 @section("content")
 
 @parent
