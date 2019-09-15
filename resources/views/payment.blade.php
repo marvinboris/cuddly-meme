@@ -37,14 +37,14 @@
                     </div>
                     <br/> <br/>
 
-                    <h3> For West Africa And Cameroon </h3>
+                    {{-- <h3> For West Africa And Cameroon </h3>
                     <div class="row justify-content-center">
                         <div class="col text-center"><a href="#" class="west-africa"> <img src="https://secure.cinetpay.com/img/om_resized.png" style="width:75px;height:40px"></a></div>
                         <div class="col text-center"><a href="#" class="west-africa"> <img src="https://secure.cinetpay.com/img/momo_resized.png" style="width:75px;height:40px"></a></div>
                         <div class="col text-center"><a href="#" class="west-africa"> <img src="https://secure.cinetpay.com/img/flooz_resized.png" style="width:75px;height:40px"></a></div>
                         {{ $cinetpay->displayPayButton('cinetpay',2,'large')}}
                     </div>
-                    <br/> <br/>
+                    <br/> <br/> --}}
 
                     <h3> World Wide - With Cryptocurrencies </h3>
                     <form action="https://www.coinpayments.net/index.php" method="post" class="text-center">

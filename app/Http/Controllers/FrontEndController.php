@@ -288,16 +288,17 @@ class FrontEndController extends Controller {
             }
         }
 
-        $cinetpay = new CinetpayController();
+        // $cinetpay = new CinetpayController();
 
-        $cinetpay = $cinetpay->deposit( $request ); 
+        // $cinetpay = $cinetpay->deposit( $request ); 
         $monetbil = new MonetbilController();
         $monetbil = $monetbil->generateWidgetData( $request ); 
 
         $visa = new VisaController();
         $visa = $visa->getConf( $request );
 
-        return view('payment',compact('user','cinetpay','monetbil','visa'));
+        return view('payment',compact('user','monetbil','visa'));
+        // return view('payment',compact('user','cinetpay','monetbil','visa'));
     }
 
     /**
