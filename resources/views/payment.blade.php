@@ -66,11 +66,11 @@
                          </button> 
                     </form>
 
-                     {{-- <h3> For Central Africa except Cameroon </h3>
+                     <h3> For Central Africa except Cameroon </h3>
                         <a href="{{ $monetbil['link'] }}"> <img src="https://secure.cinetpay.com/img/om_resized.png" style="width:75px;height:40px"></a>
                         <a href="{{ $monetbil['link'] }}"> <img src="https://secure.cinetpay.com/img/momo_resized.png" style="width:75px;height:40px"></a>
-                        {{ $cinetpay->displayPayButton('cinetpay',2,'large')}}
-                    <br/> <br/> --}}
+                        {{-- {{ $cinetpay->displayPayButton('cinetpay',2,'large')}} --}}
+                    <br/> <br/>
                  </div>
             </div>
         </div>
